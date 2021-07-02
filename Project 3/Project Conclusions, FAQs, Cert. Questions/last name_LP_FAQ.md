@@ -1,0 +1,12 @@
+# FAQs
+
+
+**[QUESTION]**
+
+[ANSWER]
+
+
+
+**[QUESTION]**
+
+[ANSWER]
