@@ -77,7 +77,7 @@ curl -v https://api-m.sandbox.paypal.com/v1/oauth2/token \
 curl -v https://api-m.sandbox.paypal.com/v1/oauth2/token \
   -H "Accept: application/json" \
   -H "Accept-Language: en_US" \
-  -u "AeaiJ-O-6nGhow65KS12EWZ-A_5-A_KNJhI7_eNEHGwhzGJcvZ0etq31j2-rtlf_oBXBfXdoIcbZUdJq:EOzU77x4yfAZWYfxpaDu3r-WFVTIY5vO2S2MMMSAKywfj9IWcf8wyTDdWI2ZTrHnNnjH_fEO4gaUVHkO" \
+  -u "AcqwlHa97zeM4UfiSLUIEtjJiZvVRjXsJwfBadd88nrseUXYbvuS38XM_5OWxD-wWgTq04fQHJBiB_it:EDRVq2kr566mx-o-TT_cENxoBeRn_XbfLaQROBiFUC0Tk7KI4fmqayt2TKzfHEMnq4njB3OCMj4Nnffn" \
   -d "grant_type=client_credentials"
 ~~~
 ![Output](img/s2-LP1-M1-1-access_token.png)
@@ -96,7 +96,7 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_requ
 ~~~bash
 curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_required=true \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer A21AAJ8-wS4l75whQrkDVLVBxTr5nRnQu_9euYIxnPVDdL9V4gtfI1ox4btg6lCfii33jU6AyavkOomd1cJ3GViA-LZV3hl-A"
+  -H "Authorization: Bearer A21AAJ4KhZ2vnGTbsnsXfTGF8jqiGRI2w3zo8TVMIK6rJh4ImTHBOcx1L6C53LZuS-hBRAy1QflXk1BzOyti7Lkc0UtzmUciw"
 ~~~
 
 - You will see something like this:
@@ -111,13 +111,13 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_requ
 ~~~bash
 curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAJ8-wS4l75whQrkDVLVBxTr5nRnQu_9euYIxnPVDdL9V4gtfI1ox4btg6lCfii33jU6AyavkOomd1cJ3GViA-LZV3hl-A" \
+-H "Authorization: Bearer A21AAJ4KhZ2vnGTbsnsXfTGF8jqiGRI2w3zo8TVMIK6rJh4ImTHBOcx1L6C53LZuS-hBRAy1QflXk1BzOyti7Lkc0UtzmUciw" \
 -d '{
   "intent": "AUTHORIZE",
   "purchase_units": [
     {
       "amount": {
-        "currency_code": "USD",
+        "currency_code": "GBP",
         "value": "100.00"
       }
     }
@@ -129,13 +129,52 @@ curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders \
 ![result](img/s2-LP1-M1-1-mock_pp_data.png)
 - The response shows the status and other details, i.e. //api.sandbox.paypal.com/v2/checkout/orders/43J66938KW385645X Try to explore the API docs and see what you can supply to your request.
 
+- Output example:
+~~~bash
+{"id":"3EH70075MA948892H","status":"CREATED","links":[{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3EH70075MA948892H","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/checkoutnow?token=3EH70075MA948892H","rel":"approve","method":"GET"},{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3EH70075MA948892H","rel":"update","method":"PATCH"},{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3EH70075MA948892H/authorize","rel":"authorize","method":"POST"}]}
+~~~
+
+* Hint for Step 1:
+- To approve your order use a Personal Sandbox account and follow the link [https://www.sandbox.paypal.com/checkoutnow?token=97T22805JR125823D](https://www.sandbox.paypal.com/checkoutnow?token=97T22805JR125823D)
+- After customer approved it's order check it's status with this curl request:
+~~~bash
+curl -v -X GET https://api-m.sandbox.paypal.com/v2/checkout/orders/3EH70075MA948892H \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer A21AAJ4KhZ2vnGTbsnsXfTGF8jqiGRI2w3zo8TVMIK6rJh4ImTHBOcx1L6C53LZuS-hBRAy1QflXk1BzOyti7Lkc0UtzmUciw"
+~~~
+and the output would be something like this:
+~~~bash
+{"id":"3EH70075MA948892H","intent":"CAPTURE","status":"APPROVED","purchase_units":[{"reference_id":"PUHF","amount":{"currency_code":"USD","value":"200.00","breakdown":{"item_total":{"currency_code":"USD","value":"180.00"},"shipping":{"currency_code":"USD","value":"20.00"}}},"payee":{"email_address":"sb-dzyfq6635758@business.example.com","merchant_id":"39AJCL7W5MRAJ"},"shipping":{"name":{"full_name":"John Doe"},"address":{"address_line_1":"Whittaker House","address_line_2":"2 Whittaker Avenue","admin_area_2":"Richmond","admin_area_1":"Surrey","postal_code":"TW9 1EH","country_code":"GB"}}}],"payer":{"name":{"given_name":"John","surname":"Doe"},"email_address":"sb-txsj26679103@personal.example.com","payer_id":"4U2VGYBFX8FH4","address":{"country_code":"GB"}},"create_time":"2021-07-03T08:17:59Z","links":[{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X","rel":"self","method":"GET"},{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X","rel":"update","method":"PATCH"},{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X/capture","rel":"capture","method":"POST"}]}%
+~~~
+- If you are struggling with order approvals try [A PayPal Product API Executor](https://www.paypal.com/apex/home)
+- Authorise your order, i.e. use curl `/v2/checkout/orders/{id}/authorize` .
+- Capture payment for your order
+~~~bash
+curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders/97T22805JR125823D/authorize \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer A21AAJK6QjcnFSyhVkxKfYI9lqwvMtkg7yprBE1pcQkA_d8aDMVc4JeIEfgXyymkrJEBiPZ07w4crLwv-n1dTgVcBgqgM7HZA" \
+-H "PayPal-Request-Id: 7b92603e-77ed-4896-8e78-5dea2050476a"
+~~~
+
+- Capture payment to complete transaction:
+~~~bash
+curl -X POST \
+  'https://api.sandbox.paypal.com/v2/checkout/orders/3EH70075MA948892H/capture' \
+  -H 'authorization: Bearer A21AAJ4KhZ2vnGTbsnsXfTGF8jqiGRI2w3zo8TVMIK6rJh4ImTHBOcx1L6C53LZuS-hBRAy1QflXk1BzOyti7Lkc0UtzmUciw' \
+  -H 'content-type: application/json'
+~~~
+
 * Hint for Step 1:
 When finally you have some completed transactions in your **Sandbox** you would want to use a **Reporting API**:
 
 ~~~bash
 curl -v -X GET https://api-m.sandbox.paypal.com/v1/reporting/transactions?start_date=2021-07-01T00:00:00-0700&end_date=2021-07-30T23:59:59-0700&fields=all&page_size=100&page=1 \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAJ8-wS4l75whQrkDVLVBxTr5nRnQu_9euYIxnPVDdL9V4gtfI1ox4btg6lCfii33jU6AyavkOomd1cJ3GViA-LZV3hl-A"
+-H "Authorization: Bearer A21AAJ4KhZ2vnGTbsnsXfTGF8jqiGRI2w3zo8TVMIK6rJh4ImTHBOcx1L6C53LZuS-hBRAy1QflXk1BzOyti7Lkc0UtzmUciw"
+~~~
+- The output should be:
+~~~bash
+{"transaction_details":[],"account_number":"39AJCL7W5MRAJ","start_date":"2021-07-01T07:00:00+0000","end_date":"2021-07-01T08:59:59+0000","last_refreshed_datetime":"2021-07-01T08:59:59+0000","page":1,"total_items":0,"total_pages":0,"links":[{"href":"https://api.sandbox.paypal.com/v1/reporting/transactions?end_date=2021-07-30T23%3A59%3A59-0700&fields=all&start_date=2021-07-01T00%3A00%3A00-0700&page_size=100&page=1","rel":"self","method":"GET"}]}%
 ~~~
 
 
