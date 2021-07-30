@@ -23,7 +23,7 @@ When Lambda is being executed it extracts the data from PayPal and saves to S3. 
 
 # Project outline
 
-This liveProject will be divided into **2** milestones.
+This liveProject will have only **1** milestone with **2** steps .
 
 **[1]. Create a PayPal account with developer access and a Sandbox**
 
@@ -57,3 +57,6 @@ Talking about data ingestion you would need to utilise tools like **Fivetran or 
 # Dataset (if applicable)
 
 NA
+
+# Repo
+https://github.com/mshakhomirov/datawarehouseAdvanced/

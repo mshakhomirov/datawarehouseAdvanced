@@ -1,18 +1,15 @@
-## Create a Lambda function to extract transaction data from PayPal API
+## Create your Data Stack resources using Architecture as Code with AWS Cloudformation
 
 **Objective**
 
-You will learn how to connect various data sources using REST APIs and microservice architecture. In this tutorial you will create a Lambda function to extract revenue data from PayPal API and schedule it daily.
+You will learn how to *provision AWS resources* sources for your data stack. You will create AWS Lambdas, DynamoDB tables, MySQL databases, roles and permissions using [AWS Cloudformation](https://aws.amazon.com/cloudformation/).
 
 
 **Why is this milestone important to the project?**
-This series covers a set of LPs explaining how to build a data warehouse with BigQuery as a central part of this diagram.
+This LP explains how to create and describe your desired resources and their dependencies so you can launch and configure them together as a stack. 
+You can use a template to create, update, and delete an entire stack as a single unit, as often as you need to, instead of managing resources individually.
+This approach gives you an easy way to model a collection of related AWS and third-party resources, provision them quickly and consistently, and manage them throughout their lifecycles, by treating infrastructure as code and easily integrate them with your data warehouse solution you built using **BigQuery** as a central part of this diagram.
 
-Modern data stack tools (not a complete list of course):
-    * Ingestion: **Fivetran, Stitch**
-    * Warehousing: Snowflake, Bigquery, Redshift
-    * Transformation: dbt, Dataflow, APIs.
-    * BI: Looker, Mode, Periscope, Chartio, Metabase, Redash
 Modern data stack tools (not a complete list of course):
     * Ingestion: **Fivetran, Stitch**
     * Warehousing: Snowflake, Bigquery, Redshift
@@ -38,7 +35,7 @@ Talking about data ingestion you would need to utilise tools like **Fivetran or 
 
 **Deliverable**
 
-The deliverable for this milestone is a working Node.js App which would be able to run locally and deploy to their AWS account as a lambda function.
+The deliverable for this milestone is a working (correct) AWS Cloudformation template.
 
 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author's solution and peer solutions will appear on the page for you to examine.
 
@@ -49,7 +46,7 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 
 *Resources*
 
-* [PayPal developer portal](https://developer.paypal.com)
+* [AWS Cloudformation/](https://aws.amazon.com/cloudformation/)
 * [AWS Lambda](https://aws.amazon.com/lambda/)
 
 *help*
@@ -184,15 +181,17 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v1/reporting/transactions?start_
 ~~~
 
 
-* Hint for Step 2:
+* Hints for Steps 1 and 2:
 You would want to use the following Node.js modules:
-- **axios** to make HTTP requests to PayPal API
+- **mysql2** to make HTTP requests to your MySQL db 
+- **@google-cloud/bigquery** to make HTTP requests to BigQuery API
 - **moment** to handle datetime data and parameters
 - **aws-sdk** to save data to S3
 - **run-local-lambda** to test your lambda locally
+- **eslint** to keep your code clean
 
 * Initialise a new Node.js app so you have a `./package.json` like this:
-~~~js
+~~~json
 {
   "name": "bq-paypal-revenue",
   "version": "1.0.0",
