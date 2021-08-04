@@ -67,6 +67,7 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 * [Author's Medium article here:](https://towardsdatascience.com/easy-way-to-create-live-and-staging-environments-for-your-data-e4f03eb73365)
 * [Outside resource 4. Google Dataform](https://docs.dataform.co/guides/)
 * [Outside resource 5. Google Dataform API](https://docs.dataform.co/reference#IDeclarationConfig)
+* [Dataform operations](https://docs.dataform.co/guides/operations)
 
 *help*
 *Hint for Step 3.1:*
