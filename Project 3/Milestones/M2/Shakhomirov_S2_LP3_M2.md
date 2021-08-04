@@ -44,6 +44,9 @@ and [2] to *insert* daily  update for this table for all currencies.
 - You would to have this as diseried outcome for this Step:
 * ![desired outcome](img/LP3/img-s2-lp3-m2-2_3_desired-outcome2.png)
 
+[FAQ] I've created a dataform operation which has two queries one after another. First one to create a table and the second one to INSERT data. Dataform RUN is successfull but nothing happens in data warehouse.
+[Answer] Read this [document](https://docs.dataform.co/guides/operations). Dataform transforms *sqlx* files. You need to make sure your script runs as it is. To ensure this ultiple statements can be separated with a single line containing only 3 dashes --- .
+
 
 [3.4] Create geocoding pipeline
 
