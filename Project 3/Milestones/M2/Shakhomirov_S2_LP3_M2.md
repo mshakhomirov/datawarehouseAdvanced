@@ -190,6 +190,9 @@ VALUES (
 ;
 
 ~~~
+[FAQ] Why is this just one record? I thought this pipeline needs to be automated and scheduled to load data into the table daily?
+[Answer] This `sqlx` file is a dataform declaration for your table. The most important is the first part where you declare the schema. Second part is just a sample data if you don't want to create an extraction pipeline from `openexchangerates.com` API. This is often called a `data connector` and can be easily implemented using microservice architecture. Learn more about it in *Milestone 1* of this series. TODO: add link. add link to pipeline tools github repo.
+
 - production/exchange_rates_v.sqlx
 ~~~sql
 config {
