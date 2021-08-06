@@ -80,3 +80,5 @@ https://github.com/mshakhomirov/datawarehouseAdvanced/
 # Resources
 [BigQuery Loading Data Documentation](https://cloud.google.com/bigquery/docs/loading-data)
 [BigQuery Node.js library Documentation](https://googleapis.dev/nodejs/bigquery/4.1.3/Table.html#load)
+[SDK CLIENT REFERENCE](https://googleapis.dev/nodejs/bigquery/latest/Table.html#get)
+[bigquery/docs/reference/rest/v2/Job](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#JobConfigurationLoad)
