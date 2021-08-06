@@ -38,8 +38,8 @@ These are resources directly referenced throughout the liveProject and can direc
 * [Outside resource 1. AWS Free Tier](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-limits.html)
 * [Outside resource 2. AWS Lambda](https://aws.amazon.com/lambda/)
 * [Outside resource 3. AWS CLI](https://aws.amazon.com/cli/)
-
-
+* [Outside resource 4. Google Dataform](https://docs.dataform.co/guides/)
+* [Outside resource 5. Google Dataform API](https://docs.dataform.co/reference#IDeclarationConfig)
 
 
 
