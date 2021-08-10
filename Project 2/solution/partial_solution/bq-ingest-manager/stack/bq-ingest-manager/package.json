@@ -1,0 +1,26 @@
+{
+  "name": "bq-ingest-manager-",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Lambda function to process BigQuery data ingestion events",
+  "main": "app.js",
+  "scripts": {
+    "test": "export DEBUG=metrics; run-local-lambda --file app.js --event test/data.json --timeout 10000"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "Mike Shakhomirov mshakhomirov.medium.com",
+  "license": "ISC",
+  "devDependencies": {
+    "aws-sdk": "2.804.0",
+    "run-local-lambda": "1.1.1",
+    "eslint": "^7.20.0"
+  },
+  "dependencies": {
+    "@google-cloud/bigquery": "^5.7.0",
+    "JSONStream": "^1.3.5",
+    "moment": "^2.24.0",
+    "through2": "^4.0.2"
+  }
+}

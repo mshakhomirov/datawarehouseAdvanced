@@ -1,0 +1,74 @@
+{
+    "transaction_info": {
+        "paypal_account_id": "SomeAccount_1",
+        "transaction_id": "0AE4SomeTransactionId1",
+        "transaction_event_code": "T0007",
+        "transaction_initiation_date": "2021-08-01T07:14:04+0000",
+        "transaction_updated_date": "2021-08-01T07:14:04+0000",
+        "transaction_amount": {
+            "currency_code": "GBP",
+            "value": "19.99"
+        },
+        "fee_amount": {
+            "currency_code": "GBP",
+            "value": "-0.79"
+        },
+        "transaction_status": "S",
+        "ending_balance": {
+            "currency_code": "GBP",
+            "value": "100.71"
+        },
+        "available_balance": {
+            "currency_code": "GBP",
+            "value": "100.71"
+        },
+        "invoice_id": "some-invoice_id-1",
+        "protection_eligibility": "01"
+    },
+    "payer_info": {
+        "account_id": "SomeAccount_1",
+        "email_address": "someone_1@hotmail.com",
+        "address_status": "Y",
+        "payer_status": "N",
+        "payer_name": {
+            "given_name": "someName",
+            "surname": "someLastName",
+            "alternate_full_name": "someName someLastName"
+        },
+        "country_code": "GB"
+    },
+    "shipping_info": {
+        "name": "omeName, someLastName",
+        "address": {
+            "line1": "1111",
+            "line2": "fhjkkg",
+            "city": "dhhkk",
+            "country_code": "GB"
+        }
+    },
+    "cart_info": {
+        "item_details": [
+            {
+                "item_code": "112",
+                "item_name": "someCoolInAppProdcut_1",
+                "item_quantity": "1",
+                "item_unit_price": {
+                    "currency_code": "GBP",
+                    "value": "19.99"
+                },
+                "item_amount": {
+                    "currency_code": "GBP",
+                    "value": "19.99"
+                },
+                "total_item_amount": {
+                    "currency_code": "GBP",
+                    "value": "19.99"
+                },
+                "invoice_number": "some-invoice-number-1"
+            }
+        ]
+    },
+    "store_info": {},
+    "auction_info": {},
+    "incentive_info": {}
+}

@@ -1,0 +1,11 @@
+{
+    "config": {
+        "method": "post",
+        "url": "https://api-m.paypal.com/v1/oauth2/token",
+        "headers": { 
+        "Authorization": "Basic ***", 
+        "Content-Type": "application/x-www-form-urlencoded"
+        },
+        "data" : "grant_type=client_credentials"
+  }
+}

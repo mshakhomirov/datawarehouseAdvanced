@@ -1,0 +1,53 @@
+{
+  "Production": 
+  {
+    "Tables": [
+
+      {
+        "name" : "simple_transaction",
+        "schema": "transaction_id:INT64, dt:date",
+        "fileKey": "simple_transaction.csv",
+        "sql"  : " ",
+        "querySize"  : "",
+        "dryRun": false,
+        "isJson": false,
+        "dataType": "transaction",
+        "notes": ""
+      }
+      
+    ],
+
+    "bigQueryConfigS3": "bq-shakhomirov-b86071c11c27.json",
+    "gcpClientEmail": "bq-777@bq-shakhomirov.iam.gserviceaccount.com",
+    "gcpProjectId": "bq-shakhomirov",
+    "key": "data/",
+    "dataBucket": "bq-shakhomirov.bigquery.aws"
+
+  },
+  "Staging": 
+  {
+    "Tables": [
+
+      
+      {
+        "name" : "simple_transaction",
+        "schema": "transaction_id:INT64, user_id:INT64, dt:date",
+        "fileKey": "simple_transaction.csv",
+        "sql"  : " ",
+        "querySize"  : "",
+        "dryRun": false,
+        "isJson": false,
+        "dataType": "transaction",
+        "notes": ""
+      }
+      
+    ],
+
+    "bigQueryConfigS3": "bq-shakhomirov-b86071c11c27.json",
+    "gcpClientEmail": "bq-777@bq-shakhomirov.iam.gserviceaccount.com",
+    "gcpProjectId": "bq-shakhomirov",
+    "key": "data/",
+    "dataBucket": "bq-shakhomirov.bigquery.aws"
+
+  }
+}

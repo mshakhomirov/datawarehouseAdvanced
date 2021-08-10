@@ -145,7 +145,7 @@ WITH object AS
         date(timestamp_seconds(CAST(JSON_EXTRACT(src, '$.timestamp') as int64))) as dt
         , JSON_EXTRACT_SCALAR(src, '$.base') as base
         , JSON_EXTRACT(src, '$.rates')       as rates
-    FROM ${ref("exchange_rates")} er --`palringo-client.production.exchange_rates` er
+    FROM ${ref("exchange_rates")} er --`your_project-client.production.exchange_rates` er
     WHERE 
     DATE(_PARTITIONTIME) = current_date()  -- that would be fx_rate date 
 
@@ -203,7 +203,7 @@ config {
 }
 WITH object AS
 (SELECT  JSON_EXTRACT(src, '$.rates') as rates
-  FROM ${ref("exchange_rates")} er --`palringo-data.production.exchange_rates` er
+  FROM ${ref("exchange_rates")} er --`your_project.production.exchange_rates` er
 WHERE 
 DATE(_PARTITIONTIME) = current_date() 
 
@@ -252,7 +252,7 @@ WITH object AS
         date(timestamp_seconds(CAST(JSON_EXTRACT(src, '$.timestamp') as int64))) as dt
         , JSON_EXTRACT_SCALAR(src, '$.base') as base
         , JSON_EXTRACT(src, '$.rates')       as rates
-    FROM ${ref("exchange_rates")} er --`palringo-client.production.exchange_rates` er
+    FROM ${ref("exchange_rates")} er --`your_project-client.production.exchange_rates` er
     WHERE 
     DATE(_PARTITIONTIME) = current_date()  -- that would be fx_rate date 
 

@@ -45,12 +45,12 @@ For this tutorial it will be **free** (or cost just a fraction of a pennny) but 
 
 # Project outline
 
-This liveProject will be divided into [2] milestones.
+This liveProject will be divided into [3] milestones.
 ![Architecture](mydataschool.com/liveprojects/img/serviceArchitecture.png)
 
-**[1]. Deploy AWS Lambda for extraction pipes and your data ingestion microservice with AWS Cloudformation**
+**[1]. Deploy AWS Lambda for extraction pipes with AWS Cloudformation**
 
-**[2]. Adding DynamoDB table to store ingestion logs and check if a file was already ingested**
+**[2]. Adding your data ingestion microservice and DynamoDB table to store ingestion logs and check if a file was already ingested**
 
 **[3]. Adding monitoring and alarms with AWS Cloudformation**
 
