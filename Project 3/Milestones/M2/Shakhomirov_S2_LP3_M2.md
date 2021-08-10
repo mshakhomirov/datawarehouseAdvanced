@@ -25,7 +25,7 @@ A common use-case for environments is to run a staged release process. After tes
 [3.3] Create fx rates pipeline
 - Using dataform declare `source.exchange_rates` table. Use **${self()}** function and make to create an output so you could reference it in other scripts with **${ref()}** function.
 - Dataset and SQL script for `source.exchange_rates` table can be found here ``
-* ![desired outcome](img/LP3/img-s2-lp3-m2-2_3_desired-outcome.png)
+* ![desired outcome](mydataschool.com/liveprojects/img/LP3/img-s2-lp3-m2-2_3_desired-outcome.png)
 
 - Create an `operation` (using dataform) consisting of two parts [1] to create another tabel for fx rates with the follwoing scema:
 ~~~sql
@@ -42,7 +42,7 @@ PARTITION BY dt
 and [2] to *insert* daily  update for this table for all currencies.
 - Create a view on top of this table just for one corrency (use schema above).
 - You would to have this as diseried outcome for this Step:
-* ![desired outcome](img/LP3/img-s2-lp3-m2-2_3_desired-outcome2.png)
+* ![desired outcome](mydataschool.com/liveprojects/img/LP3/img-s2-lp3-m2-2_3_desired-outcome2.png)
 
 [FAQ] I've created a dataform operation which has two queries one after another. First one to create a table and the second one to INSERT data. Dataform RUN is successfull but nothing happens in data warehouse.
 [Answer] Read this [document](https://docs.dataform.co/guides/operations). Dataform transforms *sqlx* files. You need to make sure your script runs as it is. To ensure this ultiple statements can be separated with a single line containing only 3 dashes --- .

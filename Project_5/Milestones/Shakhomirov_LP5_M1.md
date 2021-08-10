@@ -77,7 +77,7 @@ curl -v https://api-m.sandbox.paypal.com/v1/oauth2/token \
   -u "AcqwlHa97zeM4UfiSLUIEtjJiZvVRjXsJwfBadd88nrseUXYbvuS38XM_5OWxD-wWgTq04fQHJBiB_it:EDRVq2kr566mx-o-TT_cENxoBeRn_XbfLaQROBiFUC0Tk7KI4fmqayt2TKzfHEMnq4njB3OCMj4Nnffn" \
   -d "grant_type=client_credentials"
 ~~~
-![Output](img/s2-LP1-M1-1-access_token.png)
+![Output](mydataschool.com/liveprojects/img/s2-LP1-M1-1-access_token.png)
 - Now use this access token to create another request to pull the transaction data you need. Re-use the access token until it expires. Then, get a new token.
 
 
@@ -97,7 +97,7 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_requ
 ~~~
 
 - You will see something like this:
-![result](img/s2-LP1-M1-1-access_token_test.png)
+![result](mydataschool.com/liveprojects/img/s2-LP1-M1-1-access_token_test.png)
 
 - Now try to mock some transaction data
 
@@ -129,7 +129,7 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640
 
 
 - As a result you will see that some sample transaction was created:
-![result](img/s2-LP1-M1-1-mock_pp_data.png)
+![result](mydataschool.com/liveprojects/img/s2-LP1-M1-1-mock_pp_data.png)
 - The response shows the status and other details, i.e. //api.sandbox.paypal.com/v2/checkout/orders/43J66938KW385645X Try to explore the API docs and see what you can supply to your request.
 
 - Output example:
@@ -216,7 +216,7 @@ You would want to use the following Node.js modules:
 ~~~
 
 * Your app directory would look like this:
-![img/s2-LP1-M1-1-app_struct.png](img/s2-LP1-M1-1-app_struct.png)
+![img/s2-LP1-M1-1-app_struct.png](mydataschool.com/liveprojects/img/s2-LP1-M1-1-app_struct.png)
 
 * Hint for Step 2:
 - use `./config.json` to separate your live and staging environments. For example:

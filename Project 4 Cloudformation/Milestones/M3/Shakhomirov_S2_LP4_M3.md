@@ -7,7 +7,7 @@
 * Added IAM roles for these Lambdas and extra resources, i.e. as S3 bucket.
 
 - Now you would want to set up alarms and notifications to monitor your data pipelines.
-![img](img/img-s2-lp4-m3-confirm-alarm2.png)
+![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-alarm2.png)
 
 **Why is this milestone important to the project?**
 
@@ -32,7 +32,7 @@
 # [2]. Create an ERROR metric alarms for your services using AWS Cloudformation
 ## [2.1]. Explicitly define a *log group* for each Lambda in your stack
 - You have probably noticed that we have AWS Lambda permissions to create log groups itself:
-![img](img/img-s2-lp4-m3-logGroup.png)
+![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-logGroup.png)
 - Now you would want to delete it and add to Cloudformation file because other resources would depend on it.
 - Set log retention policy to 7 days (Properites).
 - Set LogGroupName to the same name as it used.
@@ -81,7 +81,7 @@ Waiting for stack create/update to complete
 Successfully created/updated stack - data-services
 ~~~
 
-[img](img/img-s2-lp4-m3-outcome_1.png)
+[img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-outcome_1.png)
 
 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author's solution and peer solutions will appear on the page for you to examine.
 
@@ -148,9 +148,9 @@ To add metric alarm use this yaml:
 ~~~
 [FAQ] After I deployed the solution I don't see any error notifications even though my files with incorrect data caused errors.
 [Answer] After you successfully deployed your updated stack you will need to confirm your email SNS subscription. If you go to SNS service and click your topic you need to check if subscription status is still pending and then check your email.
-![img](img/img-s2-lp4-m3-confirm-subscription2.png)
-![img](img/img-s2-lp4-m3-confirm-subscription.png)
-![img](img/img-s2-lp4-m3-confirm-alarm.png)
+![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-subscription2.png)
+![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-subscription.png)
+![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-alarm.png)
 
 [FAQ] I've sent an error file to ingest but didn't get a notification.
 [Answer] Checl your data points to alert on. It might be that it was specified `Trigger a the number ERROR greater than 5 for 5 consecutive minutes.`
@@ -170,7 +170,7 @@ transaction_id,user_id,dt
 102,777,2021-08-013
 103,777,2021-08-013
 ~~~
-![img](img/img-s2-lp4-m3-error-test.png)
+![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-error-test.png)
 
 
 
@@ -501,7 +501,7 @@ Waiting for stack create/update to complete
 Successfully created/updated stack - data-services
 ~~~
 
-[img](img/img-s2-lp4-m3-outcome_1.png)
+[img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-outcome_1.png)
 
 
 Your SF stack with added resources must be this:
@@ -838,7 +838,7 @@ transaction_id,user_id,dt
 102,777,2021-08-013
 103,777,2021-08-013
 ~~~
-![img](img/img-s2-lp4-m3-error-test.png)
+![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-error-test.png)
 
 [Full solution](LP4/Milestones/M3/solution/data-services/stack) and has the following services:
 
