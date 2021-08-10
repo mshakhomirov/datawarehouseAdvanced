@@ -30,19 +30,19 @@
 - Deploy your Lambda: `./deploy.sh`
 - Create a script to copy file `./data/simple_transaction.csv` 300 times.
 - Upload data folder recursively to S3. That must trigger your Lambda function 300 times and insert 900 records into your target table:
-![load test](mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-test.png)
+![load test](https://mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-test.png)
 - Make sure it creates batch load jobs and not streaming inserts:
-![load jobs](mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-jobs.png)
+![load jobs](https://mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-jobs.png)
 
 [4.3] Set up monitoring and alarms.
 - Go to your Dynamo Db monitoring and check the stats:
-![Monitoring](mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-monitoring.png)
+![Monitoring](https://mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-monitoring.png)
 - Create an **AlarmNotificationTopic** with Simple Notification Service (SNS) to receive notifications by email in case of any ingestion errors
 - When you created your Lambda and attached the policy it must have created a **LogGroupName**: `/aws/lambda/ingestManager`. Use it to create **ERRORMetricFilter** where ERROR count > 0. For example, my Log group looks like this:
-![Log Group](mydataschool.com/liveprojects/img/s2-LP2-M3-4-Lambda-Logs-CreateMetricFilter.png)
+![Log Group](https://mydataschool.com/liveprojects/img/s2-LP2-M3-4-Lambda-Logs-CreateMetricFilter.png)
 - Finally create **ERRORMetricAlarm** with action to trigger an alarm when number ERROR greater than 5 for 5 consecutive minutes. It should send notification to your SNS topic.    
 - Desired outcom would be a notification in case of ingest manager error:
-![Notification](mydataschool.com/liveprojects/img/s2-LP2-M3-12-create-alarm-select-metric.png)
+![Notification](https://mydataschool.com/liveprojects/img/s2-LP2-M3-12-create-alarm-select-metric.png)
 
 
 
@@ -95,16 +95,16 @@ s3.copyObject(params, function(copyErr, copyData){
 *Hint for step [4.3]*
 - Use the following pattern to create an ERRORMetricFilter: FilterPattern: 'ERROR'
 - call it `ingestManagerStagingMetricFilter`
-![screen](mydataschool.com/liveprojects/img/s2-LP2-M3-5-Lambda-Logs-CreateMetricFilter.png)
+![screen](https://mydataschool.com/liveprojects/img/s2-LP2-M3-5-Lambda-Logs-CreateMetricFilter.png)
 - Now go to `SNS` and create your alarm topic:
-![alarmTopic](mydataschool.com/liveprojects/img/s2-LP2-M3-6-alarmNotificationTopic.png)
+![alarmTopic](https://mydataschool.com/liveprojects/img/s2-LP2-M3-6-alarmNotificationTopic.png)
 - Click create subscription and enter your email:
-![subscribe](mydataschool.com/liveprojects/img/s2-LP2-M3-7-Subscribe-alarmNotificationTopic.png)
+![subscribe](https://mydataschool.com/liveprojects/img/s2-LP2-M3-7-Subscribe-alarmNotificationTopic.png)
 - Finally create an alarm:
-![select metric](mydataschool.com/liveprojects/img/s2-LP2-M3-9-create-alarm-select-metric.png)
-![create alarm threshold](mydataschool.com/liveprojects/img/s2-LP2-M3-10-create-alarm-select-metric.png)
+![select metric](https://mydataschool.com/liveprojects/img/s2-LP2-M3-9-create-alarm-select-metric.png)
+![create alarm threshold](https://mydataschool.com/liveprojects/img/s2-LP2-M3-10-create-alarm-select-metric.png)
 - Choose where to send notification if encountered an alarm:
-![send to](mydataschool.com/liveprojects/img/s2-LP2-M3-11-create-alarm-select-metric.png)
+![send to](https://mydataschool.com/liveprojects/img/s2-LP2-M3-11-create-alarm-select-metric.png)
 
 [FAQ] I can't find my ERRORcount metric.
 [Answer] Try raising an ERROR by running your Lmabda. That will generate a required metric stat so you will be able to see it in *Cloudwatch*.

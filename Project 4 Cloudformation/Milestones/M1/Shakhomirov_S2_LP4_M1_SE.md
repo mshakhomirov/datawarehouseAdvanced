@@ -199,4 +199,4 @@ Successfully created/updated stack - data-services
 ~~~
 
 ## Result
-![Result](mydataschool.com/liveprojects/img/img-s2-lp4-m1-desired-outcome-stack.png)
+![Result](https://mydataschool.com/liveprojects/img/img-s2-lp4-m1-desired-outcome-stack.png)

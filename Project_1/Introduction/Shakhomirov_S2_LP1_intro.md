@@ -1,6 +1,6 @@
 
 **Connecting external data sources to BigQuery**
-![Connecting data](mydataschool.com/liveprojects/img/s2-intro-1.png)
+![Connecting data](https://mydataschool.com/liveprojects/img/s2-intro-1.png)
 
 
 # about this liveProject
@@ -8,7 +8,7 @@
 You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.).
 As a data engineer you were tasked to create a new data pipeline to feed financial data from **PayPal** into the datawarehouse. This should help Finance team to create a revenue reconciliation report in Data Studio and run it daily. 
@@ -42,7 +42,7 @@ Modern data stack tools (not a complete list of course):
 
 Talking about data ingestion you would need to utilise tools like **Fivetran or Stitch** to extract and prepare 3rd party data sources but if you follow this tutorial you will become totally capable of doing it yourself.
 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 
 

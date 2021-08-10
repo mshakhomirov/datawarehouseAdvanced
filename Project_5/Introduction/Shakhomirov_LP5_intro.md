@@ -1,6 +1,6 @@
 
 **Create your Data Stack resources using Architecture as Code with AWS Cloudformation**
-![Connecting data](mydataschool.com/liveprojects/img/s2-intro-1.png)
+![Connecting data](https://mydataschool.com/liveprojects/img/s2-intro-1.png)
 
 
 # about this liveProject
@@ -17,7 +17,7 @@ Modern data stack tools (not a complete list of course):
 
 Talking about data ingestion you would need to utilise tools like **Fivetran or Stitch** to extract and prepare 3rd party data sources but if you follow this tutorial you will become totally capable of doing it yourself.
 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.).
 As a data engineer you created a few data pipelines using **AWS Lambda** to extract data from *external data sources* and save it to your *AWS S3 bucket* in JSON format. 

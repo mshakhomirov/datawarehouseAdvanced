@@ -6,7 +6,7 @@
 You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.). 
 
@@ -23,7 +23,7 @@ You decided to use **AWS Lambda functions** and **Node.js** for this task as the
 So far you've learned how to connect various data sources using *REST APIs* and *microservice* architecture. You have set up your BigQuery project and successfully created a few pipelines to feed data into the `source` tables.
 
 In this livePorject you will learn how to process and transform data in **BigQuery**. Documenting your data transformation is no problem when you have just a few of them. However, the more tables you have more difficult it becomes to keep an eye on everything. Just one of your data transformation pipelines in BigQuery could look like that:
-![Modern Data Stack](mydataschool.com/liveprojects/img/s2-LP3-pipeline.gif)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/s2-LP3-pipeline.gif)
 
 You will learn how to:
 - create separate environments in BigQuery (Staging and Live)
@@ -56,16 +56,16 @@ You’ll need to create a service account from your **[Google Cloud Console](htt
 [1.1] Go to the [Services Account page](https://console.cloud.google.com/iam-admin/serviceaccounts)
 - Make sure the new project you created is selected and click `Open`.
 - Click on `Create Service Account` and give it a name.
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-1.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-1.png)
 - Grant the new account the **BigQuery Admin** role.
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-2.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-2.png)
 
 [1.2] Once you’ve done this you need to create a key for your new service account (in JSON format):
 - On the Service Accounts page, find the row of the service account that you want to create a key for and click the `Actions` button.
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-3.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-3.png)
 - Then click `Manage keys`.
 - Click `Create` and Select JSON key type.
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-4.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-4.png)
 
 Now you've created a new **BigQuery** project and generated your warehouse credentials, you're ready to create your Dataform project!
 
@@ -73,12 +73,12 @@ For more detailed info on generating credentials for **BigQuery**, see the docs.
 
 [1.2] **Connecting your data warehouse and Dataform**
 - Go to [https://app.dataform.co/](https://app.dataform.co/) and create your **Dataform** project. You can choose to sign-up using your **Github** account for example and then create your first project:
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-5.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-5.png)
 - Give your project a name, i.e. `bq-shakhomirov`.
 - You will need your BigQuery project ID to connect to Dataform. You can find it in your [BigQuery console](https://console.cloud.google.com/) by simply clicking your project:
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-6.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-6.png)
 - You will see a page like one below. Click `browse` and upload your JSON key:
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-7.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-7.png)
 Click `test connection` and if everything's okay you will be set to go. Then Click `save connection`.
 
 
@@ -88,7 +88,7 @@ Click `test connection` and if everything's okay you will be set to go. Then Cli
 - Click on the `New Dataset` button in the left hand side bar.
 - Choose whether you want your dataset to be a table, view or incremental table. In this case we want to create a table:
 - Name the table `paypal_reconciliation` and click **Create Table**:
-![outcome](mydataschool.com/liveprojects/img/img-M3-9.png) **TODO** replace an image and point to correct table.
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-9.png) **TODO** replace an image and point to correct table.
 - Insert your table definition SQL right after `config` block:
 ~~~sql
 -- Place your SQL here
@@ -96,10 +96,10 @@ Click `test connection` and if everything's okay you will be set to go. Then Cli
 - Use Dataform's **ref()** function to reference `payment_transaction` and `paypal table` as dependancies for `paypal_reconciliation` table.
 - Dataform will automatically validate your query and check for any errors
 - Once you see that the query is valid you can click Preview Results to check that the data looks correct:
-![outcome](mydataschool.com/liveprojects/img/img-M3-10.png) **TODO** Add image
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-10.png) **TODO** Add image
 - Click `Create Table` to create the table in your warehouse
 This will take the SQLX that we’ve written, compile it into the SQL syntax of your warehouse (in this case, BigQuery), and then execute that SQL in your warehouse with the correct boilerplate code to create a table. You will see that your new dataset has been successfully published to datawarehouse:
-![outcome](mydataschool.com/liveprojects/img/img-M3-11.png) **TODO** Add image
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-11.png) **TODO** Add image
 
 [2.3] This is great. However, we need to publish our changes to `analytics` dataset inside `bq-shakhomirov` project. Adjust your dataform project settings accordingly.
 
@@ -124,11 +124,11 @@ config {
 
 *Hint for Step [2.3]*: 
 - Go to **Project Configuration** and change your **defaultSchema**.
-![outcome](mydataschool.com/liveprojects/img/img-M3-12.png)
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-12.png)
 - Click `Create`. This will create our table in `analytics` dataset in BigQuery.
-![outcome](mydataschool.com/liveprojects/img/img-M3-13.png) **TODO** Add image
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-13.png) **TODO** Add image
 
-- Click [View logs:](mydataschool.com/liveprojects/img/img-M3-14.png) **TODO** Add image
+- Click [View logs:](https://mydataschool.com/liveprojects/img/img-M3-14.png) **TODO** Add image
 
 * **Partial solution for step [2.2]** **TODO** Adjust SQL
 The code below shows how to use declarations.
@@ -162,16 +162,16 @@ A common use-case for environments is to run a staged release process. After tes
 - Read the [docs](https://docs.dataform.co/dataform-web/scheduling/environments)
 
 - Create a staging project:
-![Desired outcome](mydataschool.com/liveprojects/img/img-M3-20.png)
+![Desired outcome](https://mydataschool.com/liveprojects/img/img-M3-20.png)
 
 - Remember we created a service account? We supplied these credentials to dataform. Now we would want that service account to be able to access our staging project.
 Go to [IAM](https://console.cloud.google.com/iam-admin/iam) and enable access to **..-staging** project for the service account you created in Step 1.
-![Like so](mydataschool.com/liveprojects/img/img-M3-21-2.png)
+![Like so](https://mydataschool.com/liveprojects/img/img-M3-21-2.png)
 [Enable API here if needed for your staging project](https://console.cloud.google.com/apis/api/bigquerydatatransfer.googleapis.com/overview)
 
 - So after you run the deployment in `staging` you will see all enriched tables created:
-![Desired outcome](mydataschool.com/liveprojects/img/img-M3-24.png)
-![Desired outcome](mydataschool.com/liveprojects/img/img-M3-25.png)
+![Desired outcome](https://mydataschool.com/liveprojects/img/img-M3-24.png)
+![Desired outcome](https://mydataschool.com/liveprojects/img/img-M3-25.png)
 
 - Read more [here:](https://towardsdatascience.com/easy-way-to-create-live-and-staging-environments-for-your-data-e4f03eb73365)
 

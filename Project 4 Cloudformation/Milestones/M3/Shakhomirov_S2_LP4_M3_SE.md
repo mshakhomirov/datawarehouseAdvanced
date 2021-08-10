@@ -1,7 +1,7 @@
 # Solution explanation
 You should be now ready to monitor your services with deployed and set with Cloudformation.
 You've set up alarms so each time something goes wrong you will receive a notfication:
-![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-alarm2.png)
+![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-alarm2.png)
 
 ## Deploying your solution 
 After you run:
@@ -34,7 +34,7 @@ Waiting for stack create/update to complete
 Successfully created/updated stack - data-services
 ~~~
 
-[img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-outcome_1.png)
+[img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-outcome_1.png)
 
 
 ## Your SF stack with added resources must be this:
@@ -372,7 +372,7 @@ transaction_id,user_id,dt
 102,777,2021-08-013
 103,777,2021-08-013
 ~~~
-![img](mydataschool.com/liveprojects/img/img-s2-lp4-m3-error-test.png)
+![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-error-test.png)
 
 [Full solution](LP4/Milestones/M3/solution/data-services/stack) and has the following services:
 

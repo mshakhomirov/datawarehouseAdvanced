@@ -1,12 +1,12 @@
 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 
 # about this liveProject
 You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.). 
 
@@ -36,7 +36,7 @@ In this liveProject you will learn how to extend extraction pipeline you created
 # Project outline
 
 This liveProject will be divided into [4] milestones.
-![Architecture](mydataschool.com/liveprojects/img/serviceArchitecture.png)
+![Architecture](https://mydataschool.com/liveprojects/img/serviceArchitecture.png)
 
 ## App logic would be the following:
 - AWS Cloudwatch event will trigger Lambda each time new file lands in *S3 bucket*.
@@ -228,7 +228,7 @@ const loadTestDataFromStreamJSON = async() => {
 
 
 ~~~
-![Result](mydataschool.com/liveprojects/img/s2-LP2-M1-1.png)
+![Result](https://mydataschool.com/liveprojects/img/s2-LP2-M1-1.png)
 
 - `streaming` is good but might incure higher costs. Try `batch` insert instead. It has a daily quota of 2000 inserts per table but you can insert a whole file in one go. Streaming insert is extremely cheap, $0.05 per GB that's $50 for 1TB. Not sure how much volume you have, but usually people are not building around streaming insert because it's better suited. Streaming insert is the recommended way to import data, as it's scalable, it has a nice per row error message, so you can retry rows and not the full file.
 
@@ -481,7 +481,7 @@ const loadJsonFileFromS3 = async() => {
 **[3]. Adding DynamoDB table to store ingestion logs and check if a file was already ingested**
 [3.1] Create a new *DynamoDB* table
 - Go to AWS [Console](https://us-east-2.console.aws.amazon.com/dynamodb/home?region=us-east-2#gettingStarted:) :
-![Create Dynamo table](mydataschool.com/liveprojects/img/s2-LP2-M3-1-creeate-Dynamo.png)
+![Create Dynamo table](https://mydataschool.com/liveprojects/img/s2-LP2-M3-1-creeate-Dynamo.png)
 
 - Create two tables `ingestManager` for successfully ingested files and `ingestManagerError` to store file keys of data files that caused errors.
 - Add permissions to access Dynamo table to your Lambda.
@@ -523,7 +523,7 @@ const logSuccessfulEvent = async (params) => {
 ~~~
 
 As a result you should see a new ingestion record created:
-![Result](mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-result.png)
+![Result](https://mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-result.png)
 
 
 [FAQ] My service successfully loads the data into BigQuery but after that I get an error:
@@ -576,33 +576,33 @@ const logErrorEvent = async (params) => {
 - Deploy your Lambda: `./deploy.sh`
 - Create a script to copy file `./data/simple_transaction.csv` 300 times.
 - Upload data folder recursively to S3. That must trigger your Lambda function 300 times and insert 900 records into your target table:
-![load test](mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-test.png)
+![load test](https://mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-test.png)
 - Make sure it creates batch load jobs and not streaming inserts:
-![load jobs](mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-jobs.png)
+![load jobs](https://mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-jobs.png)
 
 [4.3] Set up monitoring and alarms.
 - Go to your Dynamo Db monitoring and check the stats:
-![Monitoring](mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-monitoring.png)
+![Monitoring](https://mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-monitoring.png)
 - Create an **AlarmNotificationTopic** with Simple Notification Service (SNS) to receive notifications by email in case of any ingestion errors
 - When you created your Lambda and attached the policy it must have created a **LogGroupName**: `/aws/lambda/ingestManager`. Use it to create **ERRORMetricFilter** where ERROR count > 0. For example, my Log group looks like this:
-![Log Group](mydataschool.com/liveprojects/img/s2-LP2-M3-4-Lambda-Logs-CreateMetricFilter.png)
+![Log Group](https://mydataschool.com/liveprojects/img/s2-LP2-M3-4-Lambda-Logs-CreateMetricFilter.png)
 - Finally create **ERRORMetricAlarm** with action to trigger an alarm when number ERROR greater than 5 for 5 consecutive minutes. It should send notification to your SNS topic.    
 - Desired outcom would be a notification in case of ingest manager error:
-![Notification](mydataschool.com/liveprojects/img/s2-LP2-M3-12-create-alarm-select-metric.png)
+![Notification](https://mydataschool.com/liveprojects/img/s2-LP2-M3-12-create-alarm-select-metric.png)
 
 *Hint for step [4.3]*
 - Use the following pattern to create an ERRORMetricFilter: FilterPattern: 'ERROR'
 - call it `ingestManagerStagingMetricFilter`
-![screen](mydataschool.com/liveprojects/img/s2-LP2-M3-5-Lambda-Logs-CreateMetricFilter.png)
+![screen](https://mydataschool.com/liveprojects/img/s2-LP2-M3-5-Lambda-Logs-CreateMetricFilter.png)
 - Now go to `SNS` and create your alarm topic:
-![alarmTopic](mydataschool.com/liveprojects/img/s2-LP2-M3-6-alarmNotificationTopic.png)
+![alarmTopic](https://mydataschool.com/liveprojects/img/s2-LP2-M3-6-alarmNotificationTopic.png)
 - Click create subscription and enter your email:
-![subscribe](mydataschool.com/liveprojects/img/s2-LP2-M3-7-Subscribe-alarmNotificationTopic.png)
+![subscribe](https://mydataschool.com/liveprojects/img/s2-LP2-M3-7-Subscribe-alarmNotificationTopic.png)
 - Finally create an alarm:
-![select metric](mydataschool.com/liveprojects/img/s2-LP2-M3-9-create-alarm-select-metric.png)
-![create alarm threshold](mydataschool.com/liveprojects/img/s2-LP2-M3-10-create-alarm-select-metric.png)
+![select metric](https://mydataschool.com/liveprojects/img/s2-LP2-M3-9-create-alarm-select-metric.png)
+![create alarm threshold](https://mydataschool.com/liveprojects/img/s2-LP2-M3-10-create-alarm-select-metric.png)
 - Choose where to send notification if encountered an alarm:
-![send to](mydataschool.com/liveprojects/img/s2-LP2-M3-11-create-alarm-select-metric.png)
+![send to](https://mydataschool.com/liveprojects/img/s2-LP2-M3-11-create-alarm-select-metric.png)
 
 [FAQ] I can't find my ERRORcount metric.
 [Answer] Try raising an ERROR by running your Lmabda. That will generate a required metric stat so you will be able to see it in *Cloudwatch*.

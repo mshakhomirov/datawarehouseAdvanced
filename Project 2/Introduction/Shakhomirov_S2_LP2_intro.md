@@ -1,12 +1,12 @@
 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 
 # about this liveProject
 You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.). 
 
@@ -36,7 +36,7 @@ In this liveProject you will learn how to extend extraction pipeline you created
 # Project outline
 
 This liveProject will be divided into [4] milestones.
-![Architecture](mydataschool.com/liveprojects/img/serviceArchitecture.png)
+![Architecture](https://mydataschool.com/liveprojects/img/serviceArchitecture.png)
 
 **[1]. Build ingestion service with AWS Lambda and set up a trigger**
 [1.1] Create a new S3 bucket, i.e. `your-bigquery-project-name.test.aws`. 

@@ -19,7 +19,7 @@
 **[3]. Adding DynamoDB table to store ingestion logs and check if a file was already ingested**
 [3.1] Create a new *DynamoDB* table
 - Go to AWS [Console](https://us-east-2.console.aws.amazon.com/dynamodb/home?region=us-east-2#gettingStarted:) :
-![Create Dynamo table](mydataschool.com/liveprojects/img/s2-LP2-M3-1-creeate-Dynamo.png)
+![Create Dynamo table](https://mydataschool.com/liveprojects/img/s2-LP2-M3-1-creeate-Dynamo.png)
 
 - Create two tables `ingestManager` for successfully ingested files and `ingestManagerError` to store file keys of data files that caused errors.
 - Add permissions to access Dynamo table to your Lambda.
@@ -87,7 +87,7 @@ const logSuccessfulEvent = async (params) => {
 ~~~
 
 As a result you should see a new ingestion record created:
-![Result](mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-result.png)
+![Result](https://mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-result.png)
 
 
 [FAQ] My service successfully loads the data into BigQuery but after that I get an error:

@@ -182,10 +182,10 @@ aws cloudformation deploy     --region eu-west-1     --template-file cf-deploy.y
 ~~~
 **Outcome:**
 
-![Outcome](mydataschool.com/liveprojects/img/img-s2-lp4-m2-desired-outcome-stack-part1.png)
+![Outcome](https://mydataschool.com/liveprojects/img/img-s2-lp4-m2-desired-outcome-stack-part1.png)
 
 and check your Lambda:
-![Outcome](mydataschool.com/liveprojects/img/img-s2-lp4-m2-desired-outcome-stack-part2.png)
+![Outcome](https://mydataschool.com/liveprojects/img/img-s2-lp4-m2-desired-outcome-stack-part2.png)
 
 *Hint for Step [1.2]*
 If you want to know how to add S3 trigger check this `yaml` below:
@@ -546,7 +546,7 @@ If this file name contains any of table names you mentioned in ./config.json it 
 
 If you check logs you should see a successfull upload into your BigQuery table.
 
-![Result](mydataschool.com/liveprojects/img/img-s2-lp4-m2-desired-outcome-stack-part3.png)
+![Result](https://mydataschool.com/liveprojects/img/img-s2-lp4-m2-desired-outcome-stack-part3.png)
 
 
 

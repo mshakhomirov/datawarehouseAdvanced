@@ -203,7 +203,7 @@ const loadTestDataFromStreamJSON = async() => {
 
 
 ~~~
-![Result](mydataschool.com/liveprojects/img/s2-LP2-M1-1.png)
+![Result](https://mydataschool.com/liveprojects/img/s2-LP2-M1-1.png)
 
 - `streaming` is good but might incure higher costs. Try `batch` insert instead. It has a daily quota of 2000 inserts per table but you can insert a whole file in one go. Streaming insert is extremely cheap, $0.05 per GB that's $50 for 1TB. Not sure how much volume you have, but usually people are not building around streaming insert because it's better suited. Streaming insert is the recommended way to import data, as it's scalable, it
 

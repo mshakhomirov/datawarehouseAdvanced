@@ -25,7 +25,7 @@ A common use-case for environments is to run a staged release process. After tes
 [3.3] Create fx rates pipeline
 - Using dataform declare `source.exchange_rates` table. Use **${self()}** function and make to create an output so you could reference it in other scripts with **${ref()}** function.
 - Dataset and SQL script for `source.exchange_rates` table can be found here ``
-* ![desired outcome](mydataschool.com/liveprojects/img/LP3/img-s2-lp3-m2-2_3_desired-outcome.png)
+* ![desired outcome](https://mydataschool.com/liveprojects/img/LP3/img-s2-lp3-m2-2_3_desired-outcome.png)
 
 - Create an `operation` (using dataform) consisting of two parts [1] to create another tabel for fx rates with the follwoing scema:
 ~~~sql
@@ -42,7 +42,7 @@ PARTITION BY dt
 and [2] to *insert* daily  update for this table for all currencies.
 - Create a view on top of this table just for one corrency (use schema above).
 - You would to have this as diseried outcome for this Step:
-* ![desired outcome](mydataschool.com/liveprojects/img/LP3/img-s2-lp3-m2-2_3_desired-outcome2.png)
+* ![desired outcome](https://mydataschool.com/liveprojects/img/LP3/img-s2-lp3-m2-2_3_desired-outcome2.png)
 
 [FAQ] I've created a dataform operation which has two queries one after another. First one to create a table and the second one to INSERT data. Dataform RUN is successfull but nothing happens in data warehouse.
 [Answer] Read this [document](https://docs.dataform.co/guides/operations). Dataform transforms *sqlx* files. You need to make sure your script runs as it is. To ensure this ultiple statements can be separated with a single line containing only 3 dashes --- .
@@ -77,16 +77,16 @@ Read this [Author's Medium article here:](https://towardsdatascience.com/easy-wa
 - Read the [docs](https://docs.dataform.co/dataform-web/scheduling/environments)
 
 - Create a staging project:
-![Desired outcome](mydataschool.com/liveprojects/img/img-M3-20.png)
+![Desired outcome](https://mydataschool.com/liveprojects/img/img-M3-20.png)
 
 - Remember we created a service account? We supplied these credentials to dataform. Now we would want that service account to be able to access our staging project.
 Go to [IAM](https://console.cloud.google.com/iam-admin/iam) and enable access to **..-staging** project for the service account you created in Step 1.
-![Like so](mydataschool.com/liveprojects/img/img-M3-21-2.png)
+![Like so](https://mydataschool.com/liveprojects/img/img-M3-21-2.png)
 [Enable API here if needed for your staging project](https://console.cloud.google.com/apis/api/bigquerydatatransfer.googleapis.com/overview)
 
 - So after you run the deployment in `staging` you will see all enriched tables created:
-![Desired outcome](mydataschool.com/liveprojects/img/img-M3-24.png)
-![Desired outcome](mydataschool.com/liveprojects/img/img-M3-25.png)
+![Desired outcome](https://mydataschool.com/liveprojects/img/img-M3-24.png)
+![Desired outcome](https://mydataschool.com/liveprojects/img/img-M3-25.png)
 
 
 *partial solution*

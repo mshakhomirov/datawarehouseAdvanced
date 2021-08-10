@@ -22,12 +22,12 @@ You’ll need to create a service account from your **[Google Cloud Console](htt
 
 [1.2] **Connecting your data warehouse and Dataform**
 - Go to [https://app.dataform.co/](https://app.dataform.co/) and create your **Dataform** project. You can choose to sign-up using your **Github** account for example and then create your first project:
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-5.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-5.png)
 - Give your project a name, i.e. `bq-shakhomirov`.
 - You will need your BigQuery project ID to connect to Dataform. You can find it in your [BigQuery console](https://console.cloud.google.com/) by simply clicking your project:
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-6.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-6.png)
 - You will see a page like one below. Click `browse` and upload your JSON key:
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-7.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-7.png)
 Click `test connection` and if everything's okay you will be set to go. Then Click `save connection`
 
 **[2]. Create your tables using Dataform**
@@ -36,7 +36,7 @@ Click `test connection` and if everything's okay you will be set to go. Then Cli
 - Click on the `New Dataset` button in the left hand side bar.
 - Choose whether you want your dataset to be a table, view or incremental table. In this case we want to create a table:
 - Name the table `paypal_reconciliation` and click **Create Table**:
-![outcome](mydataschool.com/liveprojects/img/img-M3-9.png) **TODO** replace an image and point to correct table.
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-9.png) **TODO** replace an image and point to correct table.
 - Insert your table definition SQL right after `config` block:
 ~~~sql
 -- Place your SQL here: TODO
@@ -44,10 +44,10 @@ Click `test connection` and if everything's okay you will be set to go. Then Cli
 - Use Dataform's **ref()** function to reference `payment_transaction` and `paypal table` as dependancies for `paypal_reconciliation` table.
 - Dataform will automatically validate your query and check for any errors
 - Once you see that the query is valid you can click Preview Results to check that the data looks correct:
-![outcome](mydataschool.com/liveprojects/img/img-M3-10.png) **TODO** Add image
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-10.png) **TODO** Add image
 - Click `Create Table` to create the table in your warehouse
 This will take the SQLX that we’ve written, compile it into the SQL syntax of your warehouse (in this case, BigQuery), and then execute that SQL in your warehouse with the correct boilerplate code to create a table. You will see that your new dataset has been successfully published to datawarehouse:
-![outcome](mydataschool.com/liveprojects/img/img-M3-11.png) **TODO** Add image
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-11.png) **TODO** Add image
 
 [2.3] This is great. However, we need to publish our changes to `analytics` dataset inside `bq-shakhomirov` project. Adjust your dataform project settings accordingly.
 
@@ -82,16 +82,16 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 [1.1] Go to the [Services Account page](https://console.cloud.google.com/iam-admin/serviceaccounts)
 - Make sure the new project you created is selected and click `Open`.
 - Click on `Create Service Account` and give it a name.
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-1.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-1.png)
 - Grant the new account the **BigQuery Admin** role.
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-2.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-2.png)
 
 [1.2] Once you’ve done this you need to create a key for your new service account (in JSON format):
 - On the Service Accounts page, find the row of the service account that you want to create a key for and click the `Actions` button.
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-3.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-3.png)
 - Then click `Manage keys`.
 - Click `Create` and Select JSON key type.
-![outcome](mydataschool.com/liveprojects/img/LP3/img-M3-4.png)
+![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-4.png)
 
 Now you've created a new **BigQuery** project and generated your warehouse credentials, you're ready to create your Dataform project!
 
@@ -116,11 +116,11 @@ config {
 
 *Hint for Step [2.3]*: 
 - Go to **Project Configuration** and change your **defaultSchema**.
-![outcome](mydataschool.com/liveprojects/img/img-M3-12.png)
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-12.png)
 - Click `Create`. This will create our table in `analytics` dataset in BigQuery.
-![outcome](mydataschool.com/liveprojects/img/img-M3-13.png) **TODO** Add image
+![outcome](https://mydataschool.com/liveprojects/img/img-M3-13.png) **TODO** Add image
 
-- Click [View logs:](mydataschool.com/liveprojects/img/img-M3-14.png) **TODO** Add image
+- Click [View logs:](https://mydataschool.com/liveprojects/img/img-M3-14.png) **TODO** Add image
 
 
 *partial solution*

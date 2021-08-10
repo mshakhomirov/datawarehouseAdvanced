@@ -6,7 +6,7 @@
 You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
-![Modern Data Stack](mydataschool.com/liveprojects/img/modernDataStack.png)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.). 
 
@@ -23,7 +23,7 @@ You decided to use **AWS Lambda functions** and **Node.js** for this task as the
 So far you've learned how to connect various data sources using *REST APIs* and *microservice* architecture. You have set up your BigQuery project and successfully created a few pipelines to feed data into the `source` tables.
 
 In this livePorject you will learn how to process and transform data in **BigQuery**. Documenting your data transformation is no problem when you have just a few of them. However, the more tables you have more difficult it becomes to keep an eye on everything. Just one of your data transformation pipelines in BigQuery could look like that:
-![Modern Data Stack](mydataschool.com/liveprojects/img/s2-LP3-pipeline.gif)
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/s2-LP3-pipeline.gif)
 
 You will learn how to:
 - create separate environments in BigQuery (Staging and Live)
