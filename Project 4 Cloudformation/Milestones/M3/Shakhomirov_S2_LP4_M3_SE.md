@@ -375,7 +375,7 @@ transaction_id,user_id,dt
 ![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-error-test.png)
 
 [Full solution](LP4/Milestones/M3/solution/data-services/stack) and has the following services:
-
+~~~bash
 .
 ├── bq-ingest-manager
 │   ├── data
@@ -401,4 +401,4 @@ transaction_id,user_id,dt
 ├── cf-deploy.yaml
 ├── cf-install.sh
 └── readme.md
-
+~~~

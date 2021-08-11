@@ -1,7 +1,7 @@
 # Solution explanation
 
 For complete solution you would have these files including `cf-deployyaml` after you run `package` command:
-
+~~~bash
 .
 ├── cf-config.yaml
 ├── cf-deploy.yaml
@@ -17,7 +17,7 @@ For complete solution you would have these files including `cf-deployyaml` after
     │   ├── tmp
     │   └── token_config.json
     └── readme.md
-
+~~~
 - your `cf-config.yaml` must look like this:
 
 ~~~yaml
