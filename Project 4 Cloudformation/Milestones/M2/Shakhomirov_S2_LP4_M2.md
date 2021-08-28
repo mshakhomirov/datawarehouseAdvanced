@@ -110,6 +110,26 @@ data-services
         Ref: IngestManagerSuccessTableName
 ~~~
 
+[FAQ] I would like to add more fields for Dynamo table in my stack CF file but I keep getting an error while trying to deploy it: `One or more parameter values were invalid: Number of attributes in KeySchema does not exactly match number of attributes defined in AttributeDefinitions`
+
+[Amswer] Don't include any non-key attribute definitions in AttributeDefinitions. DynamoDB is schemaless (except the key schema)
+I assume you are trying to do the following and it fails:
+~~~yaml
+     AttributeDefinitions:
+        -
+          AttributeName: "fileKey"
+          AttributeType: "S"
+        -
+          AttributeName: "ts"
+          AttributeType: "S"
+        -
+          AttributeName: "table"
+          AttributeType: "S"
+        -
+          AttributeName: "rows"
+          AttributeType: "N"
+~~~
+
 - Adjust  `ProvisionedThroughput`:
 Looking at [The Dynamo cost page](https://aws.amazon.com/blogs/aws/dynamodb-price-reduction-and-new-reserved-capacity-model/), this means you are paying $0.0065 per throughput-hour each table exists per month, minus the free-tier hours.
 
