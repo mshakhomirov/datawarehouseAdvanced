@@ -1,5 +1,7 @@
 # Solution Explanation
-Scripts to create source tables can be found here:
+Scripts to create source tables can be found below.
+Sharable  Link to Data Studio template is [here](https://datastudio.google.com/reporting/37f4b07b-f8cd-436b-9a7b-0ee37cdfafe4)
+[Preview](https://datastudio.google.com/u/0/reporting/37f4b07b-f8cd-436b-9a7b-0ee37cdfafe4/page/p_n9jv47i9nc/preview)
 
 ## 1. Run the following in your command line to Create `reference.country_tax_codes` table:
 
