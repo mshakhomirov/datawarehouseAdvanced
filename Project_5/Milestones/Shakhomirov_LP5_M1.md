@@ -115,13 +115,13 @@ You would want to JSON_PARSE the values you need for reporting.
 * Missing transactions in your database for selected date range.
 * Revenue aggregation per `country_of_sale`. This is an important step for accurate *Taxation*. 
 - Add drill down into `country_of_sale`:
-![img1](img/img-lp5-drill-down-1.png)
+![img1](https://mydataschool.com/liveprojects/img/img-lp5-drill-down-1.png)
 
-![img2](img/img-lp5-drill-down-2.png)
+![img2](https://mydataschool.com/liveprojects/img/img-lp5-drill-down-2.png)
 - Or try it without drill-down:
-![img/img-lp5-no-drill-down.png](img/img-lp5-no-drill-down.png)
+![img/img-lp5-no-drill-down.png](https://mydataschool.com/liveprojects/img/img-lp5-no-drill-down.png)
 - Add Revenue breakdown by `country_of_sale`:
-![img/img-lp5-no-drill-down.png](img/img-lp5-breakdown-by-country.png)
+![img/img-lp5-no-drill-down.png](https://mydataschool.com/liveprojects/img/img-lp5-breakdown-by-country.png)
 
 #### Page 2. Raw PayPal transaction data with totals:
 * Table with  paypal transaction data:
@@ -153,14 +153,14 @@ You would want to JSON_PARSE the values you need for reporting.
 
 * PayPal aggregated sales data per `product`, `country of sale` and `currency of sale`.
 * Must have `gross`,`fee`, `net` totals and `Openening` / `Closing balance` as a **score card** widget for selected date range.
-![balances](img/img-lp5-start-end-balance.png)
+![balances](https://mydataschool.com/liveprojects/img/img-lp5-start-end-balance.png)
 
 * Adjust widgets accordingly:
 
-![outcome](img/img-lp5-page_2_final.png)
+![outcome](https://mydataschool.com/liveprojects/img/img-lp5-page_2_final.png)
 
 * Your widgets should change dynamically with date range:
-![dyanmic changes](img/img-lp5-start-end-balance_2.png)
+![dyanmic changes](https://mydataschool.com/liveprojects/img/img-lp5-start-end-balance_2.png)
 
 #### Page 3. Recognised revenue prepared for monthly reconciliation:
 * Must have fields:
@@ -175,9 +175,9 @@ You would want to JSON_PARSE the values you need for reporting.
 - VAT Amount            - TAX amount  in your account currency (USD).
 
 * Create a monthly upload table, i.e. `Reference` field equals to `2021-07-01 - 2021-07-31`:
-![outcome](img/img-lp5-page3-monthly.png)
+![outcome](https://mydataschool.com/liveprojects/img/img-lp5-page3-monthly.png)
 * It also should dusplay a drill down for missing transactions:
-![missing](img/img-lp5-page3-monthly-drill_into_missing.png)
+![missing](https://mydataschool.com/liveprojects/img/img-lp5-page3-monthly-drill_into_missing.png)
 
 #### Page 4. Recognised revenue prepared for daily upload into accounting system:
 * Create a Daily upload and write a script to populate it for each date within the date range needed.

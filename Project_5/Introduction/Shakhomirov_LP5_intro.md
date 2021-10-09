@@ -1,6 +1,6 @@
 
 # Create a BI report with Google Data Studio
-![Connecting data](img/s2_lp5_intro.png)
+![Connecting data](https://mydataschool.com/liveprojects/img/s2_lp5_intro.png)
 
 
 ## about this liveProject
@@ -73,39 +73,6 @@ This liveProject will be divided into **2** milestones.
 - Net Amount            - Revenue left after TAX in you account currency. In our case this would be USD.
 - VAT Amount            - TAX amount  in your account currency (USD).
 
-## A few things to consider:
-- Your PayPal account is in USD currency.
-- Users are all over the world.
-- In different countries your company has different tax rates.
-- You would want to highlight missing data (transactions) on your end (if any) and compare against *PayPal* reports.
-- You need to find a way to calculate a 'daily revenue' metric in **PayPal** account currency and prepare it for upload intoyour accounting system.
-- You want to upload data daily and PayPal transaction dates be predominant.
-- Your database transactions might be late due to several reasons, i.e. due to client application late response, etc. You were tasked to tackle this issue.
-- For revenue reconciliation purposes you need only:
-        - PayPal transactions with `type` of `Website payment` and `Express checkout`. Read more about **PayPal** event codes [here](https://developer.paypal.com/docs/integration/direct/transaction-search/transaction-event-codes/)
-        - completed transactions (status: 'S')
-- You would want to alert on `reversed` transactions and receive email notifications about it with a link to a report page containing reversal ones ('T1201' type: 'Chargeback').
-- Reversal transactions must have a tax code too. You will need to find a way to link reversal transaction back to original one to get `country_code`.
-- your database can't handle reversed transactions yet.
-- Your server App sends extra payment info to PayPal `item_name` part of which you would like to use in reporting. Split `item_name` so you could use product name only, i.e. *"InApp Product 8"* and drop *"(ID: #100118)"*
-
-~~~json
-...
-{   "item_code": "118",
-    "item_name": "InApp Product 8 (ID: #100118)",
-    ...
-}
-~~~
-- Use PayPal's `item_code` to match that dataset against your database' `transaction_item_id` during revenue reconciliation.
-- This daily output for accounting must include the following fields:
-    - `Account Reference`     - `PAYPAL`
-    - `Nominal A/C Reference` - Accounting code number
-    - `Date`                  - `DD/MM/YYYY` formatted date
-    - `Reference`             - `start_date - end_date`; `DD/MM/YYYY` dates formatted 
-    - `Narrative`             - `Country_of_sale - Date_of_sale`; `YYYY-MM-DD` Date_of_sale formatted 
-    - `VAT`                   - VAT code, i.e. 'T67'
-    - `Net Amount`            - Revenue left after TAX in you account currency. In our case this would be USD.
-    - `VAT Amount`            - TAX amount  in your account currency (USD).
 
 
 

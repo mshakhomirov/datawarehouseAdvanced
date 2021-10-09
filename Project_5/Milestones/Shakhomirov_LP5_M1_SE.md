@@ -140,7 +140,7 @@ As a result in your terminal you will see:
 {"passed":[{"table":"custom_tax_type","rowsInserted":"31"}],"failed":[]}
 ~~~
 
-![custom_tax_codes table](img/img-lp5-custom_tax_codes.png)
+![custom_tax_codes table](https://mydataschool.com/liveprojects/img/img-lp5-custom_tax_codes.png)
 
 
 ## 3. Create a new table or a view on `source.paypal_transaction_src` table.
@@ -307,11 +307,11 @@ where
 ~~~
 * Adjust widgets accordingly:
 
-![outcome](img/img-lp5-page_2_final.png)
+![outcome](https://mydataschool.com/liveprojects/img/img-lp5-page_2_final.png)
 
 
 #### As a result you will see that 10 transactions have been inserted successfully:
-![paypal_transaction](img/img-lp5-paypal_transaction_1.png)
+![paypal_transaction](https://mydataschool.com/liveprojects/img/img-lp5-paypal_transaction_1.png)
 
 ### 3. Create table `production.payment_transaction` by parsing the source file from `./data`:
 This will create `production.payment_transaction` table with schema as you add it to your `stack/bq-ingest-manager/config/staging.yaml`:
