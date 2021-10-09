@@ -31,8 +31,13 @@ This liveProject will have only **1** milestone with **2** steps .
 
 
 You will learn how to connect various data sources to your data warehouse. This series covers a set of LPs explaining how to build a data warehouse with BigQuery as a central part of this process.
-So the workflow would be: 
-LP1 Set extraction pipe (PayPal) -> LP2 Set ingestion pipe (AWS S3 to BigQuery) -> LP3 Set data transformation pipeline (Dataflow) -> LP4 Set BI for revenue reconciliation (Data Studio) and LP5 Wrap it all up with Cloudformation (Software as a code).
+
+### So the workflow would be: 
+* LP1 Set extraction pipe (PayPal) -> 
+* LP2 Set ingestion pipe (AWS S3 to BigQuery) -> 
+* LP3 Set data transformation pipeline (Dataflow) -> 
+* LP4 Wrap it all up with Cloudformation (Software as a code). ->
+* LP4 Set BI for revenue reconciliation (Data Studio) 
 
 Modern data stack tools (not a complete list of course):
     * Ingestion: **Fivetran, Stitch**

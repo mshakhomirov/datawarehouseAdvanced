@@ -1,14 +1,16 @@
-## Create your Data Stack resources using Architecture as Code with AWS Cloudformation
+# Create a BI report with Google Data Studio
 
-**Objective**
+## **Objective**
 
-You will learn how to *provision AWS resources* sources for your data stack. You will create AWS Lambdas, DynamoDB tables, MySQL databases, roles and permissions using [AWS Cloudformation](https://aws.amazon.com/cloudformation/).
+You will learn how to *create a business intelligence reports* using your data. You will deploy a revenue reconciliation report using [Google Data Studio](https://datastudio.google.com).
 
 
-**Why is this milestone important to the project?**
-This LP explains how to create and describe your desired resources and their dependencies so you can launch and configure them together as a stack. 
-You can use a template to create, update, and delete an entire stack as a single unit, as often as you need to, instead of managing resources individually.
-This approach gives you an easy way to model a collection of related AWS and third-party resources, provision them quickly and consistently, and manage them throughout their lifecycles, by treating infrastructure as code and easily integrate them with your data warehouse solution you built using **BigQuery** as a central part of this diagram.
+## **Why is this milestone important to the project?**
+This LP explains how to transform your data into a final dataset ready for further *Business Intelligence*. 
+You will use **Data Studio** template and connect it to your data warehouse.
+In your `analytics` dataset your data has been checked, cleansed, validated and prepared for reporting.
+This approach gives you an easy way to deliver your data models to your final customers as reports. 
+In this *liveProject* I will be using **BigQuery** as a central part of this diagram.
 
 Modern data stack tools (not a complete list of course):
     * Ingestion: **Fivetran, Stitch**
@@ -16,26 +18,213 @@ Modern data stack tools (not a complete list of course):
     * Transformation: dbt, Dataflow, APIs.
     * BI: Looker, Mode, Periscope, Chartio, Metabase, Redash
 
-Talking about data ingestion you would need to utilise tools like **Fivetran or Stitch** to extract and prepare 3rd party data sources but if you follow this tutorial you will become totally capable of doing it yourself.
+**In previous liveProjects we have built a complete data pipeline using *Serverless* which scales well.** It follow the ELT (Extract - Load - Transform) pattern, well documented, easily scalable and can be easily reproduced in any other environment. It is also very cost effective due to full control over partitioning in BigQuery.
+
+Reporting tools for Data Visualisation can be expensive especially when you want to make this feature available for multiple users, control their access priviliges and also give them freedom to create their own reports. 
+In this *liveProject* you will learn how to achieve these goals using a completely free community solution such as **Google Data Studio**.
 
 
-**Workflow**
-1. Create a PayPal account with developer access and a Sandbox
-   - Go to [developer.paypal.com](https://developer.paypal.com/developer/applications) and create an **Application**. This would an integration for your Node.js app.
-   - Create a **sandbox** account to integrate and test code in PayPal’s testing environment.
-   - Try to populate your testing environment with some transaction data
-   - Try to request this data from PayPal reporting API (use http request)
 
-2. Create a **local** Node.js app called `bq-paypal-revenue` on your machine. This app will do the following:
-   - Must connect to your PayPal account and use **PayPal API** Authorization token to extract transaction data for yesterday.
-   - Must have a configuration file called `./config.json` which will contain the name of your BigQuery table you would want to update with new PayPal data.
-   - Must POST http request to PayPal API to retrieve transaction data and `save` the result as JSON file into your `AWS S3` bucket.
-   - Must be able to run locally with `npm run test` command 
+
+## Workflow
+
+### 1. Create source tables to work with (if you haven't created them yet from Previous liveProjects)
+### 2. Create a new table or a view on `source.paypal_transaction_src` table.
+### 3. Create a [Google Data Studio](https://datastudio.google.com) report template for **revenue reconciliation**.
+#### Page 1. Recognised revenue from with totals
+#### Page 2. Raw PayPal transaction data with totals
+#### Page 3. Recognised revenue prepared for monthly reconciliation
+#### Page 4. Recognised revenue prepared for daily upload into accounting system
+
+
+
+### 1. Create source tables to work with (if you haven't created them yet from Previous liveProjects)
+
+Go to [BigQuery ingest manager](https://github.com/mshakhomirov/BigQuery-ingest-manager) repository and download the code. It is a simple and reliable manager which allows you to load any data into **BigQuery** tables.
+#### How it works
+* When deployed as a Serverless Lambda function it can be triggered by S3objectCreate event from your data storage bucket. If you wnt to learn how to deploy it with Cloudformation stack there is a detailed tutorial in *liveProject 4*. 
+
+* If you want to run it locally on your machine:
+- adjust `./test/data.json` to emaulate your S3ObjectCreate event (replace `bucket` and `key` with your values).
+- Upload your files (alternatively use sample files from this liveProject).
+- In you rcommand line run:
+```shell
+npm run test
+```
+
+This will create a BiGQuery table from your file located in S3 bucket.
+
+#### How to create all tables for this project with script
+
+- copy all dataset files from `./data/` to your s3 bucket, i.e. 
+```shell
+aws s3 cp './data/paypal_transaction_raw.json' s3://bq-shakhomirov.bigquery.aws/reconcile/paypal_transaction/2021/10/03/paypal_transaction_raw
+aws s3 cp './data/country_tax_codes.csv' s3://bq-shakhomirov.bigquery.aws/country_tax_codes.csv
+aws s3 cp './data/payment_transaction_src' s3://bq-shakhomirov.bigquery.aws/payment_transaction_src
+aws s3 cp './data/accounting_tax_type.csv' s3://bq-shakhomirov.bigquery.aws/accounting_tax_type.csv
+```
+Replace `bq-shakhomirov.bigquery.aws` with your bucket name.
+This will emulate *Firehose* output with  prefix `reconcile/`.
+
+- In your command line run: `npm run test-service`. This will generate a payload for tables in `source` schema of your BigQuery project.
+- In your command line run: `npm run test-load`. This will load data from your bucket using final payload.
+
+
+**Ultimatly you will need the following tables:**
+- `reference.country_tax_codes`
+- `reference.vat_rates`
+- `source.payment_transaction`
+- `source.paypal_transaction_src`: This table needs to be transformed into a new table or a view as your data flows into this source table in JSON format (VARIANT type). Check sample transaction for more info:
+[Project 2/data/paypal_transaction]()
+
+~~~JSON
+{
+    "transaction_info": {
+        "paypal_account_id": "SomeAccount_1",
+        "transaction_id": "0AE4SomeTransactionId1",
+        "transaction_event_code": "T0007",
+        ...
+    "payer_info": {
+        ...
+    },
+    "shipping_info": {
+        ...
+    },
+  ...
+}
+~~~
+
+
+### 2. Create a new table or a view on `source.paypal_transaction_src` table.
+
+You would want to JSON_PARSE the values you need for reporting. 
+*FAQ*: Why would I want to upload and save data in SRC/VARIANT format?
+*Answer*: This approach proveds additional reliability in case extarnal data source schema changes. Data ingestion won't stop and your datawarehouse will be able to report on that schema change event. 
+
+*FAQ*: I keep getting an error trying to load data into my dataset using **bigquery-ingest-manager**, i.e. `reference`.
+*Answer*: Make sure your dataset exists and it s in the same location as other datasets. It is recommended that BigQuery tables must be in the same region to be able to query all of them in the same script.
+
+
+### 3. Create a [Google Data Studio](https://datastudio.google.com) report template for **revenue reconciliation**:
+- Go to [Data Studio](https://datastudio.google.com/reporting/f05459d2-01ef-4ca9-8e8e-436bbf42a043/page/nN2rB/preview) and copy one of the templates created in [Beginners tutorial](https://www.manning.com/liveproject/business-intelligence-with-BigQuery). Click *'Use tempalte'*.
+- Modify the template. You would want to have the following:
+
+#### Page 1. Recognised revenue from with totals:
+* Total revenue according to **PayPal** for selected date range.
+* Total revenue according to **your system** for selected date range.
+* Missing transactions in your database for selected date range.
+* Revenue aggregation per `country_of_sale`. This is an important step for accurate *Taxation*. 
+- Add drill down into `country_of_sale`:
+![img1](img/img-lp5-drill-down-1.png)
+
+![img2](img/img-lp5-drill-down-2.png)
+- Or try it without drill-down:
+![img/img-lp5-no-drill-down.png](img/img-lp5-no-drill-down.png)
+- Add Revenue breakdown by `country_of_sale`:
+![img/img-lp5-no-drill-down.png](img/img-lp5-breakdown-by-country.png)
+
+#### Page 2. Raw PayPal transaction data with totals:
+* Table with  paypal transaction data:
+~~~sql
+    dt	                    STRING		-- stringified date in '%d/%m/%Y' format 
+,   time	                STRING		
+,   ts                      timestamp   -- UTC timestamp
+,   tz	                    STRING			
+,   type	                STRING		
+,   status	                STRING		
+,   currency	            STRING		
+,   gross	                FLOAT64		
+,   fee	                    FLOAT64		
+,   net	                    FLOAT64	
+,   end_balance_usd	        FLOAT64
+,   balanceimpact           STRING
+,   transactionid	        STRING
+,   reftxnid                STRING
+,   itemtitle	            STRING
+,   product                 STRING  -- split itemtitle by '(ID' to get product name.
+,   itemid	                STRING		
+,   quantity	            STRING				
+,   country	                STRING		
+,   countrycode	            STRING		
+,   row_number_asc_dt       int64   -- field to identify the first transaction on that date
+,   row_number_desc_dt      int64   -- field to identify the last transaction on that date
+,   transaction_dt          date    -- partition by this field
+~~~
+
+* PayPal aggregated sales data per `product`, `country of sale` and `currency of sale`.
+* Must have `gross`,`fee`, `net` totals and `Openening` / `Closing balance` as a **score card** widget for selected date range.
+![balances](img/img-lp5-start-end-balance.png)
+
+* Adjust widgets accordingly:
+
+![outcome](img/img-lp5-page_2_final.png)
+
+* Your widgets should change dynamically with date range:
+![dyanmic changes](img/img-lp5-start-end-balance_2.png)
+
+#### Page 3. Recognised revenue prepared for monthly reconciliation:
+* Must have fields:
+
+- Account Reference     - `PAYPAL`
+- Nominal A/C Reference - Accounting code number
+- Date                  - `DD/MM/YYYY` formatted date
+- Reference             - `start_date - end_date`; `DD/MM/YYYY` dates formatted 
+- Narrative             - `Country_of_sale - Date_of_sale`; `YYYY-MM-DD` Date_of_sale formatted 
+- VAT                   - VAT code, i.e. 'T67'
+- Net Amount            - Revenue left after TAX in you account currency. In our case this would be USD.
+- VAT Amount            - TAX amount  in your account currency (USD).
+
+* Create a monthly upload table, i.e. `Reference` field equals to `2021-07-01 - 2021-07-31`:
+![outcome](img/img-lp5-page3-monthly.png)
+* It also should dusplay a drill down for missing transactions:
+![missing](img/img-lp5-page3-monthly-drill_into_missing.png)
+
+#### Page 4. Recognised revenue prepared for daily upload into accounting system:
+* Create a Daily upload and write a script to populate it for each date within the date range needed.
+This should reconcile with monthly totals on Page 3 in the end of the month.
+
+## A few things to consider (as a dev spec).
+**Here are the details for your project:**
+- Your PayPal account is in USD currency.
+- Users are all over the world.
+- In different countries your company has different tax rates.
+- You would want to highlight missing data (transactions) on your end (if any) and compare against *PayPal* reports.
+- You need to find a way to calculate a 'daily revenue' metric in **PayPal** account currency and prepare it for upload intoyour accounting system.
+- You want to upload data daily and PayPal transaction dates be predominant.
+- Your database transactions might be late due to several reasons, i.e. due to client application late response, etc. You were tasked to tackle this issue.
+- For revenue reconciliation purposes you need only:
+        - PayPal transactions with `type` of `Website payment` and `Express checkout`. Read more about **PayPal** event codes [here](https://developer.paypal.com/docs/integration/direct/transaction-search/transaction-event-codes/)
+        - completed transactions (status: 'S')
+- You would want to alert on `reversed` transactions and receive email notifications about it with a link to a report page containing reversal ones ('T1201' type: 'Chargeback').
+- Reversal transactions must have a tax code too. You will need to find a way to link reversal transaction back to original one to get `country_code`.
+- your database can't handle reversed transactions yet.
+- Your server App sends extra payment info to PayPal `item_name` part of which you would like to use in reporting. Split `item_name` so you could use product name only, i.e. *"InApp Product 8"* and drop *"(ID: #100118)"*
+
+~~~json
+...
+{   "item_code": "118",
+    "item_name": "InApp Product 8 (ID: #100118)",
+    ...
+}
+~~~
+- Use PayPal's `item_code` to match that dataset against your database' `transaction_item_id` during revenue reconciliation.
+- This daily output for accounting must include the following fields:
+    - `Account Reference`     - `PAYPAL`
+    - `Nominal A/C Reference` - Accounting code number
+    - `Date`                  - `DD/MM/YYYY` formatted date
+    - `Reference`             - `start_date - end_date`; `DD/MM/YYYY` dates formatted 
+    - `Narrative`             - `Country_of_sale - Date_of_sale`; `YYYY-MM-DD` Date_of_sale formatted 
+    - `VAT`                   - VAT code, i.e. 'T67'
+    - `Net Amount`            - Revenue left after TAX in you account currency. In our case this would be USD.
+    - `VAT Amount`            - TAX amount  in your account currency (USD).
+
+
+
 
 
 **Deliverable**
 
-The deliverable for this milestone is a working (correct) AWS Cloudformation template.
+The deliverable for this milestone is a working Google Data Studio template.
 
 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author's solution and peer solutions will appear on the page for you to examine.
 
@@ -46,549 +235,22 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 
 *Resources*
 
-* [AWS Cloudformation/](https://aws.amazon.com/cloudformation/)
-* [AWS Lambda](https://aws.amazon.com/lambda/)
+* [Data Studio functions](https://support.google.com/datastudio/table/6379764)
+* [About filters](https://support.google.com/datastudio/answer/6291066)
+* [Calculated fields](https://support.google.com/datastudio/answer/9152828?hl=en)
 
 *help*
 
 * Hint for Step 1:
-- Use an access token to query PayPal API
-- More info how to get an access token can be found [here](https://developer.paypal.com/docs/api/get-an-access-token-curl/)
-or [here](https://developer.paypal.com/docs/api/get-an-access-token-postman/)
-
-
-
-
-* Hint for step 1:
-- Supply your Sandbox `client_id:secret` and create a CURL request
-- Run it in your command line
-~~~bash
-curl -v https://api-m.sandbox.paypal.com/v1/oauth2/token \
-  -H "Accept: application/json" \
-  -H "Accept-Language: en_US" \
-  -u "client_id:secret" \
-  -d "grant_type=client_credentials"
-~~~
-->
-~~~bash
-curl -v https://api-m.sandbox.paypal.com/v1/oauth2/token \
-  -H "Accept: application/json" \
-  -H "Accept-Language: en_US" \
-  -u "AcqwlHa97zeM4UfiSLUIEtjJiZvVRjXsJwfBadd88nrseUXYbvuS38XM_5OWxD-wWgTq04fQHJBiB_it:EDRVq2kr566mx-o-TT_cENxoBeRn_XbfLaQROBiFUC0Tk7KI4fmqayt2TKzfHEMnq4njB3OCMj4Nnffn" \
-  -d "grant_type=client_credentials"
-~~~
-![Output](https://mydataschool.com/liveprojects/img/s2-LP1-M1-1-access_token.png)
-- Now use this access token to create another request to pull the transaction data you need. Re-use the access token until it expires. Then, get a new token.
-
-
-
-
-* Hint for step 1:
-~~~bash
-curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_required=true \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer <Access-Token>"
-~~~
--->
-~~~bash
-curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_required=true \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA"
-~~~
-
-- You will see something like this:
-![result](https://mydataschool.com/liveprojects/img/s2-LP1-M1-1-access_token_test.png)
-
-- Now try to mock some transaction data
-
-
-* Hint for Step 1:
-
-- Check PayPal API calls and create one to generate some sample order / transaction
-~~~bash
-curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders \
--H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA" \
--d '{
-  "intent": "AUTHORIZE",
-  "purchase_units": [
-    {
-      "amount": {
-        "currency_code": "GBP",
-        "value": "100.00"
-      }
-    }
-  ]
-}'
-~~~
-
-
-curl -v -X GET https://api-m.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X \
--H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAJdK_tVuZS_ERj0NvPAP1Xoz1JtvTT4IzBBotmL7A1gbVnKXw3ZkVnQPGoNXXe8U-p0xRC5_BBN7yq3botlOXa0ChFIig"
-
-
-- As a result you will see that some sample transaction was created:
-![result](https://mydataschool.com/liveprojects/img/s2-LP1-M1-1-mock_pp_data.png)
-- The response shows the status and other details, i.e. //api.sandbox.paypal.com/v2/checkout/orders/43J66938KW385645X Try to explore the API docs and see what you can supply to your request.
-
-- Output example:
-~~~bash
-{"id":"3TU82759JP640141X","status":"CREATED","links":[{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X","rel":"self","method":"GET"},{"href":"https://www.sandbox.paypal.com/checkoutnow?token=3TU82759JP640141X","rel":"approve","method":"GET"},{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X","rel":"update","method":"PATCH"},{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X/authorize","rel":"authorize","method":"POST"}]}
-~~~
-
-* Hint for Step 1:
-- To approve your order use a Personal Sandbox account and follow the link [https://www.sandbox.paypal.com/checkoutnow?token=97T22805JR125823D](https://www.sandbox.paypal.com/checkoutnow?token=97T22805JR125823D)
-- After customer approved it's order check it's status with this curl request:
-~~~bash
-curl -v -X GET https://api-m.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X \
--H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA"
-~~~
-and the output would be something like this:
-~~~bash
-{"id":"3TU82759JP640141X","intent":"CAPTURE","status":"APPROVED","purchase_units":[{"reference_id":"PUHF","amount":{"currency_code":"USD","value":"200.00","breakdown":{"item_total":{"currency_code":"USD","value":"180.00"},"shipping":{"currency_code":"USD","value":"20.00"}}},"payee":{"email_address":"sb-dzyfq6635758@business.example.com","merchant_id":"39AJCL7W5MRAJ"},"shipping":{"name":{"full_name":"John Doe"},"address":{"address_line_1":"Whittaker House","address_line_2":"2 Whittaker Avenue","admin_area_2":"Richmond","admin_area_1":"Surrey","postal_code":"TW9 1EH","country_code":"GB"}}}],"payer":{"name":{"given_name":"John","surname":"Doe"},"email_address":"sb-txsj26679103@personal.example.com","payer_id":"4U2VGYBFX8FH4","address":{"country_code":"GB"}},"create_time":"2021-07-03T08:17:59Z","links":[{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X","rel":"self","method":"GET"},{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X","rel":"update","method":"PATCH"},{"href":"https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X/capture","rel":"capture","method":"POST"}]}%
-~~~
-- If you are struggling with order approvals try [A PayPal Product API Executor](https://www.paypal.com/apex/home)
-- Authorise your order, i.e. use curl `/v2/checkout/orders/{id}/authorize` .
-- Capture payment for your order
-~~~bash
-curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders/97T22805JR125823D/authorize \
--H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAJdK_tVuZS_ERj0NvPAP1Xoz1JtvTT4IzBBotmL7A1gbVnKXw3ZkVnQPGoNXXe8U-p0xRC5_BBN7yq3botlOXa0ChFIig" \
--H "PayPal-Request-Id: 7b92603e-77ed-4896-8e78-5dea2050476a"
-~~~
-
-- Capture payment to complete transaction:
-~~~bash
-curl -X POST \
-  'https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X/capture' \
-  -H 'authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA' \
-  -H 'content-type: application/json'
-~~~
-
-* Hint for Step 1:
-When finally you have some completed transactions in your **Sandbox** you would want to use a **Reporting API**:
-
-~~~bash
-curl -v -X GET https://api-m.sandbox.paypal.com/v1/reporting/transactions?start_date=2021-07-01T00:00:00-0700&end_date=2021-07-30T23:59:59-0700&fields=all&page_size=100&page=1 \
--H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA"
-~~~
-- The output should be:
-~~~bash
-{"transaction_details":[],"account_number":"39AJCL7W5MRAJ","start_date":"2021-07-01T07:00:00+0000","end_date":"2021-07-01T08:59:59+0000","last_refreshed_datetime":"2021-07-01T08:59:59+0000","page":1,"total_items":0,"total_pages":0,"links":[{"href":"https://api.sandbox.paypal.com/v1/reporting/transactions?end_date=2021-07-30T23%3A59%3A59-0700&fields=all&start_date=2021-07-01T00%3A00%3A00-0700&page_size=100&page=1","rel":"self","method":"GET"}]}%
-~~~
-
-
-* Hints for Steps 1 and 2:
-You would want to use the following Node.js modules:
-- **mysql2** to make HTTP requests to your MySQL db 
-- **@google-cloud/bigquery** to make HTTP requests to BigQuery API
-- **moment** to handle datetime data and parameters
-- **aws-sdk** to save data to S3
-- **run-local-lambda** to test your lambda locally
-- **eslint** to keep your code clean
-
-* Initialise a new Node.js app so you have a `./package.json` like this:
-~~~json
-{
-  "name": "bq-paypal-revenue",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node app.js",
-    "test": "export DEBUG=metrics; run-local-lambda --file app.js --event test/data.json --timeout 10000"
-  },
-  "directories": {
-    "test": "test"
-  },
-  "devDependencies": {
-    "aws-sdk": "2.804.0",
-    "run-local-lambda": "1.1.1"
-  },
-  "main": "app",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "moment": "^2.20.1"
-  }
-}
-~~~
-
-* Your app directory would look like this:
-![img/s2-LP1-M1-1-app_struct.png](https://mydataschool.com/liveprojects/img/s2-LP1-M1-1-app_struct.png)
 
 * Hint for Step 2:
-- use `./config.json` to separate your live and staging environments. For example:
-~~~js
-{ "Production": 
-    {
-      "Tables": [
-        {
-          "name" : "paypal_transaction"
-        }
-      ]
-    }
-  ,
-  "Staging": 
-    {
-      "Tables": [
-        
-        {
-          "name" : "paypal_transaction"
-        }
-    ]
-    }
-
-}
-~~~
-
-- create a file to configure your PayPal access token credentials and replace `"Basic *"` with your combination of **client_id** and **secret**, i.e.:
-
-~~~js
-{
-    "config": {
-        "method": "post",
-        "url": "https://api-m.paypal.com/v1/oauth2/token",
-        "headers": { 
-        "Authorization": "Basic *", 
-        "Content-Type": "application/x-www-form-urlencoded"
-        },
-        "data" : "grant_type=client_credentials"
-  }
-}
-
-~~~
-
-* Hint for Step 2:
-- create a file called app.js:
-
-~~~js
-// 3rd party dependencies
-const AWS = require('aws-sdk');
-AWS.config.update({ region: "eu-west-1"});
-const s3  = new AWS.S3();
-const axios = require('axios');
-const paypal = axios.create({
-    baseURL: 'https://api-m.paypal.com'
-  });
-const moment    = require('moment');
-
-// Config
-const config = require('./config.json');
-const tokenConfig = require('./token_config.json');
-
-let pr = txt => { if (DEBUG) console.log(txt) };
-
-exports.handler = async (event, context) => {
-    pr("app.handler invoked with event "+ JSON.stringify(event,null,2));
-    try {
-        pr(`TESTING? : ${TESTING} ${typeof TESTING}`);
-        
-        let [bucket,tables] =  [ (TESTING==='true') ? BUCKET_TEST : BUCKET , (TESTING==='true') ? config.Staging.Tables : config.Production.Tables];
-        pr(`BUCKET : ${bucket} TABLES: ${tables}`);
-        
-        let access_token = `Bearer A****B` //replace A****B with your token in staging.
-        paypal.defaults.headers.common['Authorization'] = access_token;
-
-        if (TESTING==='false') {
-            let access_token = `Bearer ` + await getToken(tokenConfig.config);
-            paypal.defaults.headers.common['Authorization'] = access_token;
-        }
-
-        context.succeed( await processEvent(event,tables,bucket) );
-    } catch (e) {
-        console.log("Error: "+JSON.stringify(e));
-        context.done(e)
-    }
-};
-
-~~~
-- Now you you would want to create a function called `processEvent` to process an event that will trigger the function to extract transaction data from PayPal.
-
 
 *partial solution*
  
 This is a Partial solution for app.js:
 
 ~~~js
-const DEBUG  = process.env.DEBUG;
-const BUCKET_TEST = process.env.DB_BUCKET_TEST || "data-staging.your-bucket.aws";
-const BUCKET = process.env.DB_BUCKET || "data.your-bucket.aws";
-const KEY    = process.env.DB_KEY || "reconcile/";
-const TESTING = process.env.TESTING || 'true';
-
-const AWS = require('aws-sdk');
-AWS.config.update({ region: "eu-west-1"});
-const s3  = new AWS.S3();
-
-// 3rd party dependencies
-const axios = require('axios');
-const paypal = axios.create({
-    baseURL: 'https://api-m.paypal.com'
-  });
-const moment    = require('moment');
-
-// Config
-const config = require('./config.json');
-const tokenConfig = require('./token_config.json');
-
-let pr = txt => { if (DEBUG) console.log(txt) };
-
-exports.handler = async (event, context) => {
-    pr("app.handler invoked with event "+ JSON.stringify(event,null,2));
-    try {
-        pr(`TESTING? : ${TESTING} ${typeof TESTING}`);
-        
-        let [bucket,tables] =  [ (TESTING==='true') ? BUCKET_TEST : BUCKET , (TESTING==='true') ? config.Staging.Tables : config.Production.Tables];
-        pr(`BUCKET : ${bucket} TABLES: ${tables}`);
-        
-        let access_token = `Bearer A****B` //replace A****B with your token in staging.
-        paypal.defaults.headers.common['Authorization'] = access_token;
-
-        if (TESTING==='false') {
-            let access_token = `Bearer ` + await getToken(tokenConfig.config);
-            paypal.defaults.headers.common['Authorization'] = access_token;
-        }
-
-        context.succeed( await processEvent(event,tables,bucket) );
-    } catch (e) {
-        console.log("Error: "+JSON.stringify(e));
-        context.done(e)
-    }
-};
-
-let processEvent = async (event,tables,bucket) => {
-    let now = moment(); 
-    let datePrefix = now.format("YYYY/MM/DD/HH/");
-    let fileKey = now.format("mm").toString();
-    pr(`datePrefix: ${datePrefix} fileKey: ${fileKey}`);
-
-    let end_dt = moment().subtract({ hours: 24, minutes: 0}).format("YYYY-MM-DDT00:00:00-0000");
-    let start_dt = moment().subtract({ hours: 48, minutes: 0}).format("YYYY-MM-DDT00:00:00-0000");
-    
-    pr(`start_dt: ${start_dt} <> end_dt: ${end_dt}`)
-
-    let options = {
-
-        url: '/v1/reporting/transactions',
-        params: {
-            start_date: start_dt,
-            end_date: end_dt, 
-            fields: 'all',
-            page_size: 500,
-        }
-    }
-
-    try {
-
-        for (const table of tables) {
-            
-            let pages = await getSize(options.url, options);
-            for (const page of Array(pages).keys()   ) {
-                
-                options.params.page = page+1;
-                let rows = await getTransactionData(options.url, options); 
-
-              
-                let params = {
-                    Bucket: bucket,
-                    Key: KEY + table.name + '/' + datePrefix + table.name + fileKey + options.params.page,
-                    Body: JSON.stringify(rows)
-                };
-
-                if (rows.length > 0) {
-                    await s3.putObject(params).promise();
-                    pr(`>> ${rows.length} rows from [table:${table.name}] have been saved to  [s3:${bucket} / ${JSON.stringify(params.Key)}]`);
-        
-                }
-                else{
-                    pr(`>> ${rows.length} rows from [table:${table.name}]. Didn't create an object @ [s3:${bucket} / ${JSON.stringify(params.Key)}]`);
-                }
-
-            }
-            
-
-        }
-
-    } catch (error) {
-        console.log('error: ', error);
-    }
-
-    return bucket;
-
-};
-
-async function getTransactionData(url,config) {
-    try {
-        // Query PayPal API and return all transaction_details as per request
-    } catch (error) {
-      console.error(error);
-    }
-}
-;
-
-async function getSize(url,config) {
-    try {
-        // Query PayPal API to figure out how big (how many pages) of your transaction data you would have in response.
-    } catch (error) {
-      console.error(error);
-    }
-}
-;
-
-async function getToken(config) {
-    try {
-        // Using ./token_config.json exchange with PayPal and get an access_token here
-    } catch (error) {
-        console.error(error);
-    }
-}
 ~~~
-
-
 
 *full solution*
 
-* Use a `./deploy.sh` to deploy your Lambda in AWS.
-* Use command `npm run test` to run your locally.
-* Full solution for app.js:
-~~~js
-const DEBUG  = process.env.DEBUG;
-const BUCKET_TEST = process.env.DB_BUCKET_TEST || "data-staging.your-bucket.aws";
-const BUCKET = process.env.DB_BUCKET || "data.your-bucket.aws";
-const KEY    = process.env.DB_KEY || "reconcile/";
-const TESTING = process.env.TESTING || 'true';
-
-const AWS = require('aws-sdk');
-AWS.config.update({ region: "eu-west-1"});
-const s3  = new AWS.S3();
-
-// 3rd party dependencies
-const axios = require('axios');
-const paypal = axios.create({
-    baseURL: 'https://api-m.paypal.com'
-  });
-const moment    = require('moment');
-
-// Config
-const config = require('./config.json');
-const tokenConfig = require('./token_config.json');
-
-let pr = txt => { if (DEBUG) console.log(txt) };
-
-exports.handler = async (event, context) => {
-    pr("app.handler invoked with event "+ JSON.stringify(event,null,2));
-    try {
-        pr(`TESTING? : ${TESTING} ${typeof TESTING}`);
-        
-        let [bucket,tables] =  [ (TESTING==='true') ? BUCKET_TEST : BUCKET , (TESTING==='true') ? config.Staging.Tables : config.Production.Tables];
-        pr(`BUCKET : ${bucket} TABLES: ${tables}`);
-        
-        let access_token = `Bearer A****B` //replace A****B with your token in staging.
-        paypal.defaults.headers.common['Authorization'] = access_token;
-
-        if (TESTING==='false') {
-            let access_token = `Bearer ` + await getToken(tokenConfig.config);
-            paypal.defaults.headers.common['Authorization'] = access_token;
-        }
-
-        context.succeed( await processEvent(event,tables,bucket) );
-    } catch (e) {
-        console.log("Error: "+JSON.stringify(e));
-        context.done(e)
-    }
-};
-
-let processEvent = async (event,tables,bucket) => {
-    let now = moment(); 
-    let datePrefix = now.format("YYYY/MM/DD/HH/");
-    let fileKey = now.format("mm").toString();
-    pr(`datePrefix: ${datePrefix} fileKey: ${fileKey}`);
-
-    let end_dt = moment().subtract({ hours: 24, minutes: 0}).format("YYYY-MM-DDT00:00:00-0000");
-    let start_dt = moment().subtract({ hours: 48, minutes: 0}).format("YYYY-MM-DDT00:00:00-0000");
-    
-    pr(`start_dt: ${start_dt} <> end_dt: ${end_dt}`)
-
-    let options = {
-
-        url: '/v1/reporting/transactions',
-        params: {
-            start_date: start_dt,
-            end_date: end_dt, 
-            fields: 'all',
-            page_size: 500,
-        }
-    }
-
-    try {
-
-        for (const table of tables) {
-            let pages = await getSize(options.url, options);
-            for (const page of Array(pages).keys()   ) {
-                options.params.page = page+1;
-                let rows = await getTransactionData(options.url, options);
-                pr(`page: ${options.params.page} has ${rows.length}`)
-                pr(`Extracting from PayPal for [table:${table.name}] and saving to [s3:${bucket}]`);
-                let params = {
-                    Bucket: bucket,
-                    Key: KEY + table.name + '/' + datePrefix + table.name + fileKey + options.params.page,
-                    Body: JSON.stringify(rows)
-                };
-
-                if (rows.length > 0) {
-                    await s3.putObject(params).promise();
-                    pr(`>> ${rows.length} rows from [table:${table.name}] have been saved to  [s3:${bucket} / ${JSON.stringify(params.Key)}]`);
-        
-                }
-                else{
-                    pr(`>> ${rows.length} rows from [table:${table.name}]. Didn't create an object @ [s3:${bucket} / ${JSON.stringify(params.Key)}]`);
-                }
-
-            }
-
-        }
-
-    } catch (error) {
-        console.log('error: ', error);
-    }
-
-    return bucket;
-
-};
-
-async function getTransactionData(url,config) {
-    try {
-        const response = await paypal.get(url,config);
-        pr(`>> [getTransactionData] [total_pages]: ${response.data}` );
-        
-        return response.data.transaction_details;
-    } catch (error) {
-      console.error(error);
-    }
-}
-;
-
-async function getSize(url,config) {
-    try {
-        const response = await paypal.get(url,config);
-        pr(`>> [getTransactionData] [total_pages]: ${response.data.total_pages}` );
-        return response.data.total_pages;
-    } catch (error) {
-      console.error(error);
-    }
-}
-;
-
-async function getToken(config) {
-    try {
-        const response = await axios.request(config);
-
-        return response.data.access_token;
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-~~~
