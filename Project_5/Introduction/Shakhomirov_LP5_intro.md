@@ -3,7 +3,7 @@
 ![Connecting data](https://mydataschool.com/liveprojects/img/s2_lp5_intro.png)
 
 
-## about this liveProject
+### about this liveProject
 
 ## In this liveProject (the fifth of this series) you will create your BI report (revenue reconciliation) using Google Data Studio.
 
@@ -14,7 +14,7 @@
 * LP4 Wrap it all up with Cloudformation (Software as a code). ->
 * **LP5 Set BI for revenue reconciliation (Data Studio) (You are here)**
 
-You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
+You are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 Your data stack is modern, cost effective, flexible (you can connect any data source you need) and can scale easily to meet growing data resources you have. 
@@ -39,11 +39,11 @@ Finally you are tasked to create a revenue reconciliation report for Finance dep
 
 
 
-# Techniques employed
+## Techniques employed
 
 You will learn how to create reports in Data Studio. You will work with templates and connect data sources from your *Data warehouse*.
 
-# Project outline
+## Project outline
 
 This liveProject will be divided into **2** milestones.
 

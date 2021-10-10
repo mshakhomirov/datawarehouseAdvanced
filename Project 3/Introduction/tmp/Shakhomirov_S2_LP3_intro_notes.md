@@ -2,8 +2,8 @@
 # Building reliable Data Transformation pipeline in BigQuery
 
 
-# about this liveProject
-You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
+## about this liveProject
+You are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
@@ -18,7 +18,7 @@ You decided to use **AWS Lambda functions** and **Node.js** for this task as the
 **Now you were tasked to create a revenue reconciliation report using data coming from your App and from payment merchant provider (PayPal). Firstly you ran a few tests with built in scheduler and produced a few tables with processed data. But later you decided to create all data transformation pipelines in BigQuery using Dataform (officially part of Google Cloud Platform**
 
 
-# Techniques employed
+## Techniques employed
 
 So far you've learned how to connect various data sources using *REST APIs* and *microservice* architecture. You have set up your BigQuery project and successfully created a few pipelines to feed data into the `source` tables.
 
@@ -31,7 +31,7 @@ You will learn how to:
 - schedule dataset and table updates using [Dataform](dataform.co).
 
 
-# Project outline
+## Project outline
 
 This liveProject will be divided into [3] milestones.
 

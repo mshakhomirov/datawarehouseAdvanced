@@ -2,8 +2,8 @@
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 
-# about this liveProject
-You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
+## about this liveProject
+You are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
@@ -17,7 +17,7 @@ You decided to use **AWS Lambda functions** and **Node.js** for this task as the
 
 
 
-# Techniques employed
+## Techniques employed
 
 Loading data into BigQuery is simple if you have one file and it has a format readable by this datawarehouse solution, i.e. New line delimited JSON.
 It might be a little bit more tricky if you have an infrastructure of dozens of **firehose delivery streams** or **Kafka** saving data in small batches every *5 minutes*.
@@ -33,7 +33,7 @@ In this liveProject you will learn how to extend extraction pipeline you created
 6. Monitor your data loading process.
 
 
-# Project outline
+## Project outline
 
 This liveProject will be divided into [4] milestones.
 ![Architecture](https://mydataschool.com/liveprojects/img/serviceArchitecture.png)

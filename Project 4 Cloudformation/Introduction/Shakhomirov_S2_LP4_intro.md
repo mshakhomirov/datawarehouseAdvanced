@@ -2,8 +2,8 @@
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 
-# about this liveProject
-You are a Data Engineer building an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
+## about this liveProject
+You are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
@@ -20,7 +20,7 @@ Now you want to improve your deployment pipeline using *Infrastructure as code* 
 
 
 
-# Techniques employed
+## Techniques employed
 
 AWS CloudFormation gives you an easy way to model a collection of related AWS and third-party resources, provision them quickly and consistently, and manage them throughout their lifecycles, by treating **infrastructure as code**. CloudFormation template describes your desired resources and their dependencies so you can launch and configure them together as a stack.
 In this *liveProject* you will learn how to use a template to create, update, and delete an entire stack as a single unit, as often as you need to, instead of managing resources individually.
@@ -43,7 +43,7 @@ For this tutorial it will be **free** (or cost just a fraction of a pennny) but 
 6. *Databases, i.e. Dynamo or MySQL*.
 
 
-# Project outline
+## Project outline
 
 This liveProject will be divided into [3] milestones.
 ![Architecture](https://mydataschool.com/liveprojects/img/serviceArchitecture.png)
