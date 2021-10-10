@@ -1,4 +1,5 @@
 
+# Architecting data-intensive datawarehouse solutions with BigQuery in multi cloud.
 # **Connecting external data sources to BigQuery**
 ![Connecting data](https://mydataschool.com/liveprojects/img/s2-intro-1.png)
 
@@ -7,7 +8,7 @@
 
 You are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
-Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
+Your data stack is modern, event-driven, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.).
@@ -32,7 +33,7 @@ This liveProject will have only **1** milestone with **2** steps .
 
 You will learn how to connect various data sources to your data warehouse. This series covers a set of LPs explaining how to build a data warehouse with BigQuery as a central part of this project.
 
-### So the workflow would be: 
+### Project series workflow: 
 * LP1 Set extraction pipe (PayPal) -> 
 * LP2 Set ingestion pipe (AWS S3 to BigQuery) -> 
 * LP3 Set data transformation pipeline (Dataflow) -> 
