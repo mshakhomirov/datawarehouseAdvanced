@@ -1,8 +1,8 @@
 # Solution Explanation
 Complete solution can be found here: `Project_1/Milestones/bq-paypal-revenue`
 
-We aim to achieve the following:
-* When Lambda is being executed it extracts the data from PayPal and saves to S3. This will source data for a table in your data warehouse, i.e.:
+## We aim to achieve the following:
+* When Lambda is being executed it extracts the data from PayPal sandbox (or account) and saves it to S3. This will source data for a table in your data warehouse, i.e.:
 - table: `your_project.production.paypal_transaction`
 - You can invoke lambda manually when it is deployed by running this script (AWS CLI required):
 
@@ -12,18 +12,32 @@ aws lambda invoke \
     --payload '{ "name": "something" }' \
     response.json
 ```
+### Testing and running locally
+```shell
+$ npm i
+$ npm run test
+```
 
+Check `./bq-paypal-revenue/package.json`
+
+### Deploy
+This will deploy your service in your AWS account:
 * Use a `./deploy.sh` to deploy your Lambda in AWS.
+
+**FAQ** I'm trying to run `./deploy.sh` from my command line but keep getting an error.
+**Answer** You might want to check your AWS CLI credentials. Another reason is that you might need to run `chmod +x deploy.sh` first providing correct acccess permissions.
+
+### Testing and running locally
 * Use command `npm run test` to run your lambda locally.
 
-### App logic would be the following:
+### Application logic:
 - AWS Cloudwatch event will trigger Lambda daily using a schedule.
-- Lambda will get PayPal credentials from ./toekn_config.json and authenticate with PayPal
+- Lambda will get PayPal credentials from `./token_config.json` and authenticate with `PayPal`
 - Then Lambda will evaluate the size of transactions for yesterday and if it is too big it will paginate it.
-- Looping through each table in `./config.json` Lambda will save each batch of transactions into AWS S3 in JSON format.
-- Another microservice will pick it up from there (not covered here)
+- Looping through each PaypAl report needed (tables in `./config.json`) Lambda will save each batch of transactions into **AWS S3** in JSON format.
+- Another microservice will pick it up from there (not covered in this live project)
 
-* Full solution for app.js:
+### Full solution for app.js:
 ~~~js
 const DEBUG  = process.env.DEBUG;
 const BUCKET_TEST = process.env.DB_BUCKET_TEST || "data-staging.your-bucket.aws";

@@ -3,6 +3,7 @@
 # **Connecting external data sources to BigQuery**
 ![Connecting data](https://mydataschool.com/liveprojects/img/s2-intro-1.png)
 
+**Keywords**: datawarehouse, bigquery, serverless, aws, lambda function, data architecture, event-driven, data pipelines, external data source connectors.
 
 ## about this liveProject
 
@@ -28,17 +29,19 @@ This liveProject will have only **1** milestone with **2** steps .
 
 **[1]. Create a PayPal account with developer access and a Sandbox**
 
-**[2]. Create a Lambda function to extract transaction data from PayPal API**
+**[2]. Create a PayPal data connector with AWS Lambda**
 
 
-You will learn how to connect various data sources to your data warehouse. This series covers a set of LPs explaining how to build a data warehouse with BigQuery as a central part of this project.
+You will learn how to connect various data sources to your data warehouse. It explains how to use **AWS lambda functions** to extract data from external data sources, i.e. transaction data from PayPal API.
 
 ### Project series workflow: 
-* LP1 Set extraction pipe (PayPal) -> 
-* LP2 Set ingestion pipe (AWS S3 to BigQuery) -> 
-* LP3 Set data transformation pipeline (Dataflow) -> 
-* LP4 Wrap it all up with Cloudformation (Software as a code). ->
-* LP4 Set BI for revenue reconciliation (Data Studio) 
+This series covers a set of LPs explaining how to build a data warehouse with **BigQuery** as a central part of this project.
+
+* LP1: Set extraction pipe (PayPal) -> 
+* LP2: Set ingestion pipe (AWS S3 to BigQuery) -> 
+* LP3: Set data transformation pipeline (Dataflow) -> 
+* LP4: Wrap it all up with Cloudformation (Software as a code). ->
+* LP4: Set BI for revenue reconciliation (Data Studio) 
 
 Modern data stack tools (not a complete list of course):
     * Ingestion: **Fivetran, Stitch**

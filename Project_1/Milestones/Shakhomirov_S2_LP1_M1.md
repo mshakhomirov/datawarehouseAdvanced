@@ -91,7 +91,7 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_requ
 ~~~bash
 curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_required=true \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA"
+  -H "Authorization: Bearer A21AAKLYc4qmd6DvWCIVzyjgfccP-cCUVC46fzsI3t1sU5k-qy3-4uMLnpK6D1UxqADzAoGCVFsnb3po0RutxunGGudrrkoow"
 ~~~
 
 - You will see something like this:
@@ -106,7 +106,7 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_requ
 ~~~bash
 curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA" \
+-H "Authorization: Bearer A21AAKLYc4qmd6DvWCIVzyjgfccP-cCUVC46fzsI3t1sU5k-qy3-4uMLnpK6D1UxqADzAoGCVFsnb3po0RutxunGGudrrkoow" \
 -d '{
   "intent": "AUTHORIZE",
   "purchase_units": [
@@ -141,7 +141,7 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640
 ~~~bash
 curl -v -X GET https://api-m.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA"
+-H "Authorization: Bearer A21AAKLYc4qmd6DvWCIVzyjgfccP-cCUVC46fzsI3t1sU5k-qy3-4uMLnpK6D1UxqADzAoGCVFsnb3po0RutxunGGudrrkoow"
 ~~~
 and the output would be something like this:
 ~~~bash
@@ -149,7 +149,7 @@ and the output would be something like this:
 ~~~
 - If you are struggling with order approvals try [A PayPal Product API Executor](https://www.paypal.com/apex/home)
 - Authorise your order, i.e. use curl `/v2/checkout/orders/{id}/authorize` .
-- Capture payment for your order
+
 ~~~bash
 curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders/97T22805JR125823D/authorize \
 -H "Content-Type: application/json" \
@@ -161,7 +161,7 @@ curl -v -X POST https://api-m.sandbox.paypal.com/v2/checkout/orders/97T22805JR12
 ~~~bash
 curl -X POST \
   'https://api.sandbox.paypal.com/v2/checkout/orders/3TU82759JP640141X/capture' \
-  -H 'authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA' \
+  -H 'authorization: Bearer A21AAKLYc4qmd6DvWCIVzyjgfccP-cCUVC46fzsI3t1sU5k-qy3-4uMLnpK6D1UxqADzAoGCVFsnb3po0RutxunGGudrrkoow' \
   -H 'content-type: application/json'
 ~~~
 
@@ -171,11 +171,15 @@ When finally you have some completed transactions in your **Sandbox** you would 
 ~~~bash
 curl -v -X GET https://api-m.sandbox.paypal.com/v1/reporting/transactions?start_date=2021-07-01T00:00:00-0700&end_date=2021-07-30T23:59:59-0700&fields=all&page_size=100&page=1 \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer A21AAKfgwzptMUJF-hENHyBbh4Ill3LJFjFbjHlNQqdgND8e9OcyJHu262mFYgIK7J7PBV1eoUPHL6wG4BwuU197j4-pba7rA"
+-H "Authorization: Bearer A21AAKLYc4qmd6DvWCIVzyjgfccP-cCUVC46fzsI3t1sU5k-qy3-4uMLnpK6D1UxqADzAoGCVFsnb3po0RutxunGGudrrkoow"
 ~~~
 - The output should be:
 ~~~bash
 {"transaction_details":[],"account_number":"39AJCL7W5MRAJ","start_date":"2021-07-01T07:00:00+0000","end_date":"2021-07-01T08:59:59+0000","last_refreshed_datetime":"2021-07-01T08:59:59+0000","page":1,"total_items":0,"total_pages":0,"links":[{"href":"https://api.sandbox.paypal.com/v1/reporting/transactions?end_date=2021-07-30T23%3A59%3A59-0700&fields=all&start_date=2021-07-01T00%3A00%3A00-0700&page_size=100&page=1","rel":"self","method":"GET"}]}%
+~~~
+It might take up to 24 hours to propagate data into PayPal reporting so finally you would see this:
+~~~bash
+{"transaction_details":[{"transaction_info":{"paypal_account_id":"4U2VGYBFX8FH4","transaction_id":"46Y016747C687174J","transaction_event_code":"T0006","transaction_initiation_date":"2021-07-03T08:24:06+0000","transaction_updated_date":"2021-07-03T08:24:06+0000","transaction_amount":{"currency_code":"USD","value":"200.00"},"fee_amount":{"currency_code":"USD","value":"-7.10"},"shipping_amount":{"currency_code":"USD","value":"20.00"},"transaction_status":"S","ending_balance":{"currency_code":"USD","value":"192.90"},"available_balance":{"currency_code":"USD","value":"192.90"},"protection_eligibility":"01"},"payer_info":{"account_id":"4U2VGYBFX8FH4","email_address":"sb-txsj26679103@personal.example.com","address_status":"Y","payer_status":"Y","payer_name":{"given_name":"John","surname":"Doe","alternate_full_name":"John Doe"},"country_code":"GB"},"shipping_info":{"name":"John, Doe","address":{"line1":"Whittaker House","line2":"2 Whittaker Avenue","city":"Richmond","country_code":"GB","postal_code":"TW9 1EH"}},"cart_info":{"item_details":[{"item_quantity":"1","item_unit_price":{"currency_code":"USD","value":"180.00"},"item_amount":{"currency_code":"USD","value":"180.00"},"total_item_amount":{"currency_code":"USD","value":"180.00"}}]},"store_info":{},"auction_info":{},"incentive_info":{}}],"account_number":"39AJCL7W5MRAJ","start_date":"2021-07-01T07:00:00+0000","end_date":"2021-07-31T06:59:59+0000","last_refreshed_datetime":"2021-08-14T00:59:59+0000","page":1,"total_items":1,"total_pages":1,"links":[{"href":"https://api.sandbox.paypal.com/v1/reporting/transactions?end_date=2021-07-30T23%3A59%3A59-0700&fields=all&start_date=2021-07-01T00%3A00%3A00-0700&page_size=100&page=1","rel":"self","method":"GET"}]}
 ~~~
 
 
