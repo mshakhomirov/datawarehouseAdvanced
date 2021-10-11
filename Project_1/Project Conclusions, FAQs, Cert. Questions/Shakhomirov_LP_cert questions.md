@@ -65,6 +65,6 @@ Example:
 The data warehouse is the epicenter of modern stacks. Raw data from across the company is centralized in the warehouse. Data is transformed in the warehouse. BI and analytics tools read data from the warehouse.
 
 
-6. Waht is the first step in building a data stack and how can you achieve it?
+6. What is the first step in building a data stack and how can you achieve it?
 Example answer:
 The first step in building a data stack is to Extract raw data from all sources and load it in the data warehouse. You can achieve this with third party tools, or by writing custom scripts.
