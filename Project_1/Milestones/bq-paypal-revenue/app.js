@@ -11,13 +11,14 @@ const s3  = new AWS.S3();
 // 3rd party dependencies
 const axios = require('axios');
 const paypal = axios.create({
-    baseURL: 'https://api-m.paypal.com'
+    baseURL: (TESTING==='true') ? 'https://api-m.sandbox.paypal.com' : 'https://api-m.paypal.com' 
   });
 const moment    = require('moment');
 
 // Config
 const config = require('./config.json');
 const tokenConfig = require('./token_config.json');
+
 
 let pr = txt => { if (DEBUG) console.log(txt) };
 
@@ -29,7 +30,9 @@ exports.handler = async (event, context) => {
         let [bucket,tables] =  [ (TESTING==='true') ? BUCKET_TEST : BUCKET , (TESTING==='true') ? config.Staging.Tables : config.Production.Tables];
         pr(`BUCKET : ${bucket} TABLES: ${tables}`);
         
-        let access_token = `Bearer A****B` //replace A****B with your token in staging.
+        // let access_token = `Bearer A****B` //replace A****B with your token in staging.
+        let access_token = `Bearer ` + await getToken(tokenConfig.config);
+
         paypal.defaults.headers.common['Authorization'] = access_token;
 
         if (TESTING==='false') {
@@ -127,7 +130,44 @@ async function getSize(url,config) {
 
 async function getToken(config) {
     try {
+        config.url = (TESTING==='true') ? 'https://api-m.sandbox.paypal.com/v1/oauth2/token' : 'https://api-m.paypal.com/v1/oauth2/token';
+        // config.user = (TESTING==='true') ? config.client_secret_staging : config.client_secret_production;
+        console.log(JSON.stringify(config));
         const response = await axios.request(config);
+
+        return response.data.access_token;
+    } catch (error) {
+        console.error(error);
+    }
+}
+;
+
+async function getGetToken(tokenConfig) {
+    try {
+        let headers = {
+            'Accept': 'application/json',
+            'Accept-Language': 'en_US'
+        };
+        let dataString = 'grant_type=client_credentials';
+
+        let options = {
+            url: 'https://api-m.sandbox.paypal.com/v1/oauth2/token',
+            method: 'POST',
+            headers: headers,
+            body: dataString,
+            auth: {
+                'user': 'client_id',
+                'pass': 'secret'
+            }
+        };
+        config.method = 'POST';
+        config.headers = headers;
+        config.url = (TESTING==='true') ? 'https://api-m.sandbox.paypal.com/v1/oauth2/token' : 'https://api-m.paypal.com/v1/oauth2/token';
+        config.user = (TESTING==='true') ? tokenConfig.client_secret_staging : tokenConfig.client_secret_production;
+        config.data = "grant_type=client_credentials";
+        console.log(JSON.stringify(config));
+        const response = await axios.request(config);
+        // const response = await axios.request(options);
 
         return response.data.access_token;
     } catch (error) {

@@ -91,7 +91,7 @@ curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_requ
 ~~~bash
 curl -v -X GET https://api-m.sandbox.paypal.com/v2/invoicing/invoices?total_required=true \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer A21AAKLYc4qmd6DvWCIVzyjgfccP-cCUVC46fzsI3t1sU5k-qy3-4uMLnpK6D1UxqADzAoGCVFsnb3po0RutxunGGudrrkoow"
+  -H "Authorization: Bearer A21AAJ_3blZrPEMiKKJZdY9CxxzuYtczu85LDelFMjxEBzIrwVN4mXiumbhPcRkGUWkAu3yCWzV-wP7oq1ds2npKdxoSPS87g"
 ~~~
 
 - You will see something like this:
@@ -243,8 +243,8 @@ You would want to use the following Node.js modules:
 }
 ~~~
 
-- create a file to configure your PayPal access token credentials and replace `"Basic *"` with your combination of **client_id** and **secret**, i.e.:
-
+- create a file to configure your PayPal access token credentials and replace `"Basic *"` with a Base64 encoded combination of **client_id** and **secret**, i.e.:
+You can also copy and paste this Base64 encoded string from one of the previous CURL requests in the beginning of this tutorial where you got access_token.
 ~~~js
 {
     "config": {
@@ -259,6 +259,8 @@ You would want to use the following Node.js modules:
 }
 
 ~~~
+
+You would want to pass your Base64 encoded string `clien_id:client_secret` to Authorization header. If you use Postman, for example, you will find your clien_id and client_secret values, appended to the text "Basic " in Headers as follows: ` "Authorization": "Basic QWNxd2xIYT....`. Use it to get access token with OAuth2.0 and then use in your PayPalAPI calls. Read more about it [here](https://learning.postman.com/docs/sending-requests/authorization/).
 
 * Hint for Step 2:
 - create a file called app.js:
