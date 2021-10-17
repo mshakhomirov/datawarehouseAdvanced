@@ -53,30 +53,30 @@ This liveProject will be divided into [4] milestones.
 ![Architecture](https://mydataschool.com/liveprojects/img/ingestManager.drawio.png)
 
 ### **[1]. Build ingestion service with AWS Lambda and set up a trigger**
-[1.1] Create a new S3 bucket, i.e. `your-bigquery-project-name.test.aws`. 
-[1.2] Create an empty AWS Lambda function (Node.js). You can do it using *AWS web console* or *AWS CLI*. It is up to you and initialise your `Node.js` app locally.
-[1.3] Make sure you can run it locally.
-[1.4] Add *S3 bucket trigger* to your Lambda function so each new *object created* in that bucket it would trigger the **Lambda**.
-[1.5] Add `@google-cloud/bigquery` Node.js library to your `package.json` and try running your first query using your **Lambda** programmatically.
-[1.6] Add a function to process event that would be responsible for handling the data when it lands in your bucket.
-[1.7] Modify your `processEvent` function to handle the data contained in a file and perform a **batch** insert in one of your **BigQuery** tables.
+* [1.1] Create a new S3 bucket, i.e. `your-bigquery-project-name.test.aws`. 
+* [1.2] Create an empty AWS Lambda function (Node.js). You can do it using *AWS web console* or *AWS CLI*. It is up to you and initialise your `Node.js` app locally.
+* [1.3] Make sure you can run it locally.
+* [1.4] Add *S3 bucket trigger* to your Lambda function so each new *object created* in that bucket it would trigger the **Lambda**.
+* [1.5] Add `@google-cloud/bigquery` Node.js library to your `package.json` and try running your first query using your **Lambda** programmatically.
+* [1.6] Add a function to process event that would be responsible for handling the data when it lands in your bucket.
+* [1.7] Modify your `processEvent` function to handle the data contained in a file and perform a **batch** insert in one of your **BigQuery** tables.
 
 ### **[2]. Adding support for CSV file format**
 Very often source data is saved differently but we still need to be able to ingest it. JSONwise *BigQuery* supports only [new line delimited JSON](http://ndjson.org/). 
 *You would want to add the following to your microservice:*
-[2.1] Add feature to handle CSV format.
+* [2.1] Add feature to handle CSV format.
 
 
 ### **[3]. Adding DynamoDB table to store ingestion logs and check if a file was already ingested**
-[3.1] Create a new *DynamoDB* table
-[3.2] Change your microservice code to *log* a record each time file is being ingested into bigquery.
+* [3.1] Create a new *DynamoDB* table
+* [3.2] Change your microservice code to *log* a record each time file is being ingested into bigquery.
 
 ### **[4]. Update the service to handle data transformation, catch data ingestion errors and Monitor the process**
-[4.1] Change your Lambda code to handle ingestion errors and save file with *errors* somewhere else for further investigation.
-[4.2] Perform a simple load testing for your microservice
-[4.3] Set up monitoring and alarms.
-[4.4] Add feature to handle array of JSON objects
-[4.5] Add feature to handle a string of JSON objects
+* [4.1] Change your Lambda code to handle ingestion errors and save file with *errors* somewhere else for further investigation.
+* [4.2] Perform a simple load testing for your microservice
+* [4.3] Set up monitoring and alarms.
+* [4.4] Add feature to handle array of JSON objects
+* [4.5] Add feature to handle a string of JSON objects
 
 # Libraries and setup (if applicable)
 
