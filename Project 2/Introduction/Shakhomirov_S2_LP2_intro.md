@@ -79,5 +79,5 @@ Very often source data is saved differently but we still need to be able to inge
 Can be found here: `Project 2/data`
 
 # Repo
-https://github.com/mshakhomirov/datawarehouseAdvanced/
-[BigQuery-ingest-manager](https://github.com/mshakhomirov/BigQuery-ingest-manager).
+* https://github.com/mshakhomirov/datawarehouseAdvanced/
+* [BigQuery-ingest-manager](https://github.com/mshakhomirov/BigQuery-ingest-manager).
