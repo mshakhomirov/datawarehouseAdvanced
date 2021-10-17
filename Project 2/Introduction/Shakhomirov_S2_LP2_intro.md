@@ -2,6 +2,17 @@
 ## about this liveProject
 Imagine you are a Data Engineer working on an End-to-End project connecting various data sources with your new data warehouse in **BigQuery**.
 
+### Project series workflow: 
+This series covers a set of LPs explaining how to build a data warehouse with **BigQuery** as a central part of this project.
+![projectFlow](https://mydataschool.com/liveprojects/img/projectFlow.drawio.png)
+
+* LP1: Connect **external datasources** (Set data extraction **PayPal**) -> 
+* LP2: Load data into BigQuery (AWS S3 to BigQuery ingest manager with Node.JS) -> 
+* LP3: Data transformation pipelines with [Dataform](dataform.co) -> 
+* LP4: Wrap it all up with [Cloudformation](https://aws.amazon.com/cloudformation/) (Infrastructure as a code) ->
+* LP4: Set BI report for revenue reconciliation with [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting)
+
+### This is LP 2 where you are building a service to process and load data into BigQuery 
 ![Final solution](https://mydataschool.com/liveprojects/img/ingestManager.drawio.png)
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
