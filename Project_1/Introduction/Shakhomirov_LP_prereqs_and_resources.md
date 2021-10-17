@@ -28,6 +28,7 @@ Enthusiasm for solving problems and self-led learning will also prove quite usef
 
 These are resources directly referenced throughout the liveProject and can directly impact or expand your understanding of the liveProject's content.
 
+* [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition)
 * [Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/)   
 * [Manning Book: Google cloud platform in action](https://livebook.manning.com/book/google-cloud-platform-in-action/chapter-19/14)
 

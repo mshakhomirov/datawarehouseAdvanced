@@ -3,7 +3,7 @@
 
 
 ## about this liveProject
-You are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
+Imagine you are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)

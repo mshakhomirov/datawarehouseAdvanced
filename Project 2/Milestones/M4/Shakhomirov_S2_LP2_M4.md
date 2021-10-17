@@ -1,12 +1,13 @@
-## Modifying the service to catch ingestion errors and Monitor your the process
+## Adding extra features to ingest manager.
+### Handle data transformation, catch data ingestion errors and Monitor the process.
 
-**Objective**
+## **Objective**
 
 * Change your Lambda code to handle ingestion errors and save file with *errors* somewhere else for further investigation.
 * Monitor service health.
 
 
-**Why is this milestone important to the project?**
+## **Why is this milestone important to the project?**
 
 - You will learn how to handle errors and copy files using node.js and AWS S3. This is step is important in case your data has chanegd and therefore it wouldn't be ingested by BigQuery. Copying such files into a separate bucket might help to investigate those schema changes in future.
 
@@ -18,15 +19,15 @@
 - Looping through each table in `./config.json` Lambda will perform a batch insert operation into a relevant table in **BigQuery**.
 - If we have an error in data file during ingestion then Lambda will copy it to another bucket.
 
-**Workflow**
+## **Workflow**
 
-[4.1] Change your Lambda code to handle ingestion errors and save file with *errors* somewhere else for further investigation.
+### [4.1] Change your Lambda code to handle ingestion errors and save file with *errors* somewhere else for further investigation.
 - Add `moveFile` function to copy `error` files to a separate **S3** bucket.
 - Delegate this job to another Lambda function. Let's call it **ingestManagerMoveFile**
 - Create S3 bucket for data files with errors
 - Add invokeLambda function to you `ingestManager` microservice which will trigger `moveFile` lambda when encountered a data error.
 
-[4.2] Perform a simple load testing for your microservice
+### [4.2] Perform a simple load testing for your microservice
 - Deploy your Lambda: `./deploy.sh`
 - Create a script to copy file `./data/simple_transaction.csv` 300 times.
 - Upload data folder recursively to S3. That must trigger your Lambda function 300 times and insert 900 records into your target table:
@@ -34,7 +35,7 @@
 - Make sure it creates batch load jobs and not streaming inserts:
 ![load jobs](https://mydataschool.com/liveprojects/img/s2-LP2-M3-3-Load-jobs.png)
 
-[4.3] Set up monitoring and alarms.
+### [4.3] Set up monitoring and alarms.
 - Go to your Dynamo Db monitoring and check the stats:
 ![Monitoring](https://mydataschool.com/liveprojects/img/s2-LP2-M3-2-Dynamo-monitoring.png)
 - Create an **AlarmNotificationTopic** with Simple Notification Service (SNS) to receive notifications by email in case of any ingestion errors
@@ -44,10 +45,17 @@
 - Desired outcom would be a notification in case of ingest manager error:
 ![Notification](https://mydataschool.com/liveprojects/img/s2-LP2-M3-12-create-alarm-select-metric.png)
 
+### [4.4] Add feature to handle array of individual JSON objects
+Imagine you have another service extracting data from MySQL database and output looks like an array of JSON objects:
+* `[{...},{...},{...}]` 
+You would want to transform it into `nldj`:  `'{...}'\n'{...}'\n'{...}'\n`
+
+### [4.5] Add feature to handle a string of JSON objects
+Imagine you are working with standard Firehose output where data has been written like a string of `JSON` objects `{...}{...}{...}`. You would want to prepare data for BigQuery (transform into `nldj`)
+ from OBJECT_STRING to SRC, i.e. `{...}{...}{...}` >>> `'{...}'\n'{...}'\n'{...}'\n`
 
 
-
-**Deliverable**
+### **Deliverable**
 
 The deliverable for this milestone is a working Lambda function.
 
@@ -61,18 +69,19 @@ $ npm run test
 
 
 
-**Help**
+## **Help**
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
-*Resources*
+## *Resources*
+* [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition)
+* [Cloudwatch alarms](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html)
 
 
+## *help*
+### *Hint for step [4.1]*
 
-*help*
-*Hint for step [4.1]*
-
-- create another Lambda and add this function to copy files to it:
+- create another Lambda and add this function to copy files to a new bucket like so:
 ~~~js
 let params = {
     Bucket: destinationBucket ,
@@ -92,7 +101,7 @@ s3.copyObject(params, function(copyErr, copyData){
 
 - each time **ingest manager** encounters an error make it invoke that `moveFile` lambda with event data containing source metadata of S3 file that needs to be moved.
 
-*Hint for step [4.3]*
+### *Hint for step [4.3]*
 - Use the following pattern to create an ERRORMetricFilter: FilterPattern: 'ERROR'
 - call it `ingestManagerStagingMetricFilter`
 ![screen](https://mydataschool.com/liveprojects/img/s2-LP2-M3-5-Lambda-Logs-CreateMetricFilter.png)
@@ -109,7 +118,7 @@ s3.copyObject(params, function(copyErr, copyData){
 [FAQ] I can't find my ERRORcount metric.
 [Answer] Try raising an ERROR by running your Lmabda. That will generate a required metric stat so you will be able to see it in *Cloudwatch*.
 
-*Hint for Step [4.2]*
+### *Hint for Step [4.2]*
 - create a file called `./bq-ingest-manager/stack/bq-ingest-manager/loadTestGenerateData.js`
 ~~~js
 const fs = require('fs');
@@ -117,15 +126,26 @@ const data = require("fs").readFileSync("./tmp/simple_transaction.csv", "utf8")
 for (let i = 5; i < 300; i++) {
     fs.writeFileSync(`./data/simple_transaction${i}.csv`, data);
   } 
-
+// Then copy the files to s3 and emulate multi file upload trigger to invoke your ingest manager service.
 // $ aws s3 cp ./data s3://bq-shakhomirov.bigquery.aws --recursive
 ~~~
 
+### *Hint for Step [4.4], [4.5]*
+* replace your `./config.json` with `npm config` so you could start using `yaml`. It looks better and easier to read.
+* Add `fileFormat` to your config file to describe the transformation you need, i.e.:
+```yaml
+...
+    fileFormat: 
+      load: NLDJ
+      transform: 
+        from: OBJECT_STRING
+```
 
-*partial solution*
+## *partial solution*
  
 Here is the `app.js` for this milestone. Download this file, use it to develop your solution, and upload your deliverable.
 You will have to create your own BigQuery service account credentials `./bq-shakhomirov-b86071c11c27.json` and `./config.json`
+You will also need to create your own solution for steps [4.4], [4.5].
 ~~~js
 const DEBUG = process.env.DEBUG;
 const TESTING = process.env.TESTING || 'true';
@@ -296,94 +316,81 @@ const createBigQueryTablePartitioned = async(tableId, schema) => {
 
 
 
-*full solution*
+## *full solution*
 
 If you are unable to complete the project, you can download the full solution here. We hope that before you do this you try your best to complete the project on your own.
+Clone the repo and go to branch `liveProject`:
+[BigQuery-ingest-manager](https://github.com/mshakhomirov/BigQuery-ingest-manager).
 
-- `./config.json`:
-~~~js
+# Prerequisites
+- AWS account
+- BigQuery project. Replace service account key file with yous: `./stack/bq-ingest-manager/bq-shakhomirov-b86071c11c27Example.json`
+
+# Usage
+##  Testing locally
+[1] Create some files in your datalake S3 bucket, i.e.
+~~~bash
+aws s3 cp ./data/simple_transaction0.csv s3://bq-shakhomirov.bigquery.aws
+aws s3 cp ./data/simple_transaction s3://bq-shakhomirov.bigquery.aws
+~~~
+[2] Supply this object to `./test/data.json`, i.e.
+~~~json
 {
-  "Production": 
-  {
-    "Tables": [
-
+  "Records": [
       {
-        "name" : "simple_transaction_test_4",
-        "schema": "transaction_id:INT64, dt:date",
-        "fileKey": "simple_transaction.csv",
-        "dryRun": false,
-        "notes": ""
+          "bucket": {
+              "name": "bq-shakhomirov.bigquery.aws"
+          },
+          "object": {
+              "key": "reconcile/paypal_transaction/2021/10/03/05/paypal_transaction181"
+          }
       }
-      
-    ],
-
-    "bigQueryConfigS3": "bq-shakhomirov-b86071c11c27.json",
-    "gcpClientEmail": "bq-777@bq-shakhomirov.iam.gserviceaccount.com",
-    "gcpProjectId": "bq-shakhomirov",
-    "key": "data/",
-    "dataBucket": "bq-shakhomirov.bigquery.aws"
-
-  },
-  "Staging": 
-  {
-    "Tables": [
-
-      
-      {
-        "name" : "simple_transaction",
-        "schema": "transaction_id:INT64, user_id:INT64, dt:date",
-        "fileKey": "simple_transaction.csv",
-        "dryRun": false,
-        "dataType": "transaction",
-        "notes": ""
-      }
-      
-    ],
-
-    "bigQueryConfigS3": "bq-shakhomirov-b86071c11c27.json",
-    "gcpClientEmail": "bq-777@bq-shakhomirov.iam.gserviceaccount.com",
-    "gcpProjectId": "bq-shakhomirov",
-    "key": "data/",
-    "dataBucket": "bq-shakhomirov.bigquery.aws"
-
-  }
+  ]
 }
+~~~
+This will emulate **s3ObjCreate** event which would trigger the Lambda when deployed and file lands in your datalake ready for data ingestion into BigQuery.
 
+[3] In command line Run `npm run test`
+
+If this file name contains any of table names you mentioned in `./config/staging.yaml` it will be uploaded into **BigQuery** into a relevant table:
+~~~yaml
+Tables:
+  -
+    pipeName: paypal_transaction              # pick all files which have this in file key.
+    bigqueryName: paypal_transaction_src      # BigQuery table name to insert data.
+    datasetId: source
+    schema:
+      - name: "src"
+        type: "STRING"
+        mode: "NULLABLE"
+    # partitionField: created_at              # if empty use date(ingestion time) as partition. Default BigQuery setting.
+    fileFormat:
+      load: CSV                               # load as.
+      delimiter: 'þ'                          # hacky way of loading into one column. An individual JSON object per one row.
+      transform:                              # Transform from this into load format accepted by BigQuery.
+        from: OUTER_ARRAY_JSON                # Array of individual JSON objects to SRC, i.e. [{...},{...},{...}] >>> '{...}'\n'{...}'\n'{...}'\n
+      compression: none
+    dryRun: false                             # If true then don't insert into a table.
+    notes: For example, daily extract from PayPal API by bq-data-connectors/paypal-revenue AWS Lambda
 ~~~
 
-- `./package.json`:
-~~~js
-{
-  "name": "bq-ingest-manager-",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Lambda function to process BigQuery data ingestion events",
-  "main": "app.js",
-  "scripts": {
-    "test": "export DEBUG=metrics; run-local-lambda --file app.js --event test/data.json --timeout 10000"
-  },
-  "directories": {
-    "test": "test"
-  },
-  "author": "Mike Shakhomirov mshakhomirov.medium.com",
-  "license": "ISC",
-  "devDependencies": {
-    "aws-sdk": "2.804.0",
-    "run-local-lambda": "1.1.1",
-    "eslint": "^7.20.0",
-    "eslint-plugin-classes": "^0.1.1",
-    "eslint-plugin-promise": "^4.3.1"
-  },
-  "dependencies": {
-    "@google-cloud/bigquery": "^5.7.0",
-    "JSONStream": "^1.3.5",
-    "fs": "0.0.1-security",
-    "moment": "^2.24.0"
-  }
-}
+Loads data from CSV file format into BigQuery in batch mode.
+It's memory effective as it converts batch to stream (not *BigQuery streaming*).
+BigQuery streaming !== Node streaming so even though table.insert is not a streaming API in Node terms, it is a streaming API in **BigQuery** terms.
 
-~~~
+## Loading multiple files located in s3 bucket
+You can upload multiple files in one go.
 
-- package-lock.json can be found in the repo:
-[github.com/]()
+[1] Create a payload with all the files which match S3 bucket name, prefix and contain a pipe name as defined in  `./stack/bq-ingest-manager/test/integration/loadTestPipelines.json`
+```shell
+npm run test-service
+```
+This will update the file with sample paypload in `./stack/bq-ingest-manager/test/integration/loadTestPayload.json`
+
+[2] Run the service locally with this payload you've just created:
+```shell
+npm run test-load
+```
+
+
 

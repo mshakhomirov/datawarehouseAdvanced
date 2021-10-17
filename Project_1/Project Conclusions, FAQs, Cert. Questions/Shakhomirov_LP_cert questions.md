@@ -10,25 +10,11 @@ Under each question write:
 Explain: [EXPLANATION OF THE ANSWER AND A RESOURCE (PREFERABLY MANNING) OR TWO TO HELP EXPLAIN THE FEATURED SKILL. REFERENCING A SPECIFIC MILESTONE WHEN THIS WAS LEARNED IS ALSO HELPFUL.] 
 
 
-1. What is ETL vs ELT. Please explain the benefits of each approach
-
-_[CORRECT ANSWER]_
-
-[WRONG ANSWER]
-
-[WRONG ANSWER]
+1. What is ETL vs ELT. Please explain the benefits of each approach.
 
 
 
 2. What are the main benefits of serverless approach?
-
-_[CORRECT ANSWER]_
-
-_[CORRECT ANSWER]_
-
-[WRONG ANSWER]
-
-[WRONG ANSWER]
 
 
 

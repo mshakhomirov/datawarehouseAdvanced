@@ -2,7 +2,7 @@
 
 **Objective**
 
-* Create a simple yet effective microservice for data ingestion into your BigQuery data warehouse.
+* Create a simple yet effective microservice for data ingestion into your **BigQuery** data warehouse.
 
 
 **Why is this milestone important to the project?**
@@ -17,28 +17,29 @@
 - Lambda will get BigQuery credentials from `./your-service-account.json` file and authenticate with the service.
 - Then Lambda will evaluate the size of this file and if it is too big it will paginate it.
 - Looping through each table in `./config.json` Lambda will perform a batch insert operation into a relevant table in **BigQuery**.
+![Final solution](https://mydataschool.com/liveprojects/img/ingestManager.drawio.png)
 
-**Workflow**
+## **Workflow**
 
-**[1]. Build ingestion service with AWS Lambda and set up a trigger**
-[1.1] Create a new S3 bucket, i.e. `your-bigquery-project-name.test.aws`. 
-
+### **[1]. Build data ingestion service with AWS Lambda**
+#### [1.1] Create a new S3 bucket, i.e. `your-bigquery-project-name.test.aws` and upload the test files. 
 ~~~bash
 aws s3 mb s3://bq-shakhomirov.bigquery.aws
 ~~~
-you will something like: `$ make_bucket: bq-shakhomirov.bigquery.aws` confirming bucket was created.
+
+you will see something like: `$ make_bucket: bq-shakhomirov.bigquery.aws` confirming bucket was created.
 [Read AWS S3 documentation](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-buckets-creating)
 
-- Copy and upload the datasets from `./data` to your newly created S3 bucket:
+- Upload the datasets from `./data` to your newly created S3 bucket:
 ~~~bash
 $ cd data
 $ aws s3 cp ./data/payment_transaction s3://bq-shakhomirov.bigquery.aws/payment_transaction
 $ aws s3 cp ./data/paypal_transaction s3://bq-shakhomirov.bigquery.aws/paypal_transaction
 ~~~
 
-[1.2] Create an empty AWS Lambda function (Node.js). You can do it using *AWS web console* or *AWS CLI*. It is up to you and initialise your `Node.js` app locally.
+#### [1.2] Create an empty AWS Lambda function (Node.js). You can do it using *AWS web console* or *AWS CLI*. It is up to you. Initialise your `Node.js` app locally.
 
-- you would want to read your dataset files from your **S3 data bucket** and then import that data into your **BigQuery** datawarehouse. So you will need to grant your Lambda function **S3 access** to your bucket like so:
+- you would want to read your dataset files from your **S3 data bucket** and then load that data into your **BigQuery** data warehouse. So you will need to grant your Lambda function **S3 access** to your bucket like so:
 ~~~json
 {
   "roleName": "your-lambda-role-sea956ms",
@@ -86,9 +87,9 @@ $ (base) Mikes-MBP:bq-ingest-manager mikeshakhomirov$ tree --dirsfirst -L 3
 * "moment": "^2.24.0" to process dates and to create relevant `file names` / `BigQuery jobIds`
 - in your ./app.js add *async processEvent()* function to handle the events.
 
-[FAQ_1] Why do I need exact node module versions?
-
-[FAQ_2] What is `npm ci` and why can't I just use `npm install` instead?
+[FAQ_1] What is `npm ci` and why can't I just use `npm install` instead?
+**Answer** 
+`npm ci` helps to maintain exact node module versions. Read more about [here](https://stackoverflow.com/questions/52499617/what-is-the-difference-between-npm-install-and-npm-ci)
 
 [1.3] Make sure you can run it locally.
 - Add 3rd party dependencies in the beginning of your Lambda:
@@ -106,7 +107,7 @@ const s3 = new AWS.S3();
 ~~~
 Output must be your `json` transaction from data file in **S3**.
 
-- Now add *BigQuery* library and try to create your first testing table and upload just one data sample in `streaming` mode like so:
+- Now add *BigQuery* library and try to create your first *staging* table to upload just one data sample in `streaming` mode like so:
 ~~~js
 // 3rd party dependencies
 const moment = require('moment');
@@ -205,15 +206,19 @@ const loadTestDataFromStreamJSON = async() => {
 ~~~
 ![Result](https://mydataschool.com/liveprojects/img/s2-LP2-M1-1.png)
 
-- `streaming` is good but might incure higher costs. Try `batch` insert instead. It has a daily quota of 2000 inserts per table but you can insert a whole file in one go. Streaming insert is extremely cheap, $0.05 per GB that's $50 for 1TB. Not sure how much volume you have, but usually people are not building around streaming insert because it's better suited. Streaming insert is the recommended way to import data, as it's scalable, it
-
-[1.4] Add *S3 bucket trigger* to your Lambda function so each new *object created* in that bucket it would trigger the **Lambda**.
-[1.5] Add `@google-cloud/bigquery` Node.js library to your `package.json` and try running your first query using your **Lambda** programmatically.
-[1.6] Add a function to process event that would be responsible for handling the data when it appears in your bucket.
-[1.7] Modify your `processEvent` function to handle the data contained in a file and perform a **batch** insert in one of your **BigQuery** tables.
+- `streaming` is good but might incure higher costs. Try `batch` insert instead. It has a daily quota of 2000 inserts per table but you can insert a whole file in one attempt. Streaming insert is not so cheap, $0.05 per GB that's $50 for 1TB. Streaming insert is the recommended way to import data, as it's scalable.
 
 
-**Deliverable**
+#### [1.4] Add *S3 bucket trigger* to your Lambda function so each new *object created* in that bucket would trigger the **Lambda**.
+
+#### [1.5] Add `@google-cloud/bigquery` Node.js library to your `package.json` and try running your first query using your **Lambda** programmatically.
+
+#### [1.6] Add a function to process event that would be responsible for handling the data when it appears in your bucket.
+
+#### [1.7] Modify your `processEvent` function to handle the data contained in a file and perform a **batch** insert in one of your **BigQuery** tables.
+
+
+## **Deliverable**
 
 The deliverable for this milestone is a working Lambda function.
 
@@ -227,21 +232,22 @@ $ npm run test
 
 
 
-**Help**
+## **Help**
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
-*Resources*
-
-* [INSERT A TARGETED READING FROM MANNING RESOURCES, POINTING THE LEARNER TO A FEW PARAGRAPHS, A SECTION, OR A LISTING THAT DESCRIBES WHAT THE LEARNER IS SUPPOSED TO DO TO FIND THE SOLUTION. TELL THE READER WHY THEY ARE READING THIS SELECTION-DON'T JUST LIST THE RESOURCE]
-* [INSERT EXTERNAL RESOURCE THAT DESCRIBES WHAT THE LEARNER IS SUPPOSED TO DO TO FIND THE SOLUTION-TELL THE READER WHY THEY ARE READING THIS SELECTION-DON'T JUST LIST THE RESOURCE]
-
-
-
-*help*
+## *Resources*
+* [BigQuery Loading Data Documentation](https://cloud.google.com/bigquery/docs/loading-data)
+* [BigQuery Node.js library Documentation](https://googleapis.dev/nodejs/bigquery/4.1.3/Table.html#load)
+* [SDK CLIENT REFERENCE](https://googleapis.dev/nodejs/bigquery/latest/Table.html#get)
+* [bigquery/docs/reference/rest/v2/Job](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#JobConfigurationLoad)
+* [Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/) 
 
 
-*Hint for Step [1.3]*
+## *help*
+
+
+### *Hint for Step [1.3]*
 You can load additional data into a table either from **source files** in **Google Cloud Storage** or by **appending** query results. Note that the schema of the loaded data must match the schema of the existing table, but you can update the schema before appending.
 
 [Read How to create BigQuery Load Jobs](https://googleapis.dev/nodejs/bigquery/latest/Table.html#createLoadJob)
@@ -327,7 +333,7 @@ const loadFIleFromS3 = async() => {
 `npm run test` and this will create a load job with BigQuery `createWriteStream` function. From dataloading angle it is still one job (not streaming insert) but from architecture angle it is memory efficient and is free. You just need to not exceed the quota for batch job per table per day.
 
 
-*partial solution*
+## *partial solution*
  
 Here is the `app.js` for this milestone. Download this file, use it to develop your solution, and upload your deliverable.
 You will have to create your own BigQuery service account credentials `./bq-shakhomirov-b86071c11c27.json` and `./config.json`
@@ -501,7 +507,7 @@ const createBigQueryTablePartitioned = async(tableId, schema) => {
 
 
 
-*full solution*
+## *full solution*
 
 If you are unable to complete the project, you can download the full solution here. We hope that before you do this you try your best to complete the project on your own.
 
@@ -589,6 +595,4 @@ If you are unable to complete the project, you can download the full solution he
 
 ~~~
 
-- package-lock.json can be found in the repo:
-[github.com/]()
 

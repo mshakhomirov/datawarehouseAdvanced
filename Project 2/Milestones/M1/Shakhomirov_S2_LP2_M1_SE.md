@@ -1,8 +1,7 @@
 # Solution Explanation
 ## App logic would be the following:
 - AWS Cloudwatch event will trigger Lambda each time new file lands in *S3 bucket*.
-- Lambda will get BigQuery credentials from `./your-service-account.json` file and authenticate with the service.
-- Then Lambda will evaluate the size of this file and if it is too big it will paginate it.
+- Lambda will get BigQuery credentials from `./your-service-account.json` file and authenticate the service.
 - Looping through each table in `./config.json` Lambda will perform a batch insert operation into a relevant table in **BigQuery**.
 
 ## app.js
@@ -259,5 +258,3 @@ const createBigQueryTablePartitioned = async(tableId, schema) => {
 
 ~~~
 
-- package-lock.json can be found in the repo:
-[github.com/]()

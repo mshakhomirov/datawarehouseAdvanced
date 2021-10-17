@@ -1,22 +1,19 @@
 ## Adding DynamoDB table to store ingestion logs and check if a file was already ingested
 
-**Objective**
+### **Objective**
 
 * Create a new *DynamoDB* table to keep records of ingested files.
 
 
-**Why is this milestone important to the project?**
+### **Why is this milestone important to the project?**
 
 - You will learn how to deploy such microservice to ingest files from *S3* so each event itself triggers the ingestion as soon as data file lands in your S3 bucket.
 - You will learn how to process the data inside those files and adjust it for *BigQuery* so it could insert it into tables.
 - You will set up a logic to check if the files have been already ingested to prevent duplicates. 
 
+## **Workflow**
 
-**BigQuery**.
-
-**Workflow**
-
-**[3]. Adding DynamoDB table to store ingestion logs and check if a file was already ingested**
+### **[3]. Adding DynamoDB table to store ingestion logs and check if a file was already ingested**
 [3.1] Create a new *DynamoDB* table
 - Go to AWS [Console](https://us-east-2.console.aws.amazon.com/dynamodb/home?region=us-east-2#gettingStarted:) :
 ![Create Dynamo table](https://mydataschool.com/liveprojects/img/s2-LP2-M3-1-creeate-Dynamo.png)
@@ -25,7 +22,7 @@
 - Add permissions to access Dynamo table to your Lambda.
 - Create a script to create your Dynamo table.
 
-[certQuestion_4] Why is *Dynamo* seems liek the best option for storing ingestion logs?
+[certQuestion_4] Why would *Dynamo* be the optimal solution for storing ingestion logs?
 
 [3.2] Change your microservice code to *log* a record each time file is being ingested into bigquery.
 - Add `DynamoDB SDK` to your Lambda function
@@ -34,7 +31,7 @@
 
 
 
-**Deliverable**
+## **Deliverable**
 
 The deliverable for this milestone is a working Lambda function.
 
@@ -48,18 +45,19 @@ $ npm run test
 
 
 
-**Help**
+## **Help**
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
 *Resources*
+* [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition)
+
+* [Dynamo](https://aws.amazon.com/dynamod)
+
+## *help*
 
 
-
-*help*
-
-
-*Hint for Step [3.2]*
+### *Hint for Step [3.2]*
 
 - instantinate client `dynamo` library in your code:
 ~~~js
@@ -130,7 +128,7 @@ const logErrorEvent = async (params) => {
 - Change your Lambda code accordingly to log events on *success* and on *error*.
 
 
-*partial solution*
+## *partial solution*
  
 Here is the `app.js` for this milestone. Download this file, use it to develop your solution, and upload your deliverable.
 You will have to create your own BigQuery service account credentials `./bq-shakhomirov-b86071c11c27.json` and `./config.json`
@@ -308,10 +306,27 @@ const createBigQueryTablePartitioned = async(tableId, schema) => {
 
 
 
-*full solution*
+## *full solution*
 
 If you are unable to complete the project, you can download the full solution here. We hope that before you do this you try your best to complete the project on your own.
 
+### Your microservice folder structure must look like this:
+~~~bash
+.
+└── stack
+    └── bq-ingest-manager
+        ├── node_modules
+        ├── test
+        ├── tmp
+        ├── app.js
+        ├── bq-shakhomirov-service-account-credentials.json
+        ├── config.json
+        ├── deploy.sh
+        ├── package-lock.json
+        ├── package.json
+        └── readme.md
+~~~
+* ./app.js:
 ~~~js
 const DEBUG = process.env.DEBUG;
 const TESTING = process.env.TESTING || 'true';
@@ -581,7 +596,4 @@ const createBigQueryTablePartitioned = async(tableId, schema) => {
 }
 
 ~~~
-
-- package-lock.json can be found in the repo:
-[github.com/]()
 

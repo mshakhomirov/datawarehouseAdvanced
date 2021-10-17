@@ -1,25 +1,27 @@
 
 # Architecting data-intensive datawarehouse solutions with BigQuery in multi cloud.
 # **Connecting external data sources to BigQuery**
-![Connecting data](https://mydataschool.com/liveprojects/img/s2-intro-1.png)
+![Data warehouse](https://mydataschool.com/liveprojects/img/externalDataBigQuery.png)
 
 **Keywords**: datawarehouse, bigquery, serverless, aws, lambda function, data architecture, event-driven, data pipelines, external data source connectors.
 
 ## about this liveProject
 
-You are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
+Imagine you are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
+IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 
-Your data stack is modern, event-driven, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
-![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
+
+Your data stack is modern, event-driven, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP.
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.).
-As a data engineer you were tasked to create a new data pipeline to feed financial data from **PayPal** into the datawarehouse. This should help Finance team to create a revenue reconciliation report in Data Studio and run it daily. 
 
-You decide to use **AWS Lambda functions** and **Node.js** for this task as the rest of your team have been using this tech for many other microservices they deploy.
+As a data engineer you were tasked to create a new data pipeline to feed financial data from **PayPal** into the datawarehouse. This should help Finance team to create a revenue reconciliation report in [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting) and run it daily. 
+
+You need to use **AWS Lambda functions** and **Node.js** for this task.
 
 ## Techniques employed
 
-You will learn how to connect various data sources using REST APIs and microservice architecture. In this tutorial you will create a Lambda function to extract revenue data from PayPal API and schedule it daily.
+You will learn how to connect various data sources using **REST APIs** and **microservice** architecture. In this tutorial you will create a Lambda function to extract revenue data from PayPal API and schedule it daily.
 When Lambda is being executed it extracts the data from PayPal and saves to S3. This will source data for a table in your data warehouse, i.e.:
 - table: `your_project.production.paypal_transaction`.
 
@@ -36,12 +38,13 @@ You will learn how to connect various data sources to your data warehouse. It ex
 
 ### Project series workflow: 
 This series covers a set of LPs explaining how to build a data warehouse with **BigQuery** as a central part of this project.
+![projectFlow](https://mydataschool.com/liveprojects/img/projectFlow.drawio.png)
 
-* LP1: Set extraction pipe (PayPal) -> 
-* LP2: Set ingestion pipe (AWS S3 to BigQuery) -> 
-* LP3: Set data transformation pipeline (Dataflow) -> 
-* LP4: Wrap it all up with Cloudformation (Software as a code). ->
-* LP4: Set BI for revenue reconciliation (Data Studio) 
+* LP1: Connect **external datasources** (Set data extraction **PayPal**) -> 
+* LP2: Load data into BigQuery (AWS S3 to BigQuery ingest manager with Node.JS) -> 
+* LP3: Data transformation pipelines with [Dataform](dataform.co) -> 
+* LP4: Wrap it all up with [Cloudformation](https://aws.amazon.com/cloudformation/) (Infrastructure as a code) ->
+* LP4: Set BI report for revenue reconciliation with [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting)
 
 Modern data stack tools (not a complete list of course):
     * Ingestion: **Fivetran, Stitch**

@@ -6,6 +6,22 @@
 - Looping through each table in `./config.json` Lambda will perform a batch insert operation into a relevant table in **BigQuery**.
 - *Lambda will read `fileFormat` property for each table and process files accordingly. For example, if fileFormat is JSON it will use `JSON.stream` to parse text and create New line delimited JSON so it could be inserted in BigQuery table*
 
+### Your microservice folder structure must look like this:
+~~~bash
+.
+└── stack
+    └── bq-ingest-manager
+        ├── node_modules
+        ├── test
+        ├── tmp
+        ├── app.js
+        ├── bq-shakhomirov-service-account-credentials.json
+        ├── config.json
+        ├── deploy.sh
+        ├── package-lock.json
+        ├── package.json
+        └── readme.md
+~~~
 
 - `./config.json`:
 ~~~js
@@ -297,5 +313,3 @@ const loadJsonFIleFromS3 = async() => {
 
 ~~~
 
-- package-lock.json can be found in the repo:
-[github.com/]()

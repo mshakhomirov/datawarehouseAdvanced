@@ -1,35 +1,39 @@
 ##  Adding support for different file formats in your microservice
 
-**Objective**
+## **Objective**
 
 * Your data ingestion microservice must be able to read various file formats and load data into BigQuery.
+**BigQuery can ingest 4 major file formats:**
+- [new line delimited JSON](http://ndjson.org/). 
+- CSV
+- parquet (not covered in this project)
+- avro (not covered in this project)
 
 
-**Why is this milestone important to the project?**
+## **Why is this milestone important to the project?**
 Very often source data is saved differently but we still need to be able to ingest it. JSONwise *BigQuery* supports only new line delimited JSON. 
 
 You will learn how to process your data and prepare it for BigQuery.
 
 
-**Workflow**
+## **Workflow**
 [CertQuestion_1] Try to think about the way you would like to have your data in the data warehouse. What would be the most cost effective way? The most convenient way? Most reliable?
 
 *You would want to add the following to your microservice:*
-[2.1] Add feature to handle CSV
-[2.2] Add feature to handle array of JSON objects
-[2.3] Add feature to handle a string of JSON objects
+### [2.1] Add feature to handle CSV files.
+
 
 Most of the times you will be dealing with `CSV` and `JSON` as a data engineer. `Parquet` and `AVRO` formats are not very oftenly seen unless there is a reson to use them.
 
-[certQuestion_2] Try to think when would you use each format?
+[certQuestion_2] When would you use each format?
 
-[certQuestion_3] So far you've been dealing with relatively small data files. Yes, your architecture outputs them in this way and you've been lucky. What would you do if one of your data is huge, i.e. contains millions of records and it's size is more than 1 Gb?
-
-
+[certQuestion_3] So far you've been dealing with relatively small data files. What would you do if one of your data files is huge, i.e. contains millions of records and/or of a size of more than 1 Gb?
 
 
 
-**Deliverable**
+
+
+## **Deliverable**
 
 The deliverable for this milestone is a working Lambda function. It must be able to read JSON file format.
 
@@ -43,11 +47,11 @@ $ npm run test
 
 
 
-**Help**
+## **Help**
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
-*Resources*
+## *Resources*
 
 [Read How to create BigQuery Load Jobs](https://googleapis.dev/nodejs/bigquery/latest/Table.html#createLoadJob)
 [Read about Google File object](https://googleapis.dev/nodejs/storage/latest/Bucket.html#file)
@@ -58,10 +62,10 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 
 
 
-*help*
+## *help*
 
 
-*Hint for Step [2.1]*
+### *Hint for Step [2.1]*
 - Create your `CSV` file to load or you can use one from our data folder:
 ~~~bash
 aws s3 cp ./data/simple_transaction.csv s3://bq-shakhomirov.bigquery.aws/simple_transaction.csv
@@ -111,7 +115,7 @@ job completed
 
 You will see your records from CSV inside `source.simple_transaction` table.
 
-*Hint for Step [2.2] and [2.3]*
+### *Hint for Step [2.2] and [2.3]*
 - Try `batch insert` with BigQuery library *Hint for Step [1.3]*
 You can load additional data into a table either from **source files** in **Google Cloud Storage** or by **appending** query results. Note that the schema of the loaded data must match the schema of the existing table, but you can update the schema before appending.
 
@@ -155,7 +159,7 @@ const loadTestDataFromLocalFileJSON = async() => {
 ~~~
 This function will create a load job from local file and perform a `batch` uplod in streaming mode (memory effective manner).
 
-*Hint for Step [2.3]*
+### *Hint for Step [2.3]*
 In order to upload data from your S3 bucket you would want to create a *readable* stream from it and then create a *writeable* stream that would insert data into BigQuery table.
 [Read about JSONstream module](https://github.com/dominictarr/JSONStream)
 [Read about BigQuery CreateWriteStream](https://googleapis.dev/nodejs/bigquery/latest/Table.html#createWriteStream)
@@ -202,7 +206,7 @@ const loadJsonFIleFromS3 = async() => {
 
 
 
-*partial solution*
+## *partial solution*
  
 Here is the `app.js` for this milestone. Download this file, use it to develop your solution, and upload your deliverable.
 You will have to create your own BigQuery service account credentials `./bq-shakhomirov-b86071c11c27.json` and `./config.json`
@@ -379,9 +383,25 @@ const createBigQueryTablePartitioned = async(tableId, schema) => {
 
 
 
-*full solution*
+## *full solution*
 
 If you are unable to complete the project, you can download the full solution here. We hope that before you do this you try your best to complete the project on your own.
+### Your microservice folder structure must look like this:
+~~~bash
+.
+└── stack
+    └── bq-ingest-manager
+        ├── node_modules
+        ├── test
+        ├── tmp
+        ├── app.js
+        ├── bq-shakhomirov-service-account-credentials.json
+        ├── config.json
+        ├── deploy.sh
+        ├── package-lock.json
+        ├── package.json
+        └── readme.md
+~~~
 
 - `./config.json`:
 ~~~js
@@ -673,6 +693,5 @@ const loadJsonFIleFromS3 = async() => {
 
 ~~~
 
-- package-lock.json can be found in the repo:
-[github.com/]()
+
 

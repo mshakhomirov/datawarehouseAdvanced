@@ -5,6 +5,23 @@
 - Then Lambda will evaluate the size of this file and if it is too big it will paginate it.
 - Looping through each table in `./config.json` Lambda will perform a batch insert operation into a relevant table in **BigQuery**.
 
+### Your microservice folder structure must look like this:
+~~~bash
+.
+└── stack
+    └── bq-ingest-manager
+        ├── node_modules
+        ├── test
+        ├── tmp
+        ├── app.js
+        ├── bq-shakhomirov-service-account-credentials.json
+        ├── config.json
+        ├── deploy.sh
+        ├── package-lock.json
+        ├── package.json
+        └── readme.md
+~~~
+
 ## app.js
 Here is the `app.js` for this milestone. Download this file, use it to develop your solution, and upload your deliverable.
 You will have to create your own BigQuery service account credentials `./bq-shakhomirov-b86071c11c27.json` and `./config.json`
@@ -277,5 +294,3 @@ const createBigQueryTablePartitioned = async(tableId, schema) => {
 
 ~~~
 
-- package-lock.json can be found in the repo:
-[github.com/]()

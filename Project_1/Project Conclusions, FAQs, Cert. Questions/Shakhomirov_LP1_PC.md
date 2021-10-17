@@ -6,8 +6,8 @@ The traditional ETL, which stands for Extraction, Transformation, and Loading, h
 
 * Whether you’re a startup or a global enterprise, you've learned how to use **serverless** to extract data from 3rd party data sources.
 
-* You've learned the concepts of datalake, datawarehouse and decoupled data storage,
+* You've learned the concepts of datalake, datawarehouse and decoupled data storage.
 
 * You've learned how to use AWS Lambda functions to create a simple and reliable data extraction pipeline.
 
-All these above provide an idea or a template which could be easile extended and replicated for any other external data source you might require in the future.
+All these above provide an idea or a template which could be easile extended and reused for any other external data source you might require in the future.
