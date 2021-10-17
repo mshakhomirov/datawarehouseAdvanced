@@ -1,14 +1,13 @@
 
-![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
-
-
 ## about this liveProject
-Imagine you are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
+Imagine you are a Data Engineer working on an End-to-End project connecting various data sources with your new data warehouse in **BigQuery**.
+![Final solution](https://mydataschool.com/liveprojects/img/ingestManager.drawio.png)
 
 Your data stack is modern, cost effective, flexible (you can connect any data source you want) and can scale easily to meet growing data resources you have. Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.).
+
 ![Data warehouse](https://mydataschool.com/liveprojects/img/externalDataBigQuery.png)
 
 As a data engineer you were tasked to create a new data pipeline to feed financial data from **PayPal** into the data warehouse. This should help *Finance* team to create a revenue reconciliation report in [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting) and run it daily. *You have already setup PayPal data pipeline (liveProject 1 of this series) and now you need to ingest that data into your BigQuery data warehouse.*
