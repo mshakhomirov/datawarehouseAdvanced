@@ -505,7 +505,7 @@ Waiting for stack create/update to complete
 Successfully created/updated stack - data-services
 ~~~
 
-[img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-outcome_1.png)
+![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-outcome_1.png)
 
 
 Your SF stack with added resources must be this:
