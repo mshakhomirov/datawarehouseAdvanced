@@ -81,7 +81,7 @@ Waiting for stack create/update to complete
 Successfully created/updated stack - data-services
 ~~~
 
-[img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-outcome_1.png?raw=true)
+![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-outcome_1.png?raw=true)
 
 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author's solution and peer solutions will appear on the page for you to examine.
 
