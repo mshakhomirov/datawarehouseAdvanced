@@ -1,23 +1,23 @@
 ## Deploy your data ingestion microservice and DynamoDB table with AWS Cloudformation
 
-**Objective**
+## **Objective**
 
 * You have already created a Cloudformation stack containing AWS Lambda function responsible for data extraction from your PayPal account.
-* You would would to add your newly created `data ingestion manager` (*liveProject2* of this series) and deploy/update these microservices using AWS Cloudformation.
+* You would would to add your newly created `data ingest manager` (*liveProject2* of this series) and deploy/update these microservices using AWS Cloudformation.
 * Add IAM roles for these Lambdas and extra resources, i.e. as S3 bucket.
 
 
-**Why is this milestone important to the project?**
+## **Why is this milestone important to the project?**
 
-- This is an intro to AWS Cloudformation and how you describe your resources (Lmbdas, etc.) with AWS Cloudformation. Adding the second Lambda shows how you can simplify deployment and scale your resources easily across multiple accounts if needed.
+- This is an intro to AWS Cloudformation and how you describe your resources (Lambdas, etc.) with AWS Cloudformation. Adding the second Lambda shows how you can simplify deployment and scale your resources easily across multiple accounts if needed.
 - You ave already added one resource (AWS Lambda function) 
 - Now you would want to add another one (`ingestManager`).
 - You will learn how to do it with other resources, i.e. RDS or *Dynamo*.
 
 
-**Workflow**
+# **Workflow**
 
-# **[1]. Modify existing Cloudformation satck for PayPal data connector (your first Lambda)**
+# **[1]. Modify existing Cloudformation stack for PayPal data connector (your first Lambda)**
 
 ## [1.1].   Create your ingest manager solution (you can copy it from *liveProject2*)
 * Go to repository [pipelineTools](https://github.com/mshakhomirov/pipelinetools/) and set up your ingest manager accordingly to run in your AWS account.
@@ -112,7 +112,7 @@ data-services
 
 [FAQ] I would like to add more fields for Dynamo table in my stack CF file but I keep getting an error while trying to deploy it: `One or more parameter values were invalid: Number of attributes in KeySchema does not exactly match number of attributes defined in AttributeDefinitions`
 
-[Amswer] Don't include any non-key attribute definitions in AttributeDefinitions. DynamoDB is schemaless (except the key schema)
+[Answer] Don't include any non-key attribute definitions in AttributeDefinitions. DynamoDB is schemaless (except the key schema)
 I assume you are trying to do the following and it fails:
 ~~~yaml
      AttributeDefinitions:
@@ -153,18 +153,18 @@ const DYNAMO_SUCCESS = process.env.DYNAMO_SUCCESS || 'ingest-manager-success';
 * check your ./app.js code to make sure DynamoDb table name is correct.
 
 
-**Deliverable**
+## **Deliverable**
 
-The deliverable for this milestone is...[WHAT IS THE DELIVERABLE FOR THIS MILESTONE]
+The deliverable for this milestone is a Cloudformation template and screen confirming successful deployment.
 
 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author's solution and peer solutions will appear on the page for you to examine.
 
 
-**Help**
+## **Help**
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
-*Hint for Step [2.]*
+### *Hint for Step [2.]*
 How to Save
 Make sure you're following the best practice of using [1 de-normalized table](https://www.alexdebrie.com/posts/dynamodb-single-table/#downsides-of-a-single-table-design)
 
@@ -181,7 +181,7 @@ If you choose auto-scaling. Per [docs](https://docs.aws.amazon.com/amazondynamod
 [Read this AWS Forum](https://forums.aws.amazon.com/thread.jspa?threadID=88319)
 
 
-*Hint for Step [1.2]*
+### *Hint for Step [1.2]*
 Simply following the pattern below add an extra Lambda function for your ingest amanger:
 
 ~~~yaml
@@ -207,7 +207,7 @@ aws cloudformation deploy     --region eu-west-1     --template-file cf-deploy.y
 and check your Lambda:
 ![Outcome](https://mydataschool.com/liveprojects/img/img-s2-lp4-m2-desired-outcome-stack-part2.png)
 
-*Hint for Step [1.2]*
+### *Hint for Step [1.2]*
 If you want to know how to add S3 trigger check this `yaml` below:
 
 ~~~yaml
@@ -240,7 +240,7 @@ You will only need to add a permission for to invoke your `bq-ingest-manager` la
 ...
 ~~~
 
-*Hint for Step [1.2]*
+### *Hint for Step [1.2]*
 To add DynamoDb permissions add this to your Lambda policy in your stack definition:
 [Read AWS Article: How to Create an AWS IAM Policy to Grant AWS Lambda Access to an Amazon DynamoDB Table](https://aws.amazon.com/blogs/security/how-to-create-an-aws-iam-policy-to-grant-aws-lambda-access-to-an-amazon-dynamodb-table/)
 ~~~yaml
@@ -294,7 +294,7 @@ Resources:
 ~~~
 
 
-*Resources*
+## *Resources*
 
 [Serverless Application model](https://aws.amazon.com/serverless/sam/)
 [Lambda Properties](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#property-types)
@@ -302,7 +302,7 @@ Resources:
 [!Ref](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html)
 [cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
 
-
+## *partial solution* 
 Here is the *partial solution script* for this milestone. Download this file, use it to develop your solution, and upload your deliverable.
 
 For  *partial solution* you would need to complete a Cloudformation stack template by adding the following:
@@ -573,7 +573,7 @@ If you check logs you should see a successfull upload into your BigQuery table.
 
 
 
-*full solution*
+## *full solution*
 
 If you are unable to complete the project, you can download the full solution here. We hope that before you do this you try your best to complete the project on your own.
 
