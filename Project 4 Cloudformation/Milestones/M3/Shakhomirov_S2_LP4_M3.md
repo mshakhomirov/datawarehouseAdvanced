@@ -1,22 +1,22 @@
 ## Adding monitoring and alarms with AWS Cloudformation
 
-**Objective**
+## **Objective**
 
-* You have already created a Cloudformation stack containing AWS Lambda function responsible for data extraction from your PayPal account.
-* You have already added `data ingestion manager` to your stack file and deployed these microservices using AWS Cloudformation.
+* You have already created a Cloudformation stack with AWS Lambda function responsible for data extraction from your PayPal account.
+* You have already added `data ingest manager` to your stack file and deployed these microservices using AWS Cloudformation.
 * Added IAM roles for these Lambdas and extra resources, i.e. as S3 bucket.
 
 - Now you would want to set up alarms and notifications to monitor your data pipelines.
 ![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-alarm2.png)
 
-**Why is this milestone important to the project?**
+## **Why is this milestone important to the project?**
 
 - This is an intro to AWS Cloudformation and how you describe your resources (Lmbdas, etc.) with AWS Cloudformation. Adding the second Lambda shows how you can simplify deployment and scale your resources easily across multiple accounts if needed.
 - You ave already added one resources (AWS Lambda function, S3 bucket, DynamoDb) 
 - Now you would want to monitor your data ingestion process using *Cloudwatch logs* and deploy it with *Cloudformation*.
 
 
-**Workflow**
+# **Workflow**
 
 # **[1]. Modify your stack file and add Alarm Notification Topic (SNS)**
 - Add a `resource` called *AlarmNotificationTopic*
@@ -46,7 +46,7 @@ Create
 ## [2.4]. Test your solution
 
 
-**Deliverable**
+# **Deliverable**
 
 The deliverable for this milestone is a serverless application package (usually happens after `aws cloudformation package` command). But feel free to simply zip your application folder and include stack files.
 Alternatively you can create your own repository and share it.
@@ -86,11 +86,11 @@ Successfully created/updated stack - data-services
 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author's solution and peer solutions will appear on the page for you to examine.
 
 
-**Help**
+## **Help**
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
-*Hint for Step [1].*
+### *Hint for Step [1].*
 [Read AWS Cloudformation Log Groups documentation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html)
 
 You would want to add this to your stack file:
@@ -104,7 +104,7 @@ You would want to add this to your stack file:
 - Go to AWS console and delete log group first.
 - Deploy your solution with AWS Cloudformation and check if that LogGroup was created.
 
-*Hint for Step [2.2].*
+### *Hint for Step [2.2].*
 Read AWS [Documentation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html)
 Think which properties do you need and what metric value should be.
 
@@ -122,7 +122,7 @@ This would do the job:
           MetricName: ERRORCount
 ~~~
 
-*Hint for Step [2.3].*
+### *Hint for Step [2.3].*
 Read [AWS::CloudWatch::Alarm](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html)
 Read [Alarm data points to alert on](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricstat.html)
 `Alarm` type resource specifies an alarm and associates it with the specified metric or metric math expression.
@@ -146,18 +146,22 @@ To add metric alarm use this yaml:
       AlarmActions:
         - !Ref AlarmNotificationTopic 
 ~~~
-[FAQ] After I deployed the solution I don't see any error notifications even though my files with incorrect data caused errors.
-[Answer] After you successfully deployed your updated stack you will need to confirm your email SNS subscription. If you go to SNS service and click your topic you need to check if subscription status is still pending and then check your email.
+### [FAQ] 
+After I deployed the solution I don't see any error notifications even though my files with incorrect data caused errors.
+### [Answer] 
+After you successfully deployed your updated stack you will need to confirm your email SNS subscription. If you go to SNS service and click your topic you need to check if subscription status is still pending and then check your email.
 ![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-subscription2.png)
 ![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-subscription.png)
 ![img](https://mydataschool.com/liveprojects/img/img-s2-lp4-m3-confirm-alarm.png)
 
-[FAQ] I've sent an error file to ingest but didn't get a notification.
-[Answer] Checl your data points to alert on. It might be that it was specified `Trigger a the number ERROR greater than 5 for 5 consecutive minutes.`
+### [FAQ]
+I've sent an error file to ingest but didn't get a notification.
+### [Answer] 
+Check your data points to alert on. It might be that it was specified `Trigger a the number ERROR greater than 5 for 5 consecutive minutes.`
 Change `EvaluationPeriods: '5'` to `EvaluationPeriods: '1'`  to alert on 1 data point.
 Read more [here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudwatch-alarm-metricstat.html)
 
-*Hint for Step [2.4]*
+### *Hint for Step [2.4]*
 When you test your solution by uploading some files with error data you will receive an email notification:
 ~~~bash
 aws s3 cp ./data/error s3://bq-shakhomirov.bigquery.aws --recursive
@@ -174,19 +178,19 @@ transaction_id,user_id,dt
 
 
 
-*Resources*
+## *Resources*
 [AWS::Logs::LogGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html)
 [aws logs metricfilter](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-metricfilter.html)
 [AWS::CloudWatch::Alarm](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cw-alarm.html)
 
-*More resources*
+## *More resources*
 [Serverless Application model](https://aws.amazon.com/serverless/sam/)
 [Lambda Properties](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#property-types)
 [!GetAtt](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html)
 [!Ref](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html)
 [cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
 
-
+## *partial solution*
 Here is the *partial solution script* for this milestone. Download this file, use it to develop your solution, and upload your deliverable.
 
 In  *partial solution* you would need to add `Log Group`, `metric filter` and `Metric Alarm` to the second Lambda in your stack:
@@ -468,7 +472,7 @@ Resources:
 ~~~
 
 
-*full solution*
+## *full solution*
 
 If you are unable to complete the project, you can download the full solution here. We hope that before you do this you try your best to complete the project on your own.
 After you run:
