@@ -35,4 +35,5 @@ These are resources directly referenced throughout the liveProject and can direc
 * [Outside resource 2. AWS Lambda](https://aws.amazon.com/lambda/)
 * [Outside resource 3. AWS CLI](https://aws.amazon.com/cli/)
 * [Outside resource 4. PayPal developer portal](https://developer.paypal.com/docs)
-
+* [Outside resource 5. Building dashboards with Firebase data](https://towardsdatascience.com/i-stopped-using-firebase-dashboards-ive-built-my-own-instead-299631185b41)
+* [Outside resource 6. Retention and Daily Active Users Explained.](https://towardsdatascience.com/retention-and-daily-active-users-explained-79c5dab1bf84)

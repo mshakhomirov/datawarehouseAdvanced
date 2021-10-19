@@ -1,6 +1,7 @@
 
 # Create a BI report with Google Data Studio
 ![Connecting data](https://mydataschool.com/liveprojects/img/s2_lp5_intro.png)
+![Connecting data](https://mydataschool.com/liveprojects/img/s2_lp5_intro_2.png)
 
 
 ### about this liveProject
@@ -8,12 +9,16 @@
 ## In this liveProject (the fifth of this series) you will create your BI report (revenue reconciliation) using Google Data Studio.
 
 ### Previous projects:
-* LP1 Set extraction pipe (PayPal) -> 
-* LP2 Set ingestion pipe (AWS S3 to BigQuery) -> 
-* LP3 Set data transformation pipeline (Dataflow) -> 
-* LP4 Wrap it all up with Cloudformation (Software as a code). ->
-* **LP5 Set BI for revenue reconciliation (Data Studio) (You are here)**
+* LP1: Connect **external datasources** (Set data extraction **PayPal**) -> 
+* LP2: Load data into BigQuery (AWS S3 to BigQuery ingest manager with Node.JS) -> 
+* LP3: Data transformation pipelines with [Dataform](dataform.co) -> 
+* LP4: Wrap it all up with [Cloudformation](https://aws.amazon.com/cloudformation/) (Infrastructure as a code) ->
+* **LP5: Set BI report for revenue reconciliation with** [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting)
 
+This series covers a set of LPs explaining how to build a data warehouse with **BigQuery** as a central part of this project.
+![projectFlow](https://mydataschool.com/liveprojects/img/projectFlow.drawio.png)
+
+## Scenario
 Imagine you are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 
 Your company is a mobile game development studio and have various products being sold on both platforms, IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
@@ -29,19 +34,28 @@ Talking about data ingestion you would need to utilise tools like **Fivetran or 
 ![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
 
 All data files come from varioius data surces, i.e. databases, kinesis firehose streams and various notification services in different formats (CSV, JSON, PARQUET, etc.).
+![Data warehouse](https://mydataschool.com/liveprojects/img/externalDataBigQuery.png)
+
 As a data engineer you created a few data pipelines using **AWS Lambda** to extract data from *external data sources* and save it to your *AWS S3 bucket* in JSON format. 
 
 You have also created an *ingest manager* (another AWS Lambda) responsible for loading those files into your **BigQuery data warehouse** (in batch mode) being triggered by *AWS S3 event* each time new data file lands in your datalake.
 
 In *liveProject 4* you chose to use **AWS Cloudformation** to speed up resource provisioning and make things easier for the rest of the team in case they decide to contribute or integrate with other microservices they create.
 
+## Report
 Finally you are tasked to create a revenue reconciliation report for Finance department where they can see which transactions are missing on both `payment merchant` and your `database` sides.
+
+### Preview
+[Page 1](https://datastudio.google.com/u/0/reporting/37f4b07b-f8cd-436b-9a7b-0ee37cdfafe4/page/nN2rB/preview)
+[Page 2](https://datastudio.google.com/u/0/reporting/37f4b07b-f8cd-436b-9a7b-0ee37cdfafe4/page/p_91rbpss8nc/preview)
+[Page 3](https://datastudio.google.com/u/0/reporting/37f4b07b-f8cd-436b-9a7b-0ee37cdfafe4/page/p_js0zeoh9nc/preview)
+[Page 4](https://datastudio.google.com/u/0/reporting/37f4b07b-f8cd-436b-9a7b-0ee37cdfafe4/page/p_n9jv47i9nc/preview)
 
 
 
 ## Techniques employed
 
-You will learn how to create reports in Data Studio. You will work with templates and connect data sources from your *Data warehouse*.
+You will learn how to create reports in [Data Studio](https://datastudio.google.com). You will work with templates and connect data sources from your *Data warehouse*.
 
 ## Project outline
 
@@ -86,4 +100,12 @@ NA
 
 # Dataset (if applicable)
 
-All files with data can be found in ./data/ folder of this project.
+All files with data can be found in `./data/` folder of this project.
+```shell
+.
+├── accounting_tax_type\ copy.csv
+├── accounting_tax_type.csv
+├── country_tax_codes.csv
+├── payment_transaction_src
+└── paypal_transaction_raw.json
+```

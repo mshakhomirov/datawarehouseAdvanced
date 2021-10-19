@@ -10,7 +10,7 @@ Sharable  Link to Data Studio template is [here](https://datastudio.google.com/r
 ## 1. Run the following in your command line to Create `reference.country_tax_codes` table:
 
 
-This will create `reference.country_tax_codes` table with scheam as described in your `stack/bq-ingest-manager/config/staging.yaml`:
+This will create `reference.country_tax_codes` table with schema as described in your `stack/bq-ingest-manager/config/staging.yaml`:
 ~~~yaml
   -
     pipeName: country_tax_codes
@@ -402,7 +402,7 @@ As a result you will see:
 
 
 
-99. To create the final table with revenue reconciliation use this script:
+### To create the final table with revenue reconciliation use this script:
 
 ~~~sql
 -- declare PayPal dates for revenue reconciliation:

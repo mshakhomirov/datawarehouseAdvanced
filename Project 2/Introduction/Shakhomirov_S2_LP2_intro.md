@@ -10,7 +10,7 @@ This series covers a set of LPs explaining how to build a data warehouse with **
 * LP2: Load data into BigQuery (AWS S3 to BigQuery ingest manager with Node.JS) -> 
 * LP3: Data transformation pipelines with [Dataform](dataform.co) -> 
 * LP4: Wrap it all up with [Cloudformation](https://aws.amazon.com/cloudformation/) (Infrastructure as a code) ->
-* LP4: Set BI report for revenue reconciliation with [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting)
+* LP5: Set BI report for revenue reconciliation with [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting)
 
 ### This is LP 2 where you are building a service to process and load data into BigQuery 
 ![Final solution](https://mydataschool.com/liveprojects/img/ingestManager.drawio.png)
