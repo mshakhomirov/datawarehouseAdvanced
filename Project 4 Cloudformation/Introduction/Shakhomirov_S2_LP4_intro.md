@@ -60,7 +60,7 @@ For this tutorial it will be **free** (or cost just a fraction of a pennny) but 
 This liveProject will be divided into [3] milestones.
 ![Architecture](https://mydataschool.com/liveprojects/img/serviceArchitecture.png)
 
-**[1]. Deploy AWS Lambda for extraction pipes with AWS Cloudformation**
+**[1]. Deploy AWS Lambda for data extraction (PayPal data connector) with AWS Cloudformation**
 
 **[2]. Adding your data ingestion microservice and DynamoDB table to store ingestion logs and check if a file was already ingested**
 
