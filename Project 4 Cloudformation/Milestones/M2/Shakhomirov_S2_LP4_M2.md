@@ -848,7 +848,7 @@ aws s3 cp ./data/simple_transaction0.csv s3://bq-shakhomirov.bigquery.aws
 If this file name contains any of table names you mentioned in ./config.json it will be uploaded into BigQuery into relevant table.
 
 [Full solution](LP4/Milestones/M2/solution/data-services/stack) and has the following services:
-
+```shell
 .
 ├── bq-ingest-manager
 │   ├── data
@@ -874,4 +874,4 @@ If this file name contains any of table names you mentioned in ./config.json it 
 ├── cf-deploy.yaml
 ├── cf-install.sh
 └── readme.md
-
+```
