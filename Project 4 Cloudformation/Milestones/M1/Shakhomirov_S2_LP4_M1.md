@@ -1,21 +1,21 @@
-## Deploy AWS Lambda for extraction pipes with AWS Cloudformation
+## Deploy AWS Lambda for data extraction (PayPal data connector) with AWS Cloudformation**
 
-**Objective**
+## **Objective**
 
-* You would want to create a new Cloudformation stack containing two AWS Lambda functions for data extraction.
-* You would would to deploy these microservices using AWS Cloudformation.
-* Add IAM roles for these Lambdas and extra =esources, i.e. as S3 bucket.
+* You would want to create a new Cloudformation stack with AWS Lambda function for data extraction from PayPal reporting API.
+* You would would to deploy this microservice using AWS Cloudformation.
+* Add IAM roles for this Lambda and extra resources, i.e. as S3 bucket, IAM roles, etc.
 
 
-**Why is this milestone important to the project?**
+## **Why is this milestone important to the project?**
 
-- This is an intro to AWS Cloudformation and how you describe your resources (Lmbdas, etc.) with AWS Cloudformation. Adding the second Lambda shows how you can simplify deployment and scale your resources easily across multiple accounts if needed.
+- This is an intro to **AWS Cloudformation** and how you describe your resources (Lambdas, etc.) with AWS Cloudformation stack files. Adding another Lambda shows how you can simplify deployment and scale your resources easily across multiple accounts if needed.
 - By adding just one resource (AWS Lambda function) you will learn how to do it with other resources, i.e. RDS or Dynamo.
 
 
-**Workflow**
+# **Workflow**
 
-# **[1]. Create Cloudformation template for PayPal data connector (your first Lambda)**
+# **[1]. Create Cloudformation template for PayPal data connector (your Lambda)**
 
 ## [1.1]. Create a new folder called `data-services`.
 
@@ -175,18 +175,18 @@ Resources:
 ~~~
 
 
-**Deliverable**
+## **Deliverable**
 
-The deliverable for this milestone is...[WHAT IS THE DELIVERABLE FOR THIS MILESTONE]
+The deliverable for this milestone is a Cloudformation template.
 
 Upload a link to your deliverable in the Submit Your Work section and click submit. After submitting, the Author's solution and peer solutions will appear on the page for you to examine.
 
 
-**Help**
+## **Help**
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
-*Hint for Steps [1.2]*
+### *Hint for Steps [1.2]*
 Your Lambda will depend on IAM access role as everything else in AWS.
 Read about AWs serverless application model and check the properties *Lambda function* might have.
 [Lambda Properties](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#property-types)
@@ -224,7 +224,7 @@ Resources:
         Service: BigQuery
 ~~~
 
-*Hint for Step [1.3]*
+### *Hint for Step [1.3]*
 - Read about [!GetAtt](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html)
 
 Add this to your `cf-config.yaml` 
@@ -348,7 +348,7 @@ Resources:
 
 
 
-*Hint for Step [1.4]*
+### *Hint for Step [1.4]*
 Your parameters are string environment variables and can be either 'true' or 'false'. Add them to `.cf-config.yaml` like so:
 ~~~yaml
 AWSTemplateFormatVersion: '2010-09-09'
@@ -367,7 +367,7 @@ Parameters:
 ...
 ~~~
 
-*Hint for Step [1.5]*
+### *Hint for Step [1.5]*
 Firstly create a bucket to store your microservice artifacts:
 ~~~bash
 aws s3 mb s3://lambdas.bq-shakhomirov.aws
@@ -397,7 +397,7 @@ aws cloudformation deploy \
 
 You can also wrap them into shell script. Check it [here]("Project 4 Cloudformation/Milestones/M1/solution/data-services/stack/cf-install.sh")
 
-*Hint for Step [1.6]*
+### *Hint for Step [1.6]*
 
 Read about scheduled [cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
 
@@ -427,7 +427,7 @@ Read about scheduled [cron expressions](https://docs.aws.amazon.com/AmazonCloudW
 
 
 
-*Resources*
+## *Resources*
 
 [Serverless Application model](https://aws.amazon.com/serverless/sam/)
 [Lambda Properties](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#property-types)
@@ -440,7 +440,7 @@ Read about scheduled [cron expressions](https://docs.aws.amazon.com/AmazonCloudW
 
 
 
-*partial solution*
+## *partial solution*
  
 Here is the *partial solution script* for this milestone. Download this file, use it to develop your solution, and upload your deliverable.
 
@@ -537,7 +537,7 @@ Resources:
 
 
 
-*full solution*
+## *full solution*
 
 If you are unable to complete the project, you can download the full solution here. We hope that before you do this you try your best to complete the project on your own.
 
