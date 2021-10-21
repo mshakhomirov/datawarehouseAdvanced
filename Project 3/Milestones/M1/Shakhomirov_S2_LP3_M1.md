@@ -62,6 +62,9 @@ This will take the SQLX that we’ve written, compile it into the SQL syntax of 
 
 [2.3] You would want to publish our changes to `analytics` dataset into your `Production` BigQuery project (`bq-shakhomirov` project in my case). Adjust your dataform project settings accordingly.
 
+### Your dependency tree
+![outcome](https://mydataschool.com/liveprojects/img/LP3/dataform_dep_tree.png)
+
 This resulting table in this example is quite complex and has few development requirements (below) but ultimately you would want to check your database data against PayPal by matching it using
 
 In case you want to try complete solution here is the development specification.
@@ -139,8 +142,9 @@ config {
 - Now you can update your `paypal_transaction_reconciliation_daily` table with `${ref("payment_transaction")}` instead of actual table name.
 
 ### *Hint for Step [2.3]*: 
-- Go to **Project Configuration** and change your **defaultSchema**.
+- If you go to **Project Configuration** and change your **defaultSchema**.
 ![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-12.png)
+- Output schema can be also be defined in you *.sqlx* file. Finish your `analytics` table definition.
 - Click `Create`. This will create our table in `analytics` dataset in BigQuery.
 - Click **View logs**
 
