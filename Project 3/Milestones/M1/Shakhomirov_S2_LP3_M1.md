@@ -64,7 +64,7 @@ This will take the SQLX that we’ve written, compile it into the SQL syntax of 
 
 This resulting table in this example is quite complex and has few development requirements (below) but ultimately you would want to check your database data against PayPal by matching it using
 
-In case you want to try complete solution here is the development specification:
+In case you want to try complete solution here is the development specification.
 ## Here are the details for your task (also explained in detail in liveProject5):
 - Your PayPal account is in USD currency.
 - Users are all over the world.
@@ -142,8 +142,7 @@ config {
 - Go to **Project Configuration** and change your **defaultSchema**.
 ![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-12.png)
 - Click `Create`. This will create our table in `analytics` dataset in BigQuery.
-![outcome](https://mydataschool.com/liveprojects/img/LP3/img-M3-13.png)
-- Click [View logs:](https://mydataschool.com/liveprojects/img/LP3/img-M3-14.png)
+- Click **View logs**
 
 
 ## *partial solution*
