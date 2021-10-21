@@ -12,4 +12,4 @@ You ahve learned how to create Simple and reliable ingest manager for BigQuery w
 - Support for unit and integration tests.
 
 # Solution overview
-![img](img/ingestManager.drawio.png)
+![img](https://mydataschool.com/liveprojects/img/ingestManager.drawio.png)

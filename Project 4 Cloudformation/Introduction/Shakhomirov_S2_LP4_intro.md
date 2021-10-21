@@ -1,6 +1,6 @@
 
 ## about this liveProject
-### Project series workflow: 
+### Project series: 
 This series covers a set of LPs explaining how to build a data warehouse with **BigQuery** as a central part of this project.
 ![projectFlow](https://mydataschool.com/liveprojects/img/projectFlow.drawio.png)
 

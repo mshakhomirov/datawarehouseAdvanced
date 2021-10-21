@@ -9,5 +9,5 @@ for (let i = 5; i < 300; i++) {
 // aws s3 cp ./img s3://mydataschool.com/liveprojects/img --recursive --profile mds
 // aws s3 cp ./data/error/simple_transaction0.csv s3://bq-shakhomirov.bigquery.aws/simple_transaction_error.csv
 
-(img/
+(https://mydataschool.com/liveprojects/img/
 (https://mydataschool.com/liveprojects/img/
