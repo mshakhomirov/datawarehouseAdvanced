@@ -68,7 +68,14 @@ This will take the SQLX that we’ve written, compile it into the SQL syntax of 
 ### Your dependency tree
 ![outcome](https://mydataschool.com/liveprojects/img/LP3/dataform_dep_tree.png)
 
-This resulting table in this example is quite complex and has few development requirements (below) but ultimately you would want to check your database data against PayPal by matching it using
+This resulting table in this example is quite complex and has few development requirements (below) but ultimately you would want to check your database data against PayPal by matching it using PayPal **itemId**, i.e.:
+~~~sql
+...
+select * from
+  production.paypal_transaction pp
+left join  production.payment_transaction pt             
+    on pp.itemId = pt.transaction_item_id
+~~~
 
 In case you want to try complete solution here is the development specification.
 ## Here are the details for your task (also explained in detail in liveProject5):
