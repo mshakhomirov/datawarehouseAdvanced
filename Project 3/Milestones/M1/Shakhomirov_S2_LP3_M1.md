@@ -47,6 +47,9 @@ Click `test connection` and if everything's okay you will be set to go. Then Cli
 * `source.paypal_transaction_src`
 * `production.payment_transaction`
 
+- If you want to document your table source and other attributes and/or automate table creation and upload check [BigQuery ingest manager](https://github.com/mshakhomirov/BigQuery-ingest-manager).
+It can create a table triggered by `S3objectCreate` event (if the file with country tax codes goes into S3 bucket) or if you run `npm run test` command with relevant payload manually. This **manager** is well explained in [live Project 2]()
+
 [2.2] Using Dataform UI create a new table with revenue reconciliation data.
 - Click on the `New Dataset` button in the left hand side bar.
 - Choose whether you want your dataset to be a table, view, incremental table or operation. In this case we want to create a table or custom operation (SQL script):
