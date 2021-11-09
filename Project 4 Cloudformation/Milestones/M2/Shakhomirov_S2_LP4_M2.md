@@ -83,6 +83,7 @@ data-services
     DependsOn: LambdaPolicy
 ~~~
 * It can share the same `LambdaPolicy` but don't forget to add permissions for *DynamoDb*.
+* Your Lambda must be able to access GCP BigQuery. Make sure you created a service account for that.
 * you will have to change the trigger for your Lmabda. It must be the trigger from S3 when new S3 object is created.
 
 # **[2.] Add DynamoDb table to your stack**
@@ -163,9 +164,19 @@ Upload a link to your deliverable in the Submit Your Work section and click subm
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
+### *Hint for Step [1.2]*
+- Read about [Service Account authentication](https://cloud.google.com/docs/authentication/production)
+You would want to add your service account credentials to your Lambda so it could access BigQuery API and load files:
+~~~js
+...
+const bigQueryCreds = require('./bq-shakhomirov-b86071c11c27.json');
+...
+~~~
+- Alternatively read this Manning resource and try to find it in [Chapter 19](https://www.manning.com/books/google-cloud-platform-in-action?query=Google%20Cloud%20Platform%20in%20Action) explaining Loading data into BigQuery.
+
 ### *Hint for Step [2.]*
 - Read Chapter 13 of [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition) and try to create your own table.
-- [Patterns and Practices for Infrastructure as Code]([Patterns and Practices for Infrastructure as Code](https://www.manning.com/books/patterns-and-practices-for-infrastructure-as-code?query=Patterns%20and%20Practices%20for%20Infrastructure%20as%20Code)) explains how to use various Cloudformation patterns.
+- [Patterns and Practices for Infrastructure as Code](https://www.manning.com/books/patterns-and-practices-for-infrastructure-as-code?query=Patterns%20and%20Practices%20for%20Infrastructure%20as%20Code) explains how to use various Cloudformation patterns.
 
 ### *Hint for Step [2.]*
 How to Save
