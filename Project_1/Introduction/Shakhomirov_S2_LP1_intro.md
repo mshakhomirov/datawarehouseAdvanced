@@ -1,6 +1,6 @@
 
 # Architecting data-intensive datawarehouse solutions with BigQuery in multi cloud.
-# **Connecting external data sources to BigQuery**
+# **Connecting external data sources to BigQuery with Node.JS and APIs**
 ![Data warehouse](https://mydataschool.com/liveprojects/img/externalDataBigQuery.png)
 
 **Keywords**: datawarehouse, bigquery, serverless, aws, lambda function, data architecture, event-driven, data pipelines, external data source connectors.
@@ -40,7 +40,7 @@ You will learn how to connect various data sources to your data warehouse. It ex
 This series covers a set of LPs explaining how to build a data warehouse with **BigQuery** as a central part of this project.
 ![projectFlow](https://mydataschool.com/liveprojects/img/projectFlow.drawio.png)
 
-* LP1: Connect **external datasources** (Set data extraction **PayPal**) -> 
+* LP1: Connect **external datasources** (Set data extraction pipeline **PayPal** to **AWS S3**) -> 
 * LP2: Load data into BigQuery (AWS S3 to BigQuery ingest manager with Node.JS) -> 
 * LP3: Data transformation pipelines with [Dataform](dataform.co) -> 
 * LP4: Wrap it all up with [Cloudformation](https://aws.amazon.com/cloudformation/) (Infrastructure as a code) ->
