@@ -31,6 +31,7 @@ These are resources directly referenced throughout the liveProject and can direc
 * [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition)
 * [Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/)   
 * [Manning Book: Google cloud platform in action](https://livebook.manning.com/book/google-cloud-platform-in-action/chapter-19/14)
+* [Manning resouce: AWS Lambda in Action](https://www.manning.com/books/aws-lambda-in-action?query=AWS%20Lambda%20in%20Action)
 
 * [Outside resource 1. AWS Free Tier](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/free-tier-limits.html)
 * [Outside resource 2. AWS Lambda](https://aws.amazon.com/lambda/)

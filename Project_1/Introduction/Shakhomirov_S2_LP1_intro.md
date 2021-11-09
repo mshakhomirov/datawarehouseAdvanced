@@ -17,7 +17,7 @@ All data files come from varioius data surces, i.e. databases, kinesis firehose 
 
 As a data engineer you were tasked to create a new data pipeline to feed financial data from **PayPal** into the datawarehouse. This should help Finance team to create a revenue reconciliation report in [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting) and run it daily. 
 
-You need to use **AWS Lambda functions** and **Node.js** for this task.
+You were tasked to use **AWS Lambda functions** and **Node.js** to extract data daily from PayPal transaction API and save to **AWS S3** first. This simple pipeline will ensure data is saved and prepared for loading into BigQuery later.
 
 ## Techniques employed
 

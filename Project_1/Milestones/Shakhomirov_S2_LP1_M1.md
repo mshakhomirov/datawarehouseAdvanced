@@ -46,6 +46,7 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 
 * [PayPal developer portal](https://developer.paypal.com)
 * [AWS Lambda](https://aws.amazon.com/lambda/)
+* [Manning resouce: AWS Lambda in Action](https://www.manning.com/books/aws-lambda-in-action?query=AWS%20Lambda%20in%20Action)
 
 *help*
 
@@ -54,7 +55,9 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 - More info how to get an access token can be found [here](https://developer.paypal.com/docs/api/get-an-access-token-curl/)
 or [here](https://developer.paypal.com/docs/api/get-an-access-token-postman/)
 
-
+* Hint for step 1:
+- Read [PayPal API basics](https://developer.paypal.com/docs/api-basics/manage-apps/#create-or-edit-sandbox-and-live-apps) this aims to explain how to create live and sandbox PayPal accounts and try to create a sandbox.
+_ Another usful link would be [PayPal Sandbox testing guide](https://developer.paypal.com/docs/api-basics/sandbox/) which explains the testing process and provides some tips on creating your PayPal developer account.
 
 
 * Hint for step 1:
@@ -217,6 +220,9 @@ You would want to use the following Node.js modules:
 
 * Your app directory would look like this:
 ![img/s2-LP1-M1-1-app_struct.png](https://mydataschool.com/liveprojects/img/s2-LP1-M1-1-app_struct.png)
+
+* Hint for step 2
+- Read [Manning resouce: AWS Lambda in Action](https://www.manning.com/books/aws-lambda-in-action?query=AWS%20Lambda%20in%20Action) Chapter 5. [Using stndalone functions](https://livebook.manning.com/book/aws-lambda-in-action/chapter-5) it aims to explain how to create AWS Lambda functions.
 
 * Hint for Step 2:
 - use `./config.json` to separate your live and staging environments. For example:
