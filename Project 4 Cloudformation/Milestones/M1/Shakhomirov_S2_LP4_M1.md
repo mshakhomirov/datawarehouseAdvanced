@@ -185,6 +185,8 @@ Upload a link to your deliverable in the Submit Your Work section and click subm
 ## **Help**
 
 Feeling stuck? Use as little or as much help as you need to reach the solution!
+### *Hint for Step [1.2]*
+- Read this Manning book [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition). Chapter 4 would explain main principles of **Architecting on AWS**. Then go to Chapter 4 and 5 which will guide you through programming your infratsrtucture and deployment automation.
 
 ### *Hint for Steps [1.2]*
 Your Lambda will depend on IAM access role as everything else in AWS.
@@ -225,7 +227,7 @@ Resources:
 ~~~
 
 ### *Hint for Step [1.3]*
-- Read about [!GetAtt](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html)
+- Read about [!GetAtt](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html) and check the examples of using it.
 
 Add this to your `cf-config.yaml` 
 ~~~yaml

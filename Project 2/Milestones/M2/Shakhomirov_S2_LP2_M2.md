@@ -59,11 +59,14 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 [Read about JSONstream module](https://github.com/dominictarr/JSONStream)
 [Read about BigQuery CreateWriteStream](https://googleapis.dev/nodejs/bigquery/latest/Table.html#createWriteStream)
 [Read about job configuration load](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#JobConfigurationLoad)
+[Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/)
 
 
 
 ## *help*
 
+### *Hint for Step [2.1]*
+- Read [Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/). Check Chapter 4, it explains how data gets into the platform.
 
 ### *Hint for Step [2.1]*
 - Create your `CSV` file to load or you can use one from our data folder:

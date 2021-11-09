@@ -47,8 +47,12 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 * [PayPal developer portal](https://developer.paypal.com)
 * [AWS Lambda](https://aws.amazon.com/lambda/)
 * [Manning resouce: AWS Lambda in Action](https://www.manning.com/books/aws-lambda-in-action?query=AWS%20Lambda%20in%20Action)
+* [Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/).
 
 *help*
+
+### *Hint for Step [1] and [2]*
+- Read [Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/). Check Chapter 4, it explains how data gets into the platform.
 
 * Hint for Step 1:
 - Use an access token to query PayPal API

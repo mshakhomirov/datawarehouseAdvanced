@@ -86,7 +86,6 @@ data-services
 * you will have to change the trigger for your Lmabda. It must be the trigger from S3 when new S3 object is created.
 
 # **[2.] Add DynamoDb table to your stack**
-- Read about DynamoDb [here]()
 - You would want to use free tier eligibale configuration for your Dynamodb tables
 - Modify your stack file by adding this under `Resourses:`:
 
@@ -165,6 +164,10 @@ Upload a link to your deliverable in the Submit Your Work section and click subm
 Feeling stuck? Use as little or as much help as you need to reach the solution!
 
 ### *Hint for Step [2.]*
+- Read Chapter 13 of [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition) and try to create your own table.
+- [Patterns and Practices for Infrastructure as Code]([Patterns and Practices for Infrastructure as Code](https://www.manning.com/books/patterns-and-practices-for-infrastructure-as-code?query=Patterns%20and%20Practices%20for%20Infrastructure%20as%20Code)) explains how to use various Cloudformation patterns.
+
+### *Hint for Step [2.]*
 How to Save
 Make sure you're following the best practice of using [1 de-normalized table](https://www.alexdebrie.com/posts/dynamodb-single-table/#downsides-of-a-single-table-design)
 
@@ -180,6 +183,8 @@ If you choose auto-scaling. Per [docs](https://docs.aws.amazon.com/amazondynamod
 
 [Read this AWS Forum](https://forums.aws.amazon.com/thread.jspa?threadID=88319)
 
+### *Hint for Steps [1.2] and [2]*
+- Read this Manning book [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition). Chapter 4 would explain main principles of **Architecting on AWS**. Then go to Chapter 4 and 5 which will guide you through programming your infratsrtucture and deployment automation.
 
 ### *Hint for Step [1.2]*
 Simply following the pattern below add an extra Lambda function for your ingest amanger:
@@ -295,12 +300,13 @@ Resources:
 
 
 ## *Resources*
-
-[Serverless Application model](https://aws.amazon.com/serverless/sam/)
-[Lambda Properties](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#property-types)
-[!GetAtt](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html)
-[!Ref](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html)
-[cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
+* [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition).
+* [Patterns and Practices for Infrastructure as Code](https://www.manning.com/books/patterns-and-practices-for-infrastructure-as-code?query=Patterns%20and%20Practices%20for%20Infrastructure%20as%20Code)
+* [Serverless Application model](https://aws.amazon.com/serverless/sam/)
+* [Lambda Properties](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#property-types)
+* [!GetAtt](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getatt.html)
+* [!Ref](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-ref.html)
+* [cron expressions](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
 
 ## *partial solution* 
 Here is the *partial solution script* for this milestone. Download this file, use it to develop your solution, and upload your deliverable.

@@ -83,3 +83,6 @@ Can be found here: `Project 2/data`
 *   [BigQuery Node.js library Documentation](https://googleapis.dev/nodejs/bigquery/4.1.3/Table.html#load)
 *   [SDK CLIENT REFERENCE](https://googleapis.dev/nodejs/bigquery/latest/Table.html#get)
 *   [bigquery/docs/reference/rest/v2/Job](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#JobConfigurationLoad)
+*   [Patterns and Practices for Infrastructure as Code](https://www.manning.com/books/patterns-and-practices-for-infrastructure-as-code?query=Patterns%20and%20Practices%20for%20Infrastructure%20as%20Code)
+*   [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition).
+*   [Serverless Architectures on AWS, Second Edition](https://www.manning.com/books/serverless-architectures-on-aws-second-edition?query=Serverless%20Architectures%20on%20AWS)

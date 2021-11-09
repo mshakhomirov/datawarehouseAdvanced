@@ -243,13 +243,15 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 * [BigQuery Node.js library Documentation](https://googleapis.dev/nodejs/bigquery/4.1.3/Table.html#load)
 * [SDK CLIENT REFERENCE](https://googleapis.dev/nodejs/bigquery/latest/Table.html#get)
 * [bigquery/docs/reference/rest/v2/Job](https://cloud.google.com/bigquery/docs/reference/rest/v2/Job#JobConfigurationLoad)
-* [Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/) 
+* [Manning Book: Designing cloud data platforms ](https://livebook.manning.com/book/designing-cloud-data-platforms/welcome/v-8/)
+* [Serverless Architectures on AWS, Second Edition](https://www.manning.com/books/serverless-architectures-on-aws-second-edition?query=Serverless%20Architectures%20on%20AWS)
 
 
 ## *help*
 
 ### *Hint for Step [1.2]*
 - Check this Manning video on [Serverless applications with AWS](https://www.manning.com/livevideo/serverless-applications-with-AWS?query=AWS). If you are not familiar with AWS it's a good place to start.
+- Check this baook [Serverless Architectures on AWS, Second Edition](https://www.manning.com/books/serverless-architectures-on-aws-second-edition?query=Serverless%20Architectures%20on%20AWS). It explains Lambda best practices in Chapter 10.
 
 ### *Hint for Step [1.3]*
 - Read about [Service Account authentication](https://cloud.google.com/docs/authentication/production)

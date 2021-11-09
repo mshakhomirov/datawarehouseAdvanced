@@ -23,6 +23,7 @@ This project is for learners who would like to choose a data engineer or develop
         * loops: i.e. `for`
         * branches: if, if/else, switches
    * Shell commands and scripting as you would want to deploy you Lambda using `AWS CLI` from command line. Final solution will contain a Shell script for those users who are familiar with scripting. Each line will be explained in order to demonstrate how to use shell commands in the script.
+   * Basic understanding of automation
 
 Enthusiasm for solving problems and self-led learning will also prove quite useful (and not just in this project)!
 
