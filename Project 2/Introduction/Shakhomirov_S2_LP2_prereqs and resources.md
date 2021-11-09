@@ -12,6 +12,7 @@ This project is for learners who would like to choose a data engineer or develop
    * Basic knowledge of serverless infrastructure, i.e. AWS Lambda.
    * Experience with `aws-sdk` libraries.
    * AWS CLI (AWS Command Line Interface) installed.
+   * Basic Knowledge of Google Cloud Platform and it's products, i.e. BigQuery, IAM, etc.
 
 
 * TECHNIQUES (with detailed descriptions, if applicable)

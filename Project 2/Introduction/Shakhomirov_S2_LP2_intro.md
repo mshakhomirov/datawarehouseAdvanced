@@ -83,6 +83,7 @@ Very often source data is saved differently but we still need to be able to inge
 - Node.js
 - AWS CLI
 - AWS SDK
+- Google Cloud Platform account with BigQuery API enabled.
 
 
 

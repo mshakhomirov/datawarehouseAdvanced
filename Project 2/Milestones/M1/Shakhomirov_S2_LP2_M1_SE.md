@@ -84,24 +84,7 @@ const processEvent = async(event, tables, bucket, key) => {
 }
 ;
 
-const logSuccessfulEvent = async (bucket, key, ts) => {
 
-    const fileKey = `${bucket}/${key}`;
-    const params = {
-        TableName: 'ingestMAnager',
-        Item: {
-            'fileKey': { S: fileKey },
-            'ts': { S: ts },
-        },
-    };
-    try {
-        let result = await db.putItem(params).promise();
-        return result;
-    } catch (e) {
-        console.log(e);
-    }
-
-};
 
 const checkIfTableExists = async(tableId, schema) => {
 

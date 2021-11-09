@@ -1,4 +1,4 @@
-##  Build ingestion service with AWS Lambda and set up a trigger
+##  Build data ingestion service with AWS Lambda and set up a trigger
 
 **Objective**
 
@@ -209,6 +209,8 @@ const loadTestDataFromStreamJSON = async() => {
 - `streaming` is good but might incure higher costs. Try `batch` insert instead. It has a daily quota of 2000 inserts per table but you can insert a whole file in one attempt. Streaming insert is not so cheap, $0.05 per GB that's $50 for 1TB. Streaming insert is the recommended way to import data, as it's scalable.
 
 
+
+
 #### [1.4] Add *S3 bucket trigger* to your Lambda function so each new *object created* in that bucket would trigger the **Lambda**.
 
 #### [1.5] Add `@google-cloud/bigquery` Node.js library to your `package.json` and try running your first query using your **Lambda** programmatically.
@@ -246,6 +248,18 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 
 ## *help*
 
+### *Hint for Step [1.2]*
+- Check this Manning video on [Serverless applications with AWS](https://www.manning.com/livevideo/serverless-applications-with-AWS?query=AWS). If you are not familiar with AWS it's a good place to start.
+
+### *Hint for Step [1.3]*
+- Read about [Service Account authentication](https://cloud.google.com/docs/authentication/production)
+You would want to add your service account credentials to your Lambda so it could access BigQuery API and load files:
+~~~js
+...
+const bigQueryCreds = require('./bq-shakhomirov-b86071c11c27.json');
+...
+~~~
+- Alternatively read this Manning resource and try to find it in [Chapter 19](https://www.manning.com/books/google-cloud-platform-in-action?query=Google%20Cloud%20Platform%20in%20Action) explaining Loading data into BigQuery.
 
 ### *Hint for Step [1.3]*
 You can load additional data into a table either from **source files** in **Google Cloud Storage** or by **appending** query results. Note that the schema of the loaded data must match the schema of the existing table, but you can update the schema before appending.
@@ -414,24 +428,6 @@ const processEvent = async(event, tables, bucket, key) => {
 }
 ;
 
-const logSuccessfulEvent = async (bucket, key, ts) => {
-
-    const fileKey = `${bucket}/${key}`;
-    const params = {
-        TableName: 'ingestMAnager',
-        Item: {
-            'fileKey': { S: fileKey },
-            'ts': { S: ts },
-        },
-    };
-    try {
-        let result = await db.putItem(params).promise();
-        return result;
-    } catch (e) {
-        console.log(e);
-    }
-
-};
 
 const checkIfTableExists = async(tableId, schema) => {
 
