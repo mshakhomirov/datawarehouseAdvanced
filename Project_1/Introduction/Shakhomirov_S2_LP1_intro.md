@@ -46,26 +46,6 @@ This liveProject will have only **1** milestone with **2** steps .
 
 You will learn how to connect various data sources to your data warehouse. It explains how to use **AWS lambda functions** to extract data from external data sources, i.e. transaction data from PayPal API.
 
-### Project series workflow: 
-This series covers a set of LPs explaining how to build a data warehouse with **BigQuery** as a central part of this project.
-![projectFlow](https://mydataschool.com/liveprojects/img/projectFlow.drawio.png)
-
-* LP1: Connect **external datasources** (Set data extraction pipeline **PayPal** to **AWS S3**) -> 
-* LP2: Load data into BigQuery (AWS S3 to BigQuery ingest manager with Node.JS) -> 
-* LP3: Data transformation pipelines with [Dataform](dataform.co) -> 
-* LP4: Wrap it all up with [Cloudformation](https://aws.amazon.com/cloudformation/) (Infrastructure as a code) ->
-* LP4: Set BI report for revenue reconciliation with [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting)
-
-Modern data stack tools (not a complete list of course):
-    * Ingestion: **Fivetran, Stitch**
-    * Warehousing: Snowflake, Bigquery, Redshift
-    * Transformation: dbt, Dataflow, APIs.
-    * BI: Looker, Mode, Periscope, Chartio, Metabase, Redash
-
-If we talk about data ingestion in general you would want to use tools like **Fivetran or Stitch** to extract data from *3rd party data sources* but if you follow this tutorial you will become totally capable of doing it yourself.
-
-![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
-
 
 
 # Libraries and setup (if applicable)
@@ -73,7 +53,7 @@ If we talk about data ingestion in general you would want to use tools like **Fi
 - Node.js
 - AWS CLI
 - AWS SDK
-
+- PayPal Developer account
 
 
 # Dataset (if applicable)
