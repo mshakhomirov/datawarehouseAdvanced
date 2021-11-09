@@ -6,7 +6,17 @@
 **Keywords**: datawarehouse, bigquery, serverless, aws, lambda function, data architecture, event-driven, data pipelines, external data source connectors.
 
 ## about this liveProject
+### Project series: 
+This series covers a set of LPs explaining how to build a data warehouse with **BigQuery** as a central part of this project.
+![projectFlow](https://mydataschool.com/liveprojects/img/projectFlow.drawio.png)
 
+* LP1: Connect **external datasources** (Set data extraction **PayPal**) -> 
+* LP2: Load data into BigQuery (AWS S3 to BigQuery ingest manager with Node.JS) -> 
+* LP3: Data transformation pipelines with [Dataform](dataform.co) -> 
+* LP4: Wrap it all up with [Cloudformation](https://aws.amazon.com/cloudformation/) (Infrastructure as a code) ->
+* LP5: Set BI report for revenue reconciliation with [**Google Data Studio**](https://datastudio.google.com/u/0/navigation/reporting)
+
+### Scenario
 Imagine you are a Data Engineer working on an End-to-End project connecting various data sources with your new datawarehouse in **BigQuery**.
 IOS and ANDROID. Your development stack is also hybrid and includes AWS and GCP. 
 

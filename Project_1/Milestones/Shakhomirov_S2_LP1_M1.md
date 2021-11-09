@@ -16,6 +16,8 @@ Modern data stack tools (not a complete list of course):
 
 Talking about data ingestion you would need to utilise tools like **Fivetran or Stitch** to extract and prepare 3rd party data sources but if you follow this tutorial you will become totally capable of doing it yourself.
 
+![Modern Data Stack](https://mydataschool.com/liveprojects/img/modernDataStack.png)
+
 
 **Workflow**
 1. Create a PayPal account with developer access and a Sandbox
