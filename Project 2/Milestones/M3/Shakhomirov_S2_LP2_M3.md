@@ -56,6 +56,8 @@ Feeling stuck? Use as little or as much help as you need to reach the solution!
 
 ## *help*
 
+### *Hint for Step [3.1]*
+- Read Chapter 13 of [Amazon Web Services in Action, Second Edition](https://www.manning.com/books/amazon-web-services-in-action-second-edition?query=Amazon%20Web%20Services%20in%20Action,%20Second%20Edition) and try to create your own table. Try to think what the primary key should be. 
 
 ### *Hint for Step [3.2]*
 
